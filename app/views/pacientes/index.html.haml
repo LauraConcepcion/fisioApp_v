@@ -1,0 +1,33 @@
+%h1 Listing pacientes
+
+%table
+  %tr
+    %th Name
+    %th Firstsurname
+    %th Secondsurname
+    %th Idtype
+    %th Idcode
+    %th Profession
+    %th Feetype
+    %th Comments
+    %th
+    %th
+    %th
+
+  - @pacientes.each do |paciente|
+    %tr
+      %td= paciente.name
+      %td= paciente.firstsurname
+      %td= paciente.secondsurname
+      %td= paciente.idtype
+      %td= paciente.idcode
+      %td= paciente.profession
+      %td= paciente.feetype
+      %td= paciente.comments
+      %td= link_to 'Show', paciente
+      %td= link_to 'Edit', edit_paciente_path(paciente)
+      %td= link_to 'Destroy', paciente, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Paciente', new_paciente_path

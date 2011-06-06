@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @paciente.name
+%p
+  %b Firstsurname:
+  = @paciente.firstsurname
+%p
+  %b Secondsurname:
+  = @paciente.secondsurname
+%p
+  %b Idtype:
+  = @paciente.idtype
+%p
+  %b Idcode:
+  = @paciente.idcode
+%p
+  %b Profession:
+  = @paciente.profession
+%p
+  %b Feetype:
+  = @paciente.feetype
+%p
+  %b Comments:
+  = @paciente.comments
+
+= link_to 'Edit', edit_paciente_path(@paciente)
+\|
+= link_to 'Back', pacientes_path
