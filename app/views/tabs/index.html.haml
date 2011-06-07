@@ -1,0 +1,19 @@
+%h1 Listing tabs
+
+%table
+  %tr
+    %th Paciente name
+    %th
+    %th
+    %th
+
+  - @tabs.each do |tab|
+    %tr
+      %td= tab.paciente_name
+      %td= link_to 'Show', tab
+      %td= link_to 'Edit', edit_tab_path(tab)
+      %td= link_to 'Destroy', tab, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Tab', new_tab_path

@@ -1,0 +1,5 @@
+<h1>Welcome!</h1>
+<%= form_for @tab do |f| %>
+  <%=f.label :paciente_name %>
+  <%=f.autocomplete_field :paciente_name, tabs_autocomplete_paciente_name_path %>
+<% end %>

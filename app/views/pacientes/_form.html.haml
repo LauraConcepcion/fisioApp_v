@@ -1,34 +1,13 @@
-= form_for @paciente do |f|
-  -if @paciente.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@paciente.errors.count, "error")} prohibited this paciente from being saved:"
-      %ul
-        - @paciente.errors.full_messages.each do |msg|
-          %li= msg
+= simple_form_for(@paciente) do |f| 
+  = f.error_notification
+  
+  .inputs
+    = f.input :name, :url => pacientes_autocomplete_paciente_name_path, :as => :autocomplete # = f.association :album, :collection => current_user.albums
+    = f.input :firstsurname #, :as => :file
+    = f.input :secondsurname
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :firstsurname
-    = f.text_field :firstsurname
-  .field
-    = f.label :secondsurname
-    = f.text_field :secondsurname
-  .field
-    = f.label :idtype
-    = f.text_field :idtype
-  .field
-    = f.label :idcode
-    = f.text_field :idcode
-  .field
-    = f.label :profession
-    = f.text_field :profession
-  .field
-    = f.label :feetype
-    = f.text_field :feetype
-  .field
-    = f.label :comments
-    = f.text_field :comments
+    
   .actions
-    = f.submit 'Save'
+    = f.button :submit
+
+

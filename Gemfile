@@ -33,4 +33,6 @@ gem 'pg', :require => 'pg'
  gem 'haml-rails'
  gem 'simple_form'
  gem 'devise'
+ gem 'rails3-jquery-autocomplete', '0.6.0'
+ gem 'nifty-generators'
 

@@ -1,0 +1,8 @@
+= simple_form_for(@tab) do |f|
+  = f.error_notification
+
+  .inputs
+    = f.input :paciente_name
+
+  .actions
+    = f.button :submit

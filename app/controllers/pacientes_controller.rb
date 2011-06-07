@@ -13,12 +13,13 @@ class PacientesController < ApplicationController
   # GET /pacientes/1
   # GET /pacientes/1.xml
   def show
-    @paciente = Paciente.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @paciente }
-    end
+    @paciente = Paciente.new
+    # @paciente = Paciente.find(params[:id])
+# 
+    # respond_to do |format|
+      # format.html # show.html.erb
+      # format.xml  { render :xml => @paciente }
+    # end
   end
 
   # GET /pacientes/new
