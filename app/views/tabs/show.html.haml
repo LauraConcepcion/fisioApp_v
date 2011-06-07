@@ -2,7 +2,7 @@
 
 %p
   %b Paciente name:
-  = form_for @tab do |f|
+  = simple_form_for @tab do |f|
     =f.label :paciente_name
     =f.autocomplete_field :paciente_name, tabs_autocomplete_paciente_name_path
   

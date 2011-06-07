@@ -6,7 +6,7 @@ gem 'rails', '3.0.7'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg', :require => 'pg'
-
+gem 'kaminari'
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -35,4 +35,13 @@ gem 'pg', :require => 'pg'
  gem 'devise'
  gem 'rails3-jquery-autocomplete', '0.6.0'
  gem 'nifty-generators'
+ 
+ 
+ group :development do
+   gem 'annotate-models', '1.0.4'
+   gem 'rspec-rails', '2.0.1'
+ end
+ group :test do
+   gem 'rspec', '2.0.1'
+ end
 
