@@ -1,0 +1,42 @@
+%p#notice= notice
+
+%p
+  %b Assessmentdate:
+  = @clinicalhistory.assessmentdate
+%p
+  %b Medicalhistory:
+  = @clinicalhistory.medicalhistory
+%p
+  %b Reasonconsultation:
+  = @clinicalhistory.reasonconsultation
+%p
+  %b Evaluation:
+  = @clinicalhistory.evaluation
+%p
+  %b Treatment:
+  = @clinicalhistory.treatment
+%p
+  %b Medicaldiagnosic:
+  = @clinicalhistory.medicaldiagnosic
+%p
+  %b Physiotherapistdiagnostic:
+  = @clinicalhistory.physiotherapistdiagnostic
+%p
+  %b Startdatetto:
+  = @clinicalhistory.startdatetto
+%p
+  %b Enddatetto:
+  = @clinicalhistory.enddatetto
+%p
+  %b Nsessions:
+  = @clinicalhistory.nsessions
+%p
+  %b Frequency:
+  = @clinicalhistory.frequency
+%p
+  %b Comments:
+  = @clinicalhistory.comments
+
+= link_to 'Edit', edit_clinicalhistory_path(@clinicalhistory)
+\|
+= link_to 'Back', clinicalhistories_path

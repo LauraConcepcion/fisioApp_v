@@ -1,0 +1,30 @@
+= simple_form_for(@clinicalhistory) do |f| 
+  = f.error_notification
+  %table.table_apretada
+    %tr
+      %td{:colspan=>"2"}= f.input :assessmentdate, :label => "F. Evaluación: ", :include_blank => true
+      %td{:colspan=>"2"} NombreFisio
+    %tr
+      %td= f.input :medicalhistory, :label => "Historia médica: "
+      %td= f.input :reasonconsultation, :label => "Motivo consulta: "
+      %td= f.input :evaluation, :label => "Evaluación: "
+      %td= f.input :comments, :label => "Observaciones: "
+    %tr
+      %td= f.input :physiotherapistdiagnostic, :label => "Diagnósito Fisio: "
+      %td= f.input :treatment, :label => "Tratamiento: "
+      %td{:colspan=>"2"}
+        %table.table_small
+          %tr
+            %td{:colspan=>"3"}= f.input :startdatetto, :label => "F.Inicio tto: "
+          %tr
+            %td{:colspan=>"3"}= f.input :enddatetto, :label => "F.Fin tto: "
+          %tr
+            %td= f.input :medicaldiagnosic, :label => "Diagnóstico Méd.: "
+            %td= f.input :nsessions, :label => "Sesiones: "
+            %td= f.input :frequency, :label => "Frec: "
+
+
+
+  .actions
+    = f.button :submit
+      

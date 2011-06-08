@@ -1,0 +1,19 @@
+= simple_form_for(@clinicalhistory) do |f|
+  = f.error_notification
+
+  .inputs
+    = f.input :assessmentdate
+    = f.input :medicalhistory
+    = f.input :reasonconsultation
+    = f.input :evaluation
+    = f.input :treatment
+    = f.input :medicaldiagnosic
+    = f.input :physiotherapistdiagnostic
+    = f.input :startdatetto
+    = f.input :enddatetto
+    = f.input :nsessions
+    = f.input :frequency
+    = f.input :comments
+
+  .actions
+    = f.button :submit

@@ -5,6 +5,22 @@
 }
 .table_form{
 	width: 65%;
+
+}
+.table_apretada{
+	width: 100%;
+}
+.table_small{
+	width: 50%;
+}
+.simple_form input {
+  width: 130px;
+  float: left;
+  margin: 2px;
+}
+
+.simple_form.small{
+	width: 10px;
 }
 
 .simple_form label {
@@ -15,11 +31,6 @@
   margin: 1px 5px;
 }
 
-.simple_form input {
-  width: 130px;
-  float: left;
-  margin-top: 2px;
-}
 
 div.boolean, .simple_form input[type='submit'] {
   margin-left: 120px;

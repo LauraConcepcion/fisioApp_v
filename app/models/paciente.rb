@@ -37,5 +37,6 @@ class Paciente < ActiveRecord::Base
     
     #Relación de paciente con tipo de tarifa, un paciente tiene una tarifa, una tarifa puede tener muchos pacientes
     belongs_to :feetype      
+    has_many :clinicalhistories
 end
 

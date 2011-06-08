@@ -10,7 +10,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110608141649) do
+ActiveRecord::Schema.define(:version => 20110608173147) do
+
+  create_table "clinicalhistories", :force => true do |t|
+    t.date     "assessmentdate"
+    t.text     "medicalhistory"
+    t.text     "reasonconsultation"
+    t.text     "evaluation"
+    t.text     "treatment"
+    t.string   "medicaldiagnosic"
+    t.text     "physiotherapistdiagnostic"
+    t.date     "startdatetto"
+    t.date     "enddatetto"
+    t.integer  "nsessions"
+    t.integer  "frequency"
+    t.text     "comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "paciente"
+  end
 
   create_table "feetypes", :force => true do |t|
     t.string   "name"
@@ -28,7 +46,7 @@ ActiveRecord::Schema.define(:version => 20110608141649) do
     t.integer  "idtype"
     t.string   "idcode"
     t.string   "profession"
-    t.integer  "feetype"
+    t.integer  "feetype_id"
     t.string   "comments"
     t.datetime "created_at"
     t.datetime "updated_at"

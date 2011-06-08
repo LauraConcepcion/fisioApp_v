@@ -214,7 +214,7 @@ input.text, input.title, textarea, select {margin:0.5em 0;border:1px solid #bbb;
 input.text:focus, input.title:focus, textarea:focus, select:focus {border:1px solid #666;}
 input.text, input.title {width:100px;padding:5px;}
 input.title {font-size:1.5em;}
-textarea {width:200px;height:100px;padding:5px;}
+textarea {width:180px;height:80px;padding:5px;}
 .error, .notice, .success {padding:.8em;margin-bottom:1em;border:2px solid #ddd;}
 .error {background:#FBE3E4;color:#8a1f11;border-color:#FBC2C4;}
 .notice {background:#FFF6BF;color:#514721;border-color:#FFD324;}
