@@ -234,28 +234,30 @@ ul.users {
 	vertical-align: top;
 
 }
-
-#Listados, tablas de listados
-
-table.listado{ 
-	display: block; 
-	font-size: 100%; 
-	color: #666;
-}
-table.listado  tbody th{
-	font-weight: bold;
-	font-size: 110%;
-	color: #BBBBBB;
-	background-color: #000000;;
-} 
-
-.login{
-	font-size: 85%;
+.arealogin{
+	font-size: 75%;
 	font-weight: bold;
 	font-style: italic;
 	text-align: right;
 }
-.login a{
+.arealogin a{
 		color: #000000;
-
 }
+
+table.listado{ 
+	display: block; 
+	color: #666;
+}
+table.listado  tbody th{
+	font-weight: bold;
+	font-size: 80%;
+	color: #BBBBBB;
+	background-color: #000000;
+} 
+table.listado a{
+	color: #000000;
+}
+table.listado tr td{
+	font-size: 80%;
+}
+

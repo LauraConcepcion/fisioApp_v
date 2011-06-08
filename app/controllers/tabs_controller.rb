@@ -19,7 +19,7 @@ class TabsController < ApplicationController
 
   def show
     @tab = Tab.new
-
+    @paciente = Paciente.new
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @tab }

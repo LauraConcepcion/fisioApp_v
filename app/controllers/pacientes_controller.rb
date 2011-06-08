@@ -13,13 +13,12 @@ class PacientesController < ApplicationController
   # GET /pacientes/1
   # GET /pacientes/1.xml
   def show
-    @paciente = Paciente.new
-    # @paciente = Paciente.find(params[:id])
-# 
-    # respond_to do |format|
-      # format.html # show.html.erb
-      # format.xml  { render :xml => @paciente }
-    # end
+    @paciente = Paciente.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @paciente }
+    end
   end
 
   # GET /pacientes/new
@@ -45,7 +44,7 @@ class PacientesController < ApplicationController
 
     respond_to do |format|
       if @paciente.save
-        format.html { redirect_to(@paciente, :notice => 'Paciente was successfully created.') }
+        format.html { redirect_to(@paciente, :notice => 'El paciente ha sido creado correctamente.') }
         format.xml  { render :xml => @paciente, :status => :created, :location => @paciente }
       else
         format.html { render :action => "new" }
@@ -61,7 +60,7 @@ class PacientesController < ApplicationController
 
     respond_to do |format|
       if @paciente.update_attributes(params[:paciente])
-        format.html { redirect_to(@paciente, :notice => 'Paciente was successfully updated.') }
+        format.html { redirect_to(@paciente, :notice => 'Los datos del paciente se han actualizado correctamente.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

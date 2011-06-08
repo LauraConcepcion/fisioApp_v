@@ -25,6 +25,15 @@
 #
 
 class Paciente < ActiveRecord::Base
-    attr_accessible :name, :firstsurname, :secondsurname, :idtype, :idcode, :prefession, :feetype, :comments
+    attr_accessible :name, :firstsurname, :secondsurname, :idtype, :idcode, :pr0fession, :feetype, :comments,
+                    :birthdate, :mobilephone, :familyphone, :homephone, :email, :addres, :zip, :codigo
+#Definimos el formato de mail
+    validates :email, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create }
+#Definimos así mismo los atributos que serán obligatorios, nombre, primer apellido, tipo de tarifa
+    validates :name, :firstsurname, :feedtype, :presence => true
+#Definimos el tamaño de los campos
+    validates :name, :firstsurname, :secondsurname, :prefession, :email, :length => {:maximum => 20}
+    validates :feetype, :movilephone, :familyphone, :homephone, :codigo, :numericality => true
+             
 end
 

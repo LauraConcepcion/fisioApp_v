@@ -1,32 +1,42 @@
-%h1 Listing pacientes
-
-%table
+%h1 Listado general de pacientes
+%table.listado
   %tr
-    %th Name
-    %th Firstsurname
-    %th Secondsurname
-    %th Idtype
-    %th Idcode
-    %th Profession
-    %th Feetype
-    %th Comments
+    %th Nº 
+    %th Nombre
+    %th 1 Apellido
+    %th 2 Apelllido
+    %th Identificación
+    %th Ocupación
+    %th Tarifa
+    %th Edad
+    %th Móvil
+    %th Tfno
+    %th Tfno Fam
+    %th Email
+    %th Dirección
+    %th C.P
     %th
     %th
     %th
-
   - @pacientes.each do |paciente|
     %tr
+      %td= paciente.codigo
       %td= paciente.name
       %td= paciente.firstsurname
       %td= paciente.secondsurname
-      %td= paciente.idtype
-      %td= paciente.idcode
+      %td= "#{paciente.idtype.to_s}: ""#{paciente.idcode}" unless paciente.idcode.nil?
       %td= paciente.profession
       %td= paciente.feetype
-      %td= paciente.comments
+      %td= ((Time.now - paciente.birthdate.to_time)/31536000).to_i unless paciente.birthdate.nil?
+      %td= paciente.mobilephone
+      %td= paciente.familyphone
+      %td= paciente.homephone
+      %td= paciente.email
+      %td= paciente.addres
+      %td= paciente.zip
       %td= link_to 'Show', paciente
       %td= link_to 'Edit', edit_paciente_path(paciente)
-      %td= link_to 'Destroy', paciente, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to 'Destroy', paciente, :confirm => 'Está seguro?', :method => :delete
 
 %br
 

@@ -8,15 +8,17 @@
     <%= render 'layouts/stylesheets'%>
     <%= stylesheet_link_tag 'custom', :media => 'screen' %>
     <%= stylesheet_link_tag 'jquery-ui-1.8.2.custom.css'%>
+    <%= stylesheet_link_tag 'simpleForm.css'%>
+
 
   </head>
   <body>
     <div class="container">
 	  <%= render 'layouts/header'%>
 	  <section class="round">
-	  <div class="login">
+	  <div class="arealogin">
 		<% if user_signed_in? %>
-			Sesión Iniciada: <%= current_user.email %>
+			Sesión Iniciada: <%= current_user.email %> - 
 			<%= link_to "Cerrar sesión", destroy_user_session_path%>
 		<% end %>
 	  </div >
