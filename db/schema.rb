@@ -10,7 +10,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110608073754) do
+ActiveRecord::Schema.define(:version => 20110608141649) do
+
+  create_table "feetypes", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "sessions"
+    t.float    "rate"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "pacientes", :force => true do |t|
     t.string   "name"
@@ -40,12 +49,6 @@ ActiveRecord::Schema.define(:version => 20110608073754) do
     t.text     "paciente_firstsurname"
     t.string   "paciente_secondsurname"
     t.string   "paciente_idcode"
-  end
-
-  create_table "tipo_identificacions", :force => true do |t|
-    t.string   "value"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|

@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110608073754
+# Schema version: 20110608141649
 #
 # Table name: pacientes
 #
@@ -10,7 +10,7 @@
 #  idtype        :integer
 #  idcode        :string(255)
 #  profession    :string(255)
-#  feetype       :integer
+#  feetype_id    :integer
 #  comments      :string(255)
 #  created_at    :datetime
 #  updated_at    :datetime

@@ -12,7 +12,7 @@
       %td= f.input :idcode #, :as => :file
     %tr
       %td= f.input :profession, :label => "Ocupación: "
-      %td= f.input :feetype, :label => "Tipo: "
+      %td= f.association :feetype, :label => "Tipo: ", :collection => Feetype.all(:order => 'name'), :include_blank => false
     %tr
       %td= f.input :birthdate, :label => "F. Nacimiento: "
       %td= f.label "Edad"

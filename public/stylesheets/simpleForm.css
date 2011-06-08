@@ -14,22 +14,24 @@
   text-align: right;
   margin: 1px 5px;
 }
+
 .simple_form input {
   width: 130px;
   float: left;
   margin-top: 2px;
 }
+
 div.boolean, .simple_form input[type='submit'] {
   margin-left: 120px;
 }
 
 div.boolean label, label.collection_radio {
-  float: none;
+  float: left;
   margin: 0;
 }
 
 label.collection_radio {
-  margin-right: 10px;
+  margin-right: 5px;
   vertical-align: -2px;
   margin-left:   2px;
 }
@@ -66,7 +68,7 @@ input.check_boxes {
 }
 
 label.collection_check_boxes {
-  float: none;
+  float: left;
   margin: 0;
   vertical-align: -2px;
   margin-left:   2px;

@@ -7,7 +7,7 @@ class CreatePacientes < ActiveRecord::Migration
       t.integer :idtype
       t.string :idcode
       t.string :profession
-      t.integer :feetype
+      t.integer :feetype_id
       t.string :comments
 
       t.timestamps

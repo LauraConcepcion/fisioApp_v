@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110608073754
+# Schema version: 20110608141649
 #
 # Table name: pacientes
 #
@@ -10,7 +10,7 @@
 #  idtype        :integer
 #  idcode        :string(255)
 #  profession    :string(255)
-#  feetype       :integer
+#  feetype_id    :integer
 #  comments      :string(255)
 #  created_at    :datetime
 #  updated_at    :datetime
@@ -25,7 +25,7 @@
 #
 
 class Paciente < ActiveRecord::Base
-    attr_accessible :name, :firstsurname, :secondsurname, :idtype, :idcode, :pr0fession, :feetype, :comments,
+    attr_accessible :name, :firstsurname, :secondsurname, :idtype, :idcode, :profession, :feetype_id, :comments,
                     :birthdate, :mobilephone, :familyphone, :homephone, :email, :addres, :zip, :codigo
 #Definimos el formato de mail
     validates :email, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create }
@@ -34,6 +34,8 @@ class Paciente < ActiveRecord::Base
 #Definimos el tamaño de los campos
     validates :name, :firstsurname, :secondsurname, :prefession, :email, :length => {:maximum => 20}
     validates :feetype, :movilephone, :familyphone, :homephone, :codigo, :numericality => true
-             
+    
+    #Relación de paciente con tipo de tarifa, un paciente tiene una tarifa, una tarifa puede tener muchos pacientes
+    belongs_to :feetype      
 end
 

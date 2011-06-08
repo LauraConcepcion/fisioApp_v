@@ -24,10 +24,10 @@
       %td= paciente.name
       %td= paciente.firstsurname
       %td= paciente.secondsurname
-      %td= "#{paciente.idtype.to_s}: ""#{paciente.idcode}" unless paciente.idcode.nil?
+      %td= "#{paciente.idtype.to_s}: ""#{paciente.idcode}" unless paciente.idcode.blank?
       %td= paciente.profession
-      %td= paciente.feetype
-      %td= ((Time.now - paciente.birthdate.to_time)/31536000).to_i unless paciente.birthdate.nil?
+      %td= paciente.feetype.name unless paciente.feetype.blank?
+      %td= ((Time.now - paciente.birthdate.to_time)/31536000).to_i unless paciente.birthdate.blank?
       %td= paciente.mobilephone
       %td= paciente.familyphone
       %td= paciente.homephone
