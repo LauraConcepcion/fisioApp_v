@@ -21,7 +21,7 @@ section {
 	font-size: 120%; 
 	padding-left: 20px; 
 	padding-right: 20px; 
-	padding-top: 60px;
+	padding-top: 40px;
 	padding-bottom: 20px;
 	background: #fff;} 
 section h1 {
@@ -248,3 +248,14 @@ table.listado  tbody th{
 	color: #BBBBBB;
 	background-color: #000000;;
 } 
+
+.login{
+	font-size: 85%;
+	font-weight: bold;
+	font-style: italic;
+	text-align: right;
+}
+.login a{
+		color: #000000;
+
+}

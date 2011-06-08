@@ -12,7 +12,11 @@ class TabsController < ApplicationController
 
   # GET /tabs/1
   # GET /tabs/1.xml
-  autocomplete :paciente, :name
+  autocomplete :paciente, :name, :full => true
+  autocomplete :paciente, :firstsurname, :full => true
+  autocomplete :paciente, :secondsurname, :full => true
+  autocomplete :paciente, :idcode
+
   def show
     @tab = Tab.new
 

@@ -1,6 +1,10 @@
 FisioApp::Application.routes.draw do
   get "tabs/show"
   get 'tabs/autocomplete_paciente_name'
+  get 'tabs/autocomplete_paciente_firstsurname'
+  get 'tabs/autocomplete_paciente_secondsurname'
+  get 'tabs/autocomplete_paciente_idcode'
+
   resources :tabs
   devise_for :users
   root :to => "pages#home"
