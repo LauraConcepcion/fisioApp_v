@@ -57,8 +57,18 @@ footer img{
 a:visited {
 	color: #fff;}
 
-/* Navigation */nav { 
-	float: right;}nav { 
+.negro a, a:hover, a:visited{
+	color:#000000
+}
+.blanco a, a:hover, a:visited, nav{
+	color: #FFFFFF;
+}
+
+/* Navigation */
+nav { 
+	float: right;
+	color:#666666
+}nav { 
 	background-color: #000; 
 	padding: 15px; 
 	white-space: nowrap;}nav ul { 

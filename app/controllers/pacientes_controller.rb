@@ -2,8 +2,18 @@ class PacientesController < ApplicationController
   # GET /pacientes
   # GET /pacientes.xml
   def index
-    @pacientes = Paciente.all
-
+    @tab = Tab.new
+    @pacientes = Paciente.where(:name => params[:name])
+    #, :firstsurname => params[:firstsurname],:secondsurname => params[:secondsurname], :idcode => params[:idcode]
+    if @pacientes.blank?
+      @pacientes = Paciente.all
+    end
+    # if @pacientes.size == 1
+      # @paciente = Paciente.find_by_idcode(@pacientes.idcode)
+      # respond_to do |format|
+        # format.html{redirect_to(@paciente)}
+      # end
+    # end
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @pacientes }
@@ -14,7 +24,6 @@ class PacientesController < ApplicationController
   # GET /pacientes/1.xml
   def show
     @paciente = Paciente.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @paciente }
@@ -35,6 +44,15 @@ class PacientesController < ApplicationController
   # GET /pacientes/1/edit
   def edit
     @paciente = Paciente.find(params[:id])
+    #@clinicalhistories = Clinicalhistory.page(params[:page])  
+    @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).page(params[:page])
+    # if @clinicalhistories.blank?
+      # @clinicalhistory = Clinicalhistory.new
+    # else
+      # @clinicalhistory = @clinicalhistories.first
+    # end
+    # @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).page params[:page]
+  # 
   end
 
   # POST /pacientes

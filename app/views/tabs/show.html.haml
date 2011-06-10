@@ -1,22 +1,6 @@
 %p#notice= notice
+%b Ficha del paciente:
+=render @paciente
+= paginate @clinicalhistories 
+#pacientes
 
-%p
-  %b Ficha del paciente:
-  = simple_form_for @tab do |f|
-    =f.label :paciente_name, "Nombre del paciente"
-    =f.autocomplete_field :paciente_name, tabs_autocomplete_paciente_name_path
-    %br
-    =f.label :firstsurname,"Primer apellido"
-    =f.autocomplete_field :paciente_firstsurname, tabs_autocomplete_paciente_firstsurname_path
-    %br
-    =f.label :secondsurname,"Segundo apellido"
-    =f.autocomplete_field :paciente_secondsurname, tabs_autocomplete_paciente_secondsurname_path
-    %br
-    =f.label :idtype,"Tipo"
-    =f.autocomplete_field :paciente_idcode, tabs_autocomplete_paciente_idcode_path
-    %br
-    =f.label :profession,"Ocupación"
-    %br
-    =f.label :feetype,"Tipo Tarifa"
-    %br
-    =f.label :comments,"Observaciones"

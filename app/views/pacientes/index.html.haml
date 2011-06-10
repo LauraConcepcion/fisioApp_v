@@ -1,43 +1,10 @@
-%h1 Listado general de pacientes
-%table.listado
-  %tr
-    %th Nº 
-    %th Nombre
-    %th 1 Apellido
-    %th 2 Apelllido
-    %th Identificación
-    %th Ocupación
-    %th Tarifa
-    %th Edad
-    %th Móvil
-    %th Tfno
-    %th Tfno Fam
-    %th Email
-    %th Dirección
-    %th C.P
-    %th
-    %th
-    %th
-  - @pacientes.each do |paciente|
+%h1 Buscar paciente
+= form_tag pacientes_path, :method => 'get', do 
+  %table.table_form
     %tr
-      %td= paciente.codigo
-      %td= paciente.name
-      %td= paciente.firstsurname
-      %td= paciente.secondsurname
-      %td= "#{paciente.idtype.to_s}: ""#{paciente.idcode}" unless paciente.idcode.blank?
-      %td= paciente.profession
-      %td= paciente.feetype.name unless paciente.feetype.blank?
-      %td= ((Time.now - paciente.birthdate.to_time)/31536000).to_i unless paciente.birthdate.blank?
-      %td= paciente.mobilephone
-      %td= paciente.familyphone
-      %td= paciente.homephone
-      %td= paciente.email
-      %td= paciente.addres
-      %td= paciente.zip
-      %td= link_to 'Show', paciente
-      %td= link_to 'Edit', edit_paciente_path(paciente)
-      %td= link_to 'Destroy', paciente, :confirm => 'Está seguro?', :method => :delete
-
-%br
-
-= link_to 'New Paciente', new_paciente_path
+      %td= text_field_tag :name, params[:nombre]
+      %td= text_field_tag :firstsurname, params[:firstsurname]
+      %td= text_field_tag :secondsurname, params[:secondsurname]
+      %td= text_field_tag :idcode, params[:idcode]
+  =submit_tag "Buscar", :name => nil
+= render 'pacientes'

@@ -5,22 +5,27 @@
 }
 .table_form{
 	width: 65%;
-
-}
-.table_apretada{
-	width: 100%;
 }
 .table_small{
-	width: 50%;
+	width: 100%;
+	table-layout: fixed;
+	text-align: right;
+	vertical-align: top
+
 }
-.simple_form input {
+.table_small td{
+	width: 250px;
+	overflow: scroll;
+}
+
+.simple_form .small input{
+	width: 30px;
+}
+
+.simple_form input{
   width: 130px;
   float: left;
   margin: 2px;
-}
-
-.simple_form.small{
-	width: 10px;
 }
 
 .simple_form label {
@@ -29,11 +34,6 @@
   font-size: 90%;
   text-align: right;
   margin: 1px 5px;
-}
-
-
-div.boolean, .simple_form input[type='submit'] {
-  margin-left: 120px;
 }
 
 div.boolean label, label.collection_radio {

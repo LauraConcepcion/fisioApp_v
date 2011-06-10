@@ -2,8 +2,7 @@ class TabsController < ApplicationController
   # GET /tabs
   # GET /tabs.xml
   def index
-    @tabs = Tab.all
-
+    @tab = Tab.new
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @tabs }
@@ -18,8 +17,11 @@ class TabsController < ApplicationController
   autocomplete :paciente, :idcode
 
   def show
-    @tab = Tab.new
-    @paciente = Paciente.new
+    @title = "Resultados encontrados"
+    @paciente = Paciente.find(params[:id])
+
+#    @clinicalhistories = @paciente.clinicalhistories.all
+#    @clinicalhistories = Clinicalhistory.page params[:page]
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @tab }

@@ -1,6 +1,7 @@
-= simple_form_for(@clinicalhistory) do |f| 
+
+= simple_form_for(clinicalhistory) do |f| 
   = f.error_notification
-  %table.table_apretada
+  %table.table_small
     %tr
       %td{:colspan=>"2"}= f.input :assessmentdate, :label => "F. Evaluación: ", :include_blank => true
       %td{:colspan=>"2"} NombreFisio
@@ -19,12 +20,7 @@
           %tr
             %td{:colspan=>"3"}= f.input :enddatetto, :label => "F.Fin tto: "
           %tr
-            %td= f.input :medicaldiagnosic, :label => "Diagnóstico Méd.: "
-            %td= f.input :nsessions, :label => "Sesiones: "
-            %td= f.input :frequency, :label => "Frec: "
-
-
-
-  .actions
-    = f.button :submit
-      
+            %td.big= f.input :medicaldiagnosic, :label => "Diagnóstico Méd.: "
+            %td.small= f.input :nsessions, :label => "Sesiones: "
+            %td.small= f.input :frequency, :label => "Frec: "
+    

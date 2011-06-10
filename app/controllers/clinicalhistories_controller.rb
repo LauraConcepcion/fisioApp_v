@@ -2,19 +2,16 @@ class ClinicalhistoriesController < ApplicationController
   # GET /clinicalhistories
   # GET /clinicalhistories.xml
   def index
-    @clinicalhistories = Clinicalhistory.all
-
+    @clinicalhistories = Clinicalhistory.page(params[:page])
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @clinicalhistories }
     end
   end
-
   # GET /clinicalhistories/1
   # GET /clinicalhistories/1.xml
   def show
     @clinicalhistory = Clinicalhistory.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @clinicalhistory }
