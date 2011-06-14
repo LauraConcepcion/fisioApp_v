@@ -1,10 +1,14 @@
 <header class="round">
 	<%= link_to logo, "http://www.fisior.es" %>
 	<h1>FisioApp</h1>
-	<nav class="round">		<ul> 
-			<li><%= link_to "Ayuda", '#' %></li> 
+	<nav class="round">
+		<nav class="blanco">		<ul> <% if user_signed_in? -%>
+				<li><%= link_to "Ayuda", '#' %></li> 
 				<li><%= link_to "Configuracion", '#' %></li> 
-				<li><%= link_to "Salir", '#' %></li> 
-				<li><%= link_to "Entrar", '#' %></li> 
+				<li><%= link_to "Salir", destroy_user_session_path %>
+			<%else%>
+				<li><%= link_to "Ayuda", '#' %></li> 
+			<%end%>
 		</ul> 
+		</nav>
 	</nav></header>

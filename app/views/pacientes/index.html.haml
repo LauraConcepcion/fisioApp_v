@@ -1,10 +1,25 @@
 %h1 Buscar paciente
+
 = form_tag pacientes_path, :method => 'get', do 
-  %table.table_form
+  %table
     %tr
-      %td= text_field_tag :name, params[:nombre]
+      %td= label_tag 'Nombre'
+      %td= label_tag 'Primer apellido'
+      %td= label_tag 'Segundo apellido'
+      %td= label_tag 'Dni'
+      %td
+    %tr
+      %td= text_field_tag :name, params[:name]
       %td= text_field_tag :firstsurname, params[:firstsurname]
       %td= text_field_tag :secondsurname, params[:secondsurname]
       %td= text_field_tag :idcode, params[:idcode]
-  =submit_tag "Buscar", :name => nil
-= render 'pacientes'
+      %td=submit_tag "Buscar", :name => nil
+
+.arearegistro
+  = link_to "Crear nueva ficha", new_paciente_path
+
+%br
+%h2 Listado de pacientes
+#pacientes
+= if !@pacientes.blank?
+  = render 'pacientes'

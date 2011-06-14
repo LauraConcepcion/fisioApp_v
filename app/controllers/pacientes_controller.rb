@@ -2,18 +2,17 @@ class PacientesController < ApplicationController
   # GET /pacientes
   # GET /pacientes.xml
   def index
+    @paciente = Paciente.new
+    @clinicalhistory = Clinicalhistory.new
     @tab = Tab.new
-    @pacientes = Paciente.where(:name => params[:name])
-    #, :firstsurname => params[:firstsurname],:secondsurname => params[:secondsurname], :idcode => params[:idcode]
+    name = params[:name]
+    firstsurname = params[:firstsurname]
+    secondsurname = params[:secondsurname]
+    idcode = params[:idcode] 
+    @pacientes = Paciente.search(name, firstsurname, secondsurname,idcode)
     if @pacientes.blank?
       @pacientes = Paciente.all
     end
-    # if @pacientes.size == 1
-      # @paciente = Paciente.find_by_idcode(@pacientes.idcode)
-      # respond_to do |format|
-        # format.html{redirect_to(@paciente)}
-      # end
-    # end
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @pacientes }
@@ -24,6 +23,8 @@ class PacientesController < ApplicationController
   # GET /pacientes/1.xml
   def show
     @paciente = Paciente.find(params[:id])
+    @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).page(params[:page])
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @paciente }
@@ -34,11 +35,7 @@ class PacientesController < ApplicationController
   # GET /pacientes/new.xml
   def new
     @paciente = Paciente.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @paciente }
-    end
+    @clinicalhistory = Clinicalhistory.new
   end
 
   # GET /pacientes/1/edit
@@ -46,12 +43,15 @@ class PacientesController < ApplicationController
     @paciente = Paciente.find(params[:id])
     #@clinicalhistories = Clinicalhistory.page(params[:page])  
     @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).page(params[:page])
-    # if @clinicalhistories.blank?
-      # @clinicalhistory = Clinicalhistory.new
-    # else
+    if @clinicalhistories.blank?
+       @clinicalhistory = Clinicalhistory.new(params[:clinicalhistory])
+       @paciente.clinicalhistories << @clinicalhistory
+    else
+      @clinicalhistory = @clinicalhistories.first
+    end       
       # @clinicalhistory = @clinicalhistories.first
     # end
-    # @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).page params[:page]
+    @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).page params[:page]
   # 
   end
 
@@ -59,10 +59,12 @@ class PacientesController < ApplicationController
   # POST /pacientes.xml
   def create
     @paciente = Paciente.new(params[:paciente])
-
+    @clinicalhistory = Clinicalhistory.new(params[:clinicalhistory])
+    @paciente.clinicalhistories << @clinicalhistory
     respond_to do |format|
       if @paciente.save
-        format.html { redirect_to(@paciente, :notice => 'El paciente ha sido creado correctamente.') }
+        @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).page(params[:page])
+        format.html {redirect_to(pacientes_url)}
         format.xml  { render :xml => @paciente, :status => :created, :location => @paciente }
       else
         format.html { render :action => "new" }
@@ -70,21 +72,24 @@ class PacientesController < ApplicationController
       end
     end
   end
-
+  
   # PUT /pacientes/1
   # PUT /pacientes/1.xml
   def update
     @paciente = Paciente.find(params[:id])
-
+    @clinicalhistory = Clinicalhistory.find_by_code(params[:clinicalhistory][:code])
     respond_to do |format|
       if @paciente.update_attributes(params[:paciente])
-        format.html { redirect_to(@paciente, :notice => 'Los datos del paciente se han actualizado correctamente.') }
-        format.xml  { head :ok }
+        if @clinicalhistory.update_attributes(params[:clinicalhistory])
+          format.html {  redirect_to(edit_paciente_url)}
+            #redirect_to(:action=>"edit", :controller=>"pacientes", :notice => 'Los datos del paciente se han actualizado correctamente.') }
+          format.xml  { head :ok }
+        end
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @paciente.errors, :status => :unprocessable_entity }
       end
-    end
+    end   
   end
 
   # DELETE /pacientes/1
@@ -98,4 +103,5 @@ class PacientesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
 end

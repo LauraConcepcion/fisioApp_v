@@ -1,90 +1,20 @@
 class TabsController < ApplicationController
   # GET /tabs
   # GET /tabs.xml
-  def index
-    @tab = Tab.new
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @tabs }
-    end
-  end
-
-  # GET /tabs/1
-  # GET /tabs/1.xml
-  autocomplete :paciente, :name, :full => true
+  autocomplete :paciente, :name, :full => true, :extra_data => [:firstsurname, :secondsurname, :idcode]
   autocomplete :paciente, :firstsurname, :full => true
   autocomplete :paciente, :secondsurname, :full => true
   autocomplete :paciente, :idcode
-
-  def show
-    @title = "Resultados encontrados"
-    @paciente = Paciente.find(params[:id])
-
-#    @clinicalhistories = @paciente.clinicalhistories.all
-#    @clinicalhistories = Clinicalhistory.page params[:page]
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @tab }
-    end
-  end
-
-  # GET /tabs/new
-  # GET /tabs/new.xml
-  def new
-    @tab = Tab.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @tab }
-    end
-  end
-
-  # GET /tabs/1/edit
-  def edit
-    @tab = Tab.find(params[:id])
-  end
-
-  # POST /tabs
-  # POST /tabs.xml
   def create
-    @tab = Tab.new(params[:tab])
-
-    respond_to do |format|
-      if @tab.save
-        format.html { redirect_to(@tab, :notice => 'Tab was successfully created.') }
-        format.xml  { render :xml => @tab, :status => :created, :location => @tab }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @tab.errors, :status => :unprocessable_entity }
-      end
+    name = params[:paciente_name]
+    firstsurname = params[:paciente_firstsurname]
+    secondsurname = params[:paciente_secondsurname]
+    idcode = params[:paciente_idcode] 
+    @pacientes = Paciente.search(name, firstsurname, secondsurname,idcode)
+    if @pacientes.blank?
+      @pacientes = Paciente.all
     end
-  end
-
-  # PUT /tabs/1
-  # PUT /tabs/1.xml
-  def update
-    @tab = Tab.find(params[:id])
-
-    respond_to do |format|
-      if @tab.update_attributes(params[:tab])
-        format.html { redirect_to(@tab, :notice => 'Tab was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @tab.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /tabs/1
-  # DELETE /tabs/1.xml
-  def destroy
-    @tab = Tab.find(params[:id])
-    @tab.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(tabs_url) }
-      format.xml  { head :ok }
-    end
+    redirect_to(pacientes_url)  
   end
 end
+    

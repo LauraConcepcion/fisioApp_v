@@ -22,7 +22,6 @@ class ClinicalhistoriesController < ApplicationController
   # GET /clinicalhistories/new.xml
   def new
     @clinicalhistory = Clinicalhistory.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @clinicalhistory }
@@ -37,15 +36,19 @@ class ClinicalhistoriesController < ApplicationController
   # POST /clinicalhistories
   # POST /clinicalhistories.xml
   def create
+    @paciente = Paciente.find(params[:paciente])
     @clinicalhistory = Clinicalhistory.new(params[:clinicalhistory])
-
+    @paciente.clinicalhistories << @clinicalhistory
     respond_to do |format|
-      if @clinicalhistory.save
-        format.html { redirect_to(@clinicalhistory, :notice => 'Clinicalhistory was successfully created.') }
-        format.xml  { render :xml => @clinicalhistory, :status => :created, :location => @clinicalhistory }
+      if @paciente.save
+        if @clinicalhistory.save
+          @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).page(params[:page])
+          format.html {redirect_to(pacientes_url)}
+          format.xml  { render :xml => @paciente, :status => :created, :location => @paciente }
+        end
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @clinicalhistory.errors, :status => :unprocessable_entity }
+        format.xml  { render :xml => @paciente.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -54,10 +57,10 @@ class ClinicalhistoriesController < ApplicationController
   # PUT /clinicalhistories/1.xml
   def update
     @clinicalhistory = Clinicalhistory.find(params[:id])
-
+    @paciente = @clinicalhistory.paciente_id
     respond_to do |format|
       if @clinicalhistory.update_attributes(params[:clinicalhistory])
-        format.html { redirect_to(@clinicalhistory, :notice => 'Clinicalhistory was successfully updated.') }
+        format.html { redirect_to(edit_paciente_url, :notice => 'Clinicalhistory was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

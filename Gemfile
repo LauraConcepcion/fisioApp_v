@@ -35,6 +35,7 @@ gem 'kaminari'
  gem 'devise'
  gem 'rails3-jquery-autocomplete', '0.6.0'
  gem 'nifty-generators'
+ gem 'jquery-rails'  
  
  
  group :development do

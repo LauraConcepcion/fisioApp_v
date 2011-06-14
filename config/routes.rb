@@ -6,7 +6,6 @@ FisioApp::Application.routes.draw do
   get 'tabs/autocomplete_paciente_firstsurname'
   get 'tabs/autocomplete_paciente_secondsurname'
   get 'tabs/autocomplete_paciente_idcode'
-  
   resources :tabs
   resources :pacientes
   devise_for :users

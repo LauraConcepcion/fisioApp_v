@@ -30,13 +30,29 @@ class Paciente < ActiveRecord::Base
 #Definimos el formato de mail
     validates :email, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create }
 #Definimos así mismo los atributos que serán obligatorios, nombre, primer apellido, tipo de tarifa
-    validates :name, :firstsurname, :feedtype, :presence => true
+    validates :name, :firstsurname, :feetype, :presence => true
 #Definimos el tamaño de los campos
-    validates :name, :firstsurname, :secondsurname, :prefession, :email, :length => {:maximum => 20}
-    validates :feetype, :movilephone, :familyphone, :homephone, :codigo, :numericality => true
+    validates :name, :firstsurname, :secondsurname, :profession, :email, :length => {:maximum => 20}
+    validates  :mobilephone, :familyphone, :homephone, :codigo, :numericality => true
     
     #Relación de paciente con tipo de tarifa, un paciente tiene una tarifa, una tarifa puede tener muchos pacientes
     belongs_to :feetype      
-    has_many :clinicalhistories
+    has_many :clinicalhistories, :dependent => :destroy 
+    accepts_nested_attributes_for :clinicalhistories
+    
+    def self.search(name, firstsurname, secondsurname, idcode)
+      if !name.blank? or !firstsurname.blank? or !secondsurname.blank? or !idcode.blank?
+        where("name = '#{name}' AND firstsurname = '#{firstsurname}' AND secondsurname = '#{secondsurname}' OR idcode = '#{idcode}'")
+      else
+        find(:all)
+      end
+    end
+    
+    def self.createclinicalhistory (clinicalhistory)
+      if !clinicalhistory.blank?
+        @clinicalhistory = Clinicalhistory.new(clinicalhistory)
+        self << @clinicalhistory
+      end
+    end
 end
 

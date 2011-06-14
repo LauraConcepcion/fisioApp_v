@@ -48,6 +48,9 @@ GEM
       haml (~> 3.0)
       railties (~> 3.0)
     i18n (0.5.0)
+    jquery-rails (1.0.9)
+      railties (~> 3.0)
+      thor (~> 0.14)
     kaminari (0.12.4)
       rails (>= 3.0.0)
     linecache19 (0.5.12)
@@ -119,6 +122,7 @@ DEPENDENCIES
   annotate-models (= 1.0.4)
   devise
   haml-rails
+  jquery-rails
   kaminari
   nifty-generators
   pg

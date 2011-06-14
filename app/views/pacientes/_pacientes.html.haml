@@ -8,12 +8,10 @@
       %th Identificación
       %th Ocupación
       %th Tarifa
-      %th Edad
       %th Móvil
       %th Tfno
       %th Tfno Fam
       %th Email
-      %th Dirección
       %th C.P
       %th
       %th
@@ -27,15 +25,12 @@
         %td= "#{paciente.idtype.to_s}: ""#{paciente.idcode}" unless paciente.idcode.blank?
         %td= paciente.profession
         %td= paciente.feetype.name unless paciente.feetype.blank?
-        %td= ((Time.now - paciente.birthdate.to_time)/31536000).to_i unless paciente.birthdate.blank?
         %td= paciente.mobilephone
         %td= paciente.familyphone
         %td= paciente.homephone
-        %td= paciente.email
-        %td= paciente.addres
         %td= paciente.zip
         %td= link_to 'Ficha | ', edit_paciente_path(paciente)
-        %td= link_to 'Eliminar', paciente, :confirm => 'Está seguro?', :method => :delete
+        %td= link_to 'Eliminar', paciente, :confirm => 'Está seguro?', :method => :destroy
   
   %br
   
