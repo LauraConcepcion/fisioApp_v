@@ -12,7 +12,7 @@
       %td= f.input :idcode #, :as => :file
     %tr
       %td= f.input :profession, :label => "Ocupación: "
-      %td= f.input :feetype, :label => "Tipo: "
+      %td= f.association :feetype, :label => "Tipo: ", :collection => Feetype.all(:order => 'name'), :include_blank => false
     %tr
       %td= f.input :birthdate, :label => "F. Nacimiento: "
       %td= f.label "Edad"
@@ -25,6 +25,34 @@
     %tr
       %td= f.input :addres, :label => "Dirección: "
       %td= f.input :zip, :label => "Código Postal"
-  .actions
-    = f.button :submit
+
+   
+  = f.fields_for :clinicalhistories do |build| 
+    %table.table_small
+      %tr
+        %td{:colspan=>"2"}= build.input :assessmentdate, :label => "F. Evaluación: ", :include_blank => true
+        %td{:colspan=>"2"}= build.input :code
+      %tr
+        %td= build.input :medicalhistory, :label => "Historia médica: "
+        %td= build.input :reasonconsultation, :label => "Motivo consulta: "
+        %td= build.input :evaluation, :label => "Evaluación: "
+        %td= build.input :comments, :label => "Observaciones: "
+      %tr
+        %td= build.input :physiotherapistdiagnostic, :label => "Diagnósito Fisio: "
+        %td= build.input :treatment, :label => "Tratamiento: "
+        %td{:colspan=>"2"}
+          %table.table_small
+            %tr
+              %td{:colspan=>"3"}= build.input :startdatetto, :label => "F.Inicio tto: " 
+            %tr
+              %td{:colspan=>"3"}= build.input :enddatetto, :label => "F.Fin tto: "
+            %tr
+              %td.big= build.input :medicaldiagnosic, :label => "Diagnóstico Méd.: "
+              %td.small= build.input :nsessions, :label => "Sesiones: "
+              %td.small= build.input :frequency, :label => "Frec: "
+   
+  = f.submit "Guardar"
       
+        
+
+ 

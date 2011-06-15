@@ -58,6 +58,7 @@
                 %td.small= f.input :nsessions, :label => "Sesiones: "
                 %td.small= f.input :frequency, :label => "Frec: "
       .arearegistro
-      = f.submit 'New'
-      =link_to "Ficha", :controller => "clinicalhistories", :action => "new"
   = f.button :submit
+  
+  = button_to "Save and Exit", :action => :create, :button_value => "exit"
+  = button_to "Save and Continue",:controller=> 'clinicalhistories', :action => :new

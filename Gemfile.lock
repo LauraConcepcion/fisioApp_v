@@ -122,7 +122,7 @@ DEPENDENCIES
   annotate-models (= 1.0.4)
   devise
   haml-rails
-  jquery-rails
+  jquery-rails (>= 1.0.3)
   kaminari
   nifty-generators
   pg

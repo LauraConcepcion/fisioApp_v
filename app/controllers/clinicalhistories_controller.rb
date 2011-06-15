@@ -21,7 +21,8 @@ class ClinicalhistoriesController < ApplicationController
   # GET /clinicalhistories/new
   # GET /clinicalhistories/new.xml
   def new
-    @clinicalhistory = Clinicalhistory.new
+    @clinicalhistory = Clinicalhistory.new(params[:clinicalhistory])
+    @paciente = Paciente.new
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @clinicalhistory }
@@ -36,16 +37,16 @@ class ClinicalhistoriesController < ApplicationController
   # POST /clinicalhistories
   # POST /clinicalhistories.xml
   def create
-    @paciente = Paciente.find(params[:paciente])
+#    @paciente = Paciente.find(params[:paciente])
     @clinicalhistory = Clinicalhistory.new(params[:clinicalhistory])
-    @paciente.clinicalhistories << @clinicalhistory
+ #   @paciente.clinicalhistories << @clinicalhistory
     respond_to do |format|
-      if @paciente.save
+  #    if @paciente.save
         if @clinicalhistory.save
-          @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).page(params[:page])
-          format.html {redirect_to(pacientes_url)}
+   #       @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).page(params[:page])
+          format.html { redirect_to(edit_paciente_url, :notice => 'Se ha creado un nuevo tratamiento para el paciente') }
           format.xml  { render :xml => @paciente, :status => :created, :location => @paciente }
-        end
+    #    end
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @paciente.errors, :status => :unprocessable_entity }
@@ -57,7 +58,7 @@ class ClinicalhistoriesController < ApplicationController
   # PUT /clinicalhistories/1.xml
   def update
     @clinicalhistory = Clinicalhistory.find(params[:id])
-    @paciente = @clinicalhistory.paciente_id
+  #  @paciente = @clinicalhistory.paciente_id
     respond_to do |format|
       if @clinicalhistory.update_attributes(params[:clinicalhistory])
         format.html { redirect_to(edit_paciente_url, :notice => 'Clinicalhistory was successfully updated.') }

@@ -23,7 +23,7 @@ class PacientesController < ApplicationController
   # GET /pacientes/1.xml
   def show
     @paciente = Paciente.find(params[:id])
-    @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).page(params[:page])
+    @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).order(:code).page(params[:page])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -36,23 +36,16 @@ class PacientesController < ApplicationController
   def new
     @paciente = Paciente.new
     @clinicalhistory = Clinicalhistory.new
+    respond_to do |format|
+      format.html# new.html.erb
+      format.xml  { render :xml => @paciente }
+    end
   end
 
   # GET /pacientes/1/edit
   def edit
     @paciente = Paciente.find(params[:id])
-    #@clinicalhistories = Clinicalhistory.page(params[:page])  
     @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).page(params[:page])
-    if @clinicalhistories.blank?
-       @clinicalhistory = Clinicalhistory.new(params[:clinicalhistory])
-       @paciente.clinicalhistories << @clinicalhistory
-    else
-      @clinicalhistory = @clinicalhistories.first
-    end       
-      # @clinicalhistory = @clinicalhistories.first
-    # end
-    @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).page params[:page]
-  # 
   end
 
   # POST /pacientes
@@ -63,9 +56,12 @@ class PacientesController < ApplicationController
     @paciente.clinicalhistories << @clinicalhistory
     respond_to do |format|
       if @paciente.save
-        @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).page(params[:page])
-        format.html {redirect_to(pacientes_url)}
-        format.xml  { render :xml => @paciente, :status => :created, :location => @paciente }
+        if @clinicalhistory.save
+          flash[:notice] = "Ficha de paciente creada correctamente"
+   #     @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).page(params[:page])
+          format.html {redirect_to(pacientes_url)}
+          format.xml  { render :xml => @paciente, :status => :created, :location => @paciente }
+        end
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @paciente.errors, :status => :unprocessable_entity }
@@ -78,18 +74,33 @@ class PacientesController < ApplicationController
   def update
     @paciente = Paciente.find(params[:id])
     @clinicalhistory = Clinicalhistory.find_by_code(params[:clinicalhistory][:code])
-    respond_to do |format|
-      if @paciente.update_attributes(params[:paciente])
-        if @clinicalhistory.update_attributes(params[:clinicalhistory])
-          format.html {  redirect_to(edit_paciente_url)}
-            #redirect_to(:action=>"edit", :controller=>"pacientes", :notice => 'Los datos del paciente se han actualizado correctamente.') }
-          format.xml  { head :ok }
+    @paciente.attributes = params[:paciente]
+    @duplicado = params[:clinicalhistory][:duplicado]
+    flash[:notice] = "Valor del duplicado" + "#{@duplicado}"
+  #  @clinicalhistory = Clinicalhistory.find_by_code(params[:clinicalhistory][:code])
+    if @duplicado == "1"
+      @clinicalhistory = Clinicalhistory.new(params[:clinicalhistory])
+      @paciente.clinicalhistories << @clinicalhistory
+      respond_to do |format|
+        if @paciente.save
+          format.html {redirect_to(edit_paciente_url)}
+          format.xml {head :ok}
         end
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @paciente.errors, :status => :unprocessable_entity }
       end
-    end   
+    else
+      respond_to do |format|
+        if @paciente.update_attributes(params[:paciente])
+          if @clinicalhistory.update_attributes(params[:clinicalhistory])
+            format.html {  redirect_to(edit_paciente_url)}
+              #redirect_to(:action=>"edit", :controller=>"pacientes", :notice => 'Los datos del paciente se han actualizado correctamente.') }
+           format.xml  { head :ok }
+          end
+        else
+          format.html { render :action => "edit" }
+          format.xml  { render :xml => @paciente.errors, :status => :unprocessable_entity }
+        end
+      end
+    end
   end
 
   # DELETE /pacientes/1
@@ -97,11 +108,26 @@ class PacientesController < ApplicationController
   def destroy
     @paciente = Paciente.find(params[:id])
     @paciente.destroy
-
     respond_to do |format|
       format.html { redirect_to(pacientes_url) }
       format.xml  { head :ok }
     end
   end
   
+  def createclinicalhistory
+    @paciente = Paciente.find(params[:id])
+    @clinicalhistory = Clinicalhistory.new(params[:clinicalhistory])
+    @paciente.clinicalhistories << @clinicalhistory
+      if @paciente.save
+        @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).page(params[:page])
+        format.html {redirect_to(pacientes_url)}
+        format.xml  { render :xml => @paciente, :status => :created, :location => @paciente }
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @paciente.errors, :status => :unprocessable_entity }
+      end
+    end
+    def creartrata
+      @clinicalhistory = Clinicalhistory.new
+    end
 end
