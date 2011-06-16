@@ -18,35 +18,28 @@
   = link_to "Crear nueva ficha", new_paciente_path
 %br
 %h2 Listado de pacientes
-= unless @pacientes.nil?
-  %table.listado
+%table
+  %tr
+    %th Assessmentdate
+    %th Medicalhistory
+    %th Reasonconsultation
+    %th Evaluation
+    %th Treatment
+    %th 
+    %th 
+    %th
+
+  - @pacientes.each do |paciente|
     %tr
-      %th Nº 
-      %th Nombre
-      %th 1 Apellido
-      %th 2 Apelllido
-      %th Identificación
-      %th Ocupación
-      %th Tarifa
-      %th Móvil
-      %th Tfno
-      %th Tfno Fam
-      %th C.P
-      %th
-      %th
-    - @pacientes.each do |paciente|
-      %tr
-        %td= paciente.codigo
-        %td= paciente.name
-        %td= paciente.firstsurname
-        %td= paciente.secondsurname
-        %td= "#{paciente.idtype.name}: ""#{paciente.idcode.to_s}" unless paciente.idcode.blank?
-        %td= paciente.profession
-        %td= paciente.feetype.name unless paciente.feetype.blank?
-        %td= paciente.mobilephone
-        %td= paciente.familyphone
-        %td= paciente.homephone
-        %td= paciente.zip
-        %td= link_to 'Ficha | ', edit_paciente_path(paciente)
-        %td= link_to 'Eliminar', paciente, :confirm => 'Está seguro?', :method => :destroy
+      %td= paciente.codigo
+      %td= paciente.codigo
+      %td= paciente.codigo
+      %td= paciente.codigo
+      %td= paciente.codigo
+      %td= link_to 'Show', paciente
+      %td= link_to 'Edit', edit_paciente_path(paciente)
+      %td= link_to 'Destroy', paciente, :confirm => 'Are you sure?', :method => :delete
+
 %br
+
+= link_to 'New Clinicalhistory', new_paciente_path
