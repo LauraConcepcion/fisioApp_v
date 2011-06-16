@@ -22,7 +22,7 @@
         %td= paciente.name
         %td= paciente.firstsurname
         %td= paciente.secondsurname
-        %td= "#{paciente.idtype.to_s}: ""#{paciente.idcode}" unless paciente.idcode.blank?
+        %td= "#{paciente.idtype.name}: ""#{paciente.idcode.to_s}" unless paciente.idcode.blank?
         %td= paciente.profession
         %td= paciente.feetype.name unless paciente.feetype.blank?
         %td= paciente.mobilephone
