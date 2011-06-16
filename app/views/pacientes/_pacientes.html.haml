@@ -14,7 +14,21 @@
       %th C.P
       %th
       %th
-
-  %br
+    - @pacientes.each do |paciente|
+      %tr
+        %td= paciente.codigo
+        %td= paciente.name
+        %td= paciente.firstsurname
+        %td= paciente.secondsurname
+        %td= "#{paciente.idtype.name}: ""#{paciente.idcode.to_s}" unless paciente.idcode.blank?
+        %td= paciente.profession
+        %td= paciente.feetype.name unless paciente.feetype.blank?
+        %td= paciente.mobilephone
+        %td= paciente.familyphone
+        %td= paciente.homephone
+        %td= paciente.zip
+        %td= link_to 'Ficha | ', edit_paciente_path(paciente)
+        %td= link_to 'Eliminar', paciente, :confirm => 'Está seguro?', :method => :destroy
+%br
   
 
