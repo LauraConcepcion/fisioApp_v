@@ -1,17 +1,41 @@
-= unless @pacientes.nil?
-  %table.listado
+%table
+  %tr
+    %th Assessmentdate
+    %th Medicalhistory
+    %th Reasonconsultation
+    %th Evaluation
+    %th Treatment
+    %th Medicaldiagnosic
+    %th Physiotherapistdiagnostic
+    %th Startdatetto
+    %th Enddatetto
+    %th Nsessions
+    %th Frequency
+    %th Comments
+    %th
+    %th
+    %th
+
+  - @clinicalhistories.each do |clinicalhistory|
     %tr
-      %th Nº 
-      %th Nombre
-      %th 1 Apellido
-      %th 2 Apelllido
+      %td= clinicalhistory.assessmentdate
+      %td= clinicalhistory.medicalhistory
+      %td= clinicalhistory.reasonconsultation
+      %td= clinicalhistory.evaluation
+      %td= clinicalhistory.treatment
+      %td= clinicalhistory.medicaldiagnosic
+      %td= clinicalhistory.physiotherapistdiagnostic
+      %td= clinicalhistory.startdatetto
+      %td= clinicalhistory.enddatetto
+      %td= clinicalhistory.nsessions
+      %td= clinicalhistory.frequency
+      %td= clinicalhistory.comments
+      %td= link_to 'Show', clinicalhistory
+      %td= link_to 'Edit', edit_clinicalhistory_path(clinicalhistory)
+      %td= link_to 'Destroy', clinicalhistory, :confirm => 'Are you sure?', :method => :delete
 
-    - @pacientes.each do |paciente|
-      %tr
-        %td= paciente.codigo
-        %td= paciente.name
-        %td= paciente.firstsurname
+%br
 
-  %br
-  
+= link_to 'New Clinicalhistory', new_clinicalhistory_path
+
 
