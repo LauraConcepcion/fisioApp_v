@@ -4,6 +4,7 @@
   %div.formulario
     %table.table_form
       %th Nº Registro: #{@paciente.codigo}
+      %th= f.association :feetype, :label => "Tarifa"
       %tr
         %td= f.input :name, :label => "Nombre "
         %td= f.input :firstsurname, :label => "1er apellido " 
@@ -12,13 +13,11 @@
         %td= f.input :idcode, :label => "Nº Identificación", :placeholder => 'DNI / NIF / CIF '
         %td
           .mediano= f.association :idtype , :label => "Tipo de identificación", :include_blank => false
-          
         %td= f.input :profession, :label => "Ocupación"
       %tr
         %td{:colspan=>"2"}= f.input :birthdate, :as=>:date, :label => "F. Nacimiento "
         %td 
           %h3 #{@edad} años
-        
       %tr
         %td.mediano= f.input :mobilephone, :label => "Móvil "
         %td.mediano= f.input :homephone, :label => "Tlfo "

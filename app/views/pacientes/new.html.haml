@@ -4,6 +4,7 @@
   %div.formulario
     %table.table_form
       %th Nº Registro: #{@paciente.codigo}
+      %th= f.association :feetype, :label => "Tarifa"
       %tr
         %td= f.input :name, :label => "Nombre "
         %td= f.input :firstsurname, :label => "1er apellido " 
