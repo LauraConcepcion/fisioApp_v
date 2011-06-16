@@ -25,20 +25,22 @@
 #
 
 class Paciente < ActiveRecord::Base
-    attr_accessible :name, :firstsurname, :secondsurname, :idtype, :idcode, :profession, :feetype_id, :comments,
+    attr_accessible :name, :firstsurname, :secondsurname, :idtype_id, :idcode, :profession, :feetype_id, :comments,
                     :birthdate, :mobilephone, :familyphone, :homephone, :email, :addres, :zip, :codigo
 #Definimos el formato de mail
-    validates :email, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create }
+   # validates :email, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create }
 #Definimos así mismo los atributos que serán obligatorios, nombre, primer apellido, tipo de tarifa
-    validates :name, :firstsurname, :feetype, :presence => true
+  #  validates :name, :firstsurname, :feetype, :presence => true
 #Definimos el tamaño de los campos
-    validates :name, :firstsurname, :secondsurname, :profession, :email, :length => {:maximum => 20}
-    validates  :mobilephone, :familyphone, :homephone, :codigo, :numericality => true
+   # validates :name, :firstsurname, :secondsurname, :profession, :email, :length => {:maximum => 80}
+    #validates  :mobilephone, :familyphone, :homephone, :codigo, :numericality => true
     
     #Relación de paciente con tipo de tarifa, un paciente tiene una tarifa, una tarifa puede tener muchos pacientes
     belongs_to :feetype      
     has_many :clinicalhistories, :dependent => :destroy 
     accepts_nested_attributes_for :clinicalhistories
+    
+    belongs_to  :idtype
     
     def self.search(name, firstsurname, secondsurname, idcode)
       if !name.blank? or !firstsurname.blank? or !secondsurname.blank? or !idcode.blank?
@@ -48,11 +50,8 @@ class Paciente < ActiveRecord::Base
       end
     end
     
-    def self.createclinicalhistory (clinicalhistory)
-      if !clinicalhistory.blank?
-        @clinicalhistory = Clinicalhistory.new(clinicalhistory)
-        self << @clinicalhistory
-      end
+    def self.age(birthdate)
+      ((DateTime.now - birthdate)/365).to_i
     end
 end
 

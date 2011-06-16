@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110614075707) do
+ActiveRecord::Schema.define(:version => 20110615211611) do
 
   create_table "clinicalhistories", :force => true do |t|
     t.date     "assessmentdate"
@@ -31,11 +31,24 @@ ActiveRecord::Schema.define(:version => 20110614075707) do
     t.integer  "code"
   end
 
+  create_table "countreferences", :force => true do |t|
+    t.string   "name"
+    t.integer  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "feetypes", :force => true do |t|
     t.string   "name"
     t.string   "description"
     t.integer  "sessions"
     t.float    "rate"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "idtypes", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -59,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20110614075707) do
     t.text     "addres"
     t.string   "zip"
     t.integer  "codigo"
+    t.integer  "idtype_id"
   end
 
   create_table "tabs", :force => true do |t|

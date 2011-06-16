@@ -1,7 +1,5 @@
 = simple_fields_for(@clinicalhistory) do |f| 
   = f.error_notification
-  = f.label "Nuevo"
-  = f.input :duplicado, :as => 'Boolean', :value => false
   %table.table_small
     %tr
       %td{:colspan=>"2"}= f.input :assessmentdate, :label => "F. Evaluación: ", :include_blank => true
@@ -24,6 +22,4 @@
             %td.big= f.input :medicaldiagnosic, :label => "Diagnóstico Méd.: "
             %td.small= f.input :nsessions, :label => "Sesiones: "
             %td.small= f.input :frequency, :label => "Frec: "
-  .arearegistro
-
 
