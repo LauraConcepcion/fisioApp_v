@@ -23,7 +23,7 @@ class PacientesController < ApplicationController
   # GET /pacientes/1.xml
   def show
     @paciente = Paciente.find(params[:id])
-    @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).order(:code).page(params[:page])
+    @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).order(:assessmentdate).page(params[:page])
 
     respond_to do |format|
       format.html # show.html.erb
