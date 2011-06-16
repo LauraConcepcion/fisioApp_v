@@ -43,10 +43,17 @@ class Paciente < ActiveRecord::Base
     belongs_to  :idtype
     
     def self.search(name, firstsurname, secondsurname, idcode)
-      if !name.blank? or !firstsurname.blank? or !secondsurname.blank? or !idcode.blank?
-        where("name = '#{name}' AND firstsurname = '#{firstsurname}' AND secondsurname = '#{secondsurname}' OR idcode = '#{idcode}'")
-      else
-        find(:all)
+      if !name.blank? and firstsurname.blank? and secondsurname.blank? and idcode.blank?
+        return where(:name => name)
+      end
+      if !name.blank? and !firstsurname.blank? and secondsurname.blank? and idcode.blank?
+        return where(:name => name, :firstsurname => firstsurname)
+      end
+      if !name.blank? and !firstsurname.blank? and !secondsurname.blank? and idcode.blank?
+        return where(:name => name, :firstsurname => firstsurname, :secondsurname => sencondsurname)
+      end
+      if !idcode.blank?
+        return where(:idcode => idcode)
       end
     end
     
