@@ -23,7 +23,7 @@ class PacientesController < ApplicationController
   # GET /pacientes/1.xml
   def show
     @paciente = Paciente.find(params[:id])
-    @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).order(:assessmentdate DESC).page(params[:page])
+    @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).order("assessmentdate DESC").page(params[:page])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -45,7 +45,7 @@ class PacientesController < ApplicationController
   # GET /pacientes/1/edit
   def edit
     @paciente = Paciente.find(params[:id])
-    @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).order(:assessmentdate).page(params[:page])
+    @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).order("assessmentdate DESC").page(params[:page])
     @edad = Paciente.age(@paciente.birthdate)
   end
 
