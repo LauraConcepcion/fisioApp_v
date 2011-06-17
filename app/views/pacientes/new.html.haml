@@ -13,13 +13,13 @@
         %td= f.input :idcode, :label => "Nº Identificación", :placeholder => 'DNI / NIF / CIF '
         %td
           .mediano= f.association :idtype , :label => "Tipo de identificación", :include_blank => false
-          
         %td= f.input :profession, :label => "Ocupación"
       %tr
-        %td{:colspan=>"2"}= f.input :birthdate, :as=>:date, :label => "F. Nacimiento "
+        %td= f.label 'Fecha de nacimiento'
+        %td
+          = f.text_field :birthdate
         %td 
           %h3 #{@edad} años
-        
       %tr
         %td.mediano= f.input :mobilephone, :label => "Móvil "
         %td.mediano= f.input :homephone, :label => "Tlfo "
@@ -40,7 +40,9 @@
       = f.error_notification
       %table.table_small
         %tr
-          %td{:colspan=>"2"}= f.input :assessmentdate, :label => "F. Evaluación: ", :include_blank => true
+          %td{:colspan=>"2"}
+            = f.label 'Fecha de evaluación'
+            = f.text_field :assessmentdate, :label => "F. Evaluación: ", :include_blank => true
           %td{:colspan=>"2"}= f.input :code, :label => false, :disabled => true
         %tr
           %td= f.input :medicalhistory, :label => "Historia médica: "
@@ -51,10 +53,14 @@
           %td{:colspan=>"2"}
             %table.table_small
               %tr
-                %td{:colspan=>"2"}= f.input :startdatetto, :label => "F.Ini tto: "
+                %td{:colspan=>"2"}
+                  = f.label 'F. Inicio tto'
+                  = f.text_field :startdatetto
                 %td.small= f.input :nsessions, :label => "Sesiones: "
               %tr
-                %td{:colspan=>"2"}= f.input :enddatetto, :label => "F.Fin tto: "
+                %td{:colspan=>"2"}
+                  = f.label 'F. Fin tto'
+                  = f.text_field :enddatetto
                 %td.small= f.input :frequency, :label => "Frec: "
               %tr
                 %td.grande{:colspan=>"2"}= f.input :medicaldiagnosic, :label => "Diagnóstico Méd.: "
