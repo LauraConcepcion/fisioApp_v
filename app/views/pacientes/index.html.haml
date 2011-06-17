@@ -1,5 +1,5 @@
 %h1 Buscar paciente
-= form_tag pacientes_path, :method => 'get', do 
+= form_tag pacientes_path, :method => 'get', :remote => true do 
   %table
     %tr
       %td= label_tag 'Nombre'
@@ -17,5 +17,6 @@
 .arearegistro
   = link_to "Crear nueva ficha", new_paciente_path
 %br
-%h2 Listado de pacientes
-= render 'pacientes'
+#pacientes
+  %h2 Listado de pacientes
+  = render 'pacientes'

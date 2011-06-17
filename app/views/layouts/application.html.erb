@@ -2,15 +2,14 @@
 <html>
   <head>
     <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
-    <%= javascript_include_tag :defaults %>
-    <%= csrf_meta_tag %>
-    <%= javascript_include_tag 'jquery-1.4.2.min.js', 'jquery-ui-1.8.2.custom.min.js', 'rails.js', 'autocomplete-rails.js' %>
+	<%= csrf_meta_tag %>
     <%= render 'layouts/stylesheets'%>
     <%= stylesheet_link_tag 'custom', :media => 'screen' %>
-    <%= stylesheet_link_tag 'jquery-ui-1.8.2.custom.css'%>
+   <!-- <%= javascript_include_tag 'jquery-1.5.1.min.js', 'jquery-ui-1.8.13.custom.min.js', 'rails.js', 'autocomplete-rails.js' %>
+    <%= stylesheet_link_tag 'jquery-ui-1.8.13.custom.css'%> -->
     <%= stylesheet_link_tag 'simpleForm.css'%>
-
-
+  	<%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/redmond/jquery-ui.css", "application" %>  
+  	<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js", "application" %>  
   </head>
   <body>
     <div class="container">

@@ -37,7 +37,6 @@ gem 'kaminari'
  gem 'nifty-generators'
  gem 'jquery-rails', '>=1.0.3' 
  
- 
  group :development do
    gem 'annotate-models', '1.0.4'
    gem 'rspec-rails', '2.0.1'

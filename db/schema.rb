@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110615211611) do
+ActiveRecord::Schema.define(:version => 20110617094037) do
 
   create_table "clinicalhistories", :force => true do |t|
     t.date     "assessmentdate"
@@ -34,6 +34,14 @@ ActiveRecord::Schema.define(:version => 20110615211611) do
   create_table "countreferences", :force => true do |t|
     t.string   "name"
     t.integer  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "events", :force => true do |t|
+    t.string   "name"
+    t.datetime "start_at"
+    t.datetime "end_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
