@@ -58,7 +58,9 @@ class Paciente < ActiveRecord::Base
     end
     
     def self.age(birthdate)
-      ((DateTime.now - birthdate)/365).to_i
+      if !birthdate.blank?
+        ((DateTime.now - birthdate)/365).to_i
+      end
     end
 end
 
