@@ -1,49 +1,47 @@
 /* ----- SimpleForm Styles ----- */
 
-.simple_form div.input {
-  margin-bottom: 10px;
-}
-
 .formulario {
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	border-radius:	10px;
 	background-color: #DDDDDD;
 	padding: 10px;
-	margin-bottom: 5px;
-
+	margin-bottom: 20px;
 }
 .table_form{
-	width: 50%;
+	width: 60%;
+}
+.table_form td{
+	padding-bottom: 7px;
 }
 .table_small{
 	width: 100%;
-	table-layout: fixed;
 	vertical-align: top;
 }
 .table_small td{
-	width: 250px;
 }
 
 .simple_form .small input{
 	width: 30px;
 }
-.simple_form .mediano input{
-	width: 80px;
-}
+
 .simple_form .grande input{
-	width: 200px;
+	width: 180px;
 }
 .simple_form input{
-  width: 160px;
-  float: left;
-  margin: 2px;
+  width: 95px;
+  float: right;	
+  font-size: 95%;
 }
-
+.simple_form input:focus, boolean:focus {
+  	font-size: large;
+  	background-color: #FFF6BF;
+}
+ 
 .simple_form label {
   float: left;
-  font-size: 90%;
   margin: 1px 5px;
+  font-size: small;
 }
 
 div.boolean label, label.collection_radio {

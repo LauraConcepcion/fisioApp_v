@@ -5,7 +5,7 @@ class AddAtributosToPaciente < ActiveRecord::Migration
     add_column :pacientes, :familyphone, :integer
     add_column :pacientes, :homephone, :integer
     add_column :pacientes, :email, :string
-    add_column :pacientes, :addres, :text
+    add_column :pacientes, :addres, :string
     add_column :pacientes, :zip, :string
     add_column :pacientes, :codigo, :integer
   end

@@ -1,16 +1,8 @@
-%p#notice= notice
-%b Buscar paciente
-= simple_form_for @tab do |f|
-  %table.table_form
-    %tr
-      %td= f.label :paciente_name, "Nombre"
-      %td= f.autocomplete_field :paciente_name, tabs_autocomplete_paciente_name_path
-      %td= f.label :paciente_firstsurname,"Primer apellido"
-      %td= f.autocomplete_field :paciente_firstsurname, tabs_autocomplete_paciente_firstsurname_path
-    %tr
-      %td= f.label :secondsurname,"Segundo apellido"
-      %td= f.autocomplete_field :paciente_secondsurname, tabs_autocomplete_paciente_secondsurname_path
-      %td= f.label :paciente_idcode,"DNI"
-      %td= f.autocomplete_field :paciente_idcode, tabs_autocomplete_paciente_idcode_path
-    %tr
-      %td= f.button :submit, "Buscar", :action=>'show'
+%Welcome!
+= form_for @tab,:method => 'get' do |f|
+  =f.label :paciente_name
+  =f.autocomplete_field :paciente_name, tabs_autocomplete_paciente_name_path, :id_element => '#search'
+  =f.text_field :search, :id=> 'search', :type=>"hidden" 
+  =submit_tag "Buscar", :name => nil
+  
+=render 'pacientes/formc' unless !@paciente.blank?

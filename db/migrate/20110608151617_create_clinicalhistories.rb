@@ -2,17 +2,17 @@ class CreateClinicalhistories < ActiveRecord::Migration
   def self.up
     create_table :clinicalhistories do |t|
       t.date :assessmentdate
-      t.text :medicalhistory
-      t.text :reasonconsultation
-      t.text :evaluation
-      t.text :treatment
+      t.string :medicalhistory
+      t.string :reasonconsultation
+      t.string :evaluation
+      t.string :treatment
       t.string :medicaldiagnosic
-      t.text :physiotherapistdiagnostic
+      t.string :physiotherapistdiagnostic
       t.date :startdatetto
       t.date :enddatetto
       t.integer :nsessions
       t.integer :frequency
-      t.text :comments
+      t.string :comments
 
       t.timestamps
     end

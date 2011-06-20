@@ -1,20 +1,11 @@
 class TabsController < ApplicationController
   # GET /tabs
   # GET /tabs.xml
-  autocomplete :paciente, :name, :full => true, :extra_data => [:firstsurname, :secondsurname, :idcode]
-  autocomplete :paciente, :firstsurname, :full => true
-  autocomplete :paciente, :secondsurname, :full => true
-  autocomplete :paciente, :idcode
-  def create
-    name = params[:paciente_name]
-    firstsurname = params[:paciente_firstsurname]
-    secondsurname = params[:paciente_secondsurname]
-    idcode = params[:paciente_idcode] 
-    @pacientes = Paciente.search(name, firstsurname, secondsurname,idcode)
-    if @pacientes.blank?
-      @pacientes = Paciente.all
-    end
-    redirect_to(pacientes_url)  
-  end
+  autocomplete :paciente, :name, :full => true, :display_value => :funky_method
+  def index
+    @tab = Tab.new
+    @paciente = Paciente.search(params[:search])
+    @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).order("assessmentdate DESC").page(params[:page])
+  end 
 end
     

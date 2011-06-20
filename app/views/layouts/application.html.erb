@@ -5,11 +5,10 @@
 	<%= csrf_meta_tag %>
     <%= render 'layouts/stylesheets'%>
     <%= stylesheet_link_tag 'custom', :media => 'screen' %>
-   <!-- <%= javascript_include_tag 'jquery-1.5.1.min.js', 'jquery-ui-1.8.13.custom.min.js', 'rails.js', 'autocomplete-rails.js' %>
-    <%= stylesheet_link_tag 'jquery-ui-1.8.13.custom.css'%> -->
     <%= stylesheet_link_tag 'simpleForm.css'%>
-  	<%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/smoothness/jquery-ui.css", "application" %>  
-  	<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js", "application" %>  
+  	<%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/base/jquery-ui.css", "application" %>  
+  	<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.js", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.js", "application",'autocomplete-rails.js', 'rails.js' %>  
+<%= debug @post %>
   </head>
   <body>
     <div class="container">

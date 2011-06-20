@@ -1,22 +1,12 @@
-%h1 Buscar paciente
-= form_tag pacientes_path, :method => 'get', :remote => true do 
-  %table
-    %tr
-      %td= label_tag 'Nombre'
-      %td= label_tag 'Primer apellido'
-      %td= label_tag 'Segundo apellido'
-      %td= label_tag 'Dni'
-      %td
-    %tr
-      %td= text_field_tag :name, params[:name]
-      %td= text_field_tag :firstsurname, params[:firstsurname]
-      %td= text_field_tag :secondsurname, params[:secondsurname]
-      %td= text_field_tag :idcode, params[:idcode]
-      %td=submit_tag "Buscar", :name => nil
+%b Ficha del paciente:
+%div.formulario
+  = form_tag pacientes_path, :method => 'get' do 
+    = label_tag "Nombre"
+    = text_field_tag :search, params[:search],:type=>"hidden"
+    = autocomplete_field_tag 'paciente_name', '', tabs_autocomplete_paciente_name_path,:id_element => '#search'
+    = submit_tag "Buscar", :name => nil
+- if Paciente.find_by_id(params[:search]).nil?
+  = render 'paciente'
+- else
+  = render 'form'
 
-.arearegistro
-  = link_to "Crear nueva ficha", new_paciente_path
-%br
-#pacientes
-  %h2 Listado de pacientes
-  = render 'pacientes'

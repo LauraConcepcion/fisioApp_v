@@ -13,4 +13,5 @@
 #
 
 class Tab < ActiveRecord::Base
+  attr_accessor :search
 end

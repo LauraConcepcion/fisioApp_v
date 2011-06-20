@@ -36,6 +36,8 @@ gem 'kaminari'
  gem 'rails3-jquery-autocomplete', '0.6.0'
  gem 'nifty-generators'
  gem 'jquery-rails', '>=1.0.3' 
+ gem "meta_where"
+ gem "meta_search"
  
  group :development do
    gem 'annotate-models', '1.0.4'

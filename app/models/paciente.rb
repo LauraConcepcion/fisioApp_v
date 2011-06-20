@@ -42,18 +42,11 @@ class Paciente < ActiveRecord::Base
     
     belongs_to  :idtype
     
-    def self.search(name, firstsurname, secondsurname, idcode)
-      if !name.blank? and firstsurname.blank? and secondsurname.blank? and idcode.blank?
-        return where(:name => name)
-      end
-      if !name.blank? and !firstsurname.blank? and secondsurname.blank? and idcode.blank?
-        return where(:name => name, :firstsurname => firstsurname)
-      end
-      if !name.blank? and !firstsurname.blank? and !secondsurname.blank? and idcode.blank?
-        return where(:name => name, :firstsurname => firstsurname, :secondsurname => sencondsurname)
-      end
-      if !idcode.blank?
-        return where(:idcode => idcode)
+    def self.search(search)
+      if !search.blank?
+        where(:id => search)
+      else
+        scoped
       end
     end
     
@@ -61,6 +54,10 @@ class Paciente < ActiveRecord::Base
       if !birthdate.blank?
         ((DateTime.now - birthdate)/365).to_i
       end
+    end
+    #Función para definir qué queremos mostrar en el autcompletar.
+    def funky_method
+      "#{self.name} #{self.firstsurname} #{self.secondsurname}"
     end
 end
 

@@ -1,15 +1,15 @@
 FisioApp::Application.routes.draw do
   resources :clinicalhistories
 
-  get "tabs/show"
   get 'tabs/autocomplete_paciente_name'
   get 'tabs/autocomplete_paciente_firstsurname'
   get 'tabs/autocomplete_paciente_secondsurname'
   get 'tabs/autocomplete_paciente_idcode'
-  resources :tabs
   resources :pacientes
   devise_for :users
+  resources :tabs
   root :to => "pages#home"
+  match 'tabs' => 'tabs#index'
   
 
   # The priority is based upon order of creation:

@@ -37,9 +37,7 @@ section ul li{
 	list-style-type: decimal; 
 
 }
-section table tr td{
-	text-align: center;
-}
+
 footer {	text-align: center; 
 	margin-top: 10px; 
 	width: 100%; 
@@ -78,16 +76,6 @@ nav ul li a:visited {
 	color: #fff;} 
 nav ul li a:hover {
 	text-decoration: underline;}
-
-/* Para los textos normales */
-p.texto { 
-	text-align: justify; 
-	font-size: 100%; 
-	padding: 20px;
-}
-
-
-
 /* Sign up button */a.signup_button { 
 	margin-left: auto; 
 	margin-right: auto; 
@@ -103,29 +91,6 @@ p.texto {
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	border-radius:	10px;}
-/* ------------ */
-table.profile { 
-	width: 100%; 
-	margin-bottom: 0;
-	vertical-align: top;
-	
-}
-td.main { 
-	padding: 1em;
-}
-td.sidebar { 
-	font-size: 95%;
-	vertical-align: top; 
-	background: #ffc;
-}
-
-.profile img.gravatar { 
-	border: 1px solid #999; 
-	margin-bottom: -15px;
-}
-div.field, div.actions {
-	margin-bottom: 10px;
-}
 
 /*Formato de los ERRORES*/
 .field_with_errors {
@@ -165,65 +130,6 @@ div.field, div.actions {
 	list-style: square;
 }
 
-h1.contactos {
-	margin-bottom: 0.3em;
-} 
-table.contactos {
-	margin-top: 1em;
-}
-
-table.contactos tr {
-height: 70px;
-}
-
-table.contactos tr td.gravatar { 
-	border-top: 1px 
-	solid #ccc; 
-	vertical-align: top; 
-	width: 50px;
-}
-table.contactos tr td.contacto { 
-	border-top: 1px solid #ccc; 
-	vertical-align: top; 
-	padding-top: 10px;
-}
-table.contactos tr td.contacto span.timestamp { 
-	display: block; 
-	font-size: 85%; 
-	color: #666;
-} 
-
-
-div.user_info img {
-	padding-right: 0.1em;
-} 
-div.user_info a {
-	text-decoration: none;
-} 
-div.user_info span.user_name {
-	position: absolute;
-} 
-div.user_info span.contactos {
-	font-size: 80%;
-} 
-form.new_contacto {
-	margin-bottom: 2em;
-}
-form.new_contacto textarea { 
-	height: 4em; 
-	margin-bottom: 0;
-}
-
-ul.users {
-	margin-top: 1em;
-} 
-.users li {
-	list-style: none;
-}
-
-
-/*Formato de tabla de edición */
-
 
 .izquierda{
 	text-align: left;
@@ -252,25 +158,3 @@ ul.users {
 		color: #000000;
 		font-size: 90%;
 }
-
-table.listado{ 
-	color: #666;
-	background-color: #BBBBBB;
-	border-collapse: collapse;
-    border: 3px solid #000000;
-}
-table.listado tbody th{
-	font-weight: bold;
-	color: #BBBBBB;
-	background-color: #000000;
-} 
-table.listado a{
-	color: #000000;
-}
-table.listado tr td{
-	padding: 2px;
-	margin: 5px;
-	border-top: 1px solid;
-	}
-
-

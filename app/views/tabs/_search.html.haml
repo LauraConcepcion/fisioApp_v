@@ -1,5 +1,5 @@
-= form_tag tabs_path, :method => 'get' do
-  = label_tag 'Nombre'
+= form_tag pacientes_path, :method => 'get' do 
+  = label_tag "Nombre"
+  = text_field_tag :search, params[:search],:type=>"hidden"
   = autocomplete_field_tag 'paciente_name', '', tabs_autocomplete_paciente_name_path,:id_element => '#search'
-  = text_field_tag :search, params[:search]#,:type=>"hidden"
   = submit_tag "Buscar", :name => nil
