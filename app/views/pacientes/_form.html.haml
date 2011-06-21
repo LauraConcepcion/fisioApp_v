@@ -35,7 +35,7 @@
   
   
   = paginate @clinicalhistories
-  %h4 Historias clínicas:
+  %b Historias clínicas:
   - @clinicalhistories.each do |clinicalhistory|
     %div.formulario
       = simple_fields_for(clinicalhistory) do |f| 
