@@ -45,7 +45,7 @@
           %tr
             %td{:colspan=>"2"}
               = f.label 'F. de evaluación'
-              = f.text_field :assessmentdate, :label => "F. Evaluación: ", :include_blank => true
+              = f.text_field :assessmentdate, :value => DateTime.now.strftime("%d/%m/%Y")
             %td{:colspan=>"2"}= f.input :code, :label => "Nº Tratamiento", :disabled => true
             %td.small= f.input :frequency, :label => "Frecuencia: "
             %td.small= f.input :nsessions, :label => "Sesiones: "

@@ -1,10 +1,12 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 $(function (){  
-    $('#paciente_birthdate').datepicker();
-    $('#clinicalhistory_assessmentdate').datepicker();
-    $('#clinicalhistory_startdatetto').datepicker();
-    $('#clinicalhistory_enddatetto').datepicker();
+    $('#paciente_birthdate').datepicker({ altFormat: 'yy-mm-dd' });
+    $('#clinicalhistory_assessmentdate').datepicker(
+    		{ altFormat: 'yy-mm-dd' },
+    		{ firstDay: 3 });
+    $('#clinicalhistory_startdatetto').datepicker({ altFormat: 'yy-mm-dd' });
+    $('#clinicalhistory_enddatetto').datepicker({ altFormat: 'yy-mm-dd' });
 });
   
 

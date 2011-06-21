@@ -19,4 +19,10 @@ module ApplicationHelper
   end
   def title
   end
+  
+  def toDate(date_text)
+    if !date_text.blank?
+      date_text = date_text
+    end
+  end
 end
