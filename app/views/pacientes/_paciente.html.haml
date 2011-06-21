@@ -41,7 +41,7 @@
       %table.table_small
         %tr
           %td{:colspan=>"2"}
-            = f.label 'Fecha de evaluación'
+            = f.label 'F. de evaluación'
             = f.text_field :assessmentdate, :label => "F. Evaluación: ", :include_blank => true
           %td{:colspan=>"2"}= f.input :code, :label => "Nº Tratamiento", :disabled => true
           %td.small= f.input :frequency, :label => "Frecuencia: "
