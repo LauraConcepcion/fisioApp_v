@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  attr_accessible  :starttime, :endtime, :specialist, :center, :patient
+  attr_accessible  :starts_at, :ends_at, :all_day, :description, :center_id, :specialist_id
  
   belongs_to  :center
   belongs_to  :specialist
