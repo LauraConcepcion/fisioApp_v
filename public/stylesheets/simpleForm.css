@@ -7,9 +7,10 @@
 	background-color: #DDDDDD;
 	padding: 10px;
 	margin-bottom: 20px;
+	
 }
 .table_form{
-	width: 60%;
+	width: 50%;
 }
 .table_form td{
 	padding-bottom: 7px;
@@ -18,36 +19,46 @@
 	width: 100%;
 	vertical-align: top;
 }
-.table_small td{
-}
 
 .simple_form .small input{
 	width: 30px;
 }
-
 .simple_form .grande input{
 	width: 180px;
 }
+
 .simple_form input{
-  width: 92px;
-  float: right;	
+  width: 140px;
   font-size: 95%;
+  display:block;
+  clear:both;
+  font-weight: bold;
 }
 .simple_form input:focus, boolean:focus {
   	font-size: large;
   	background-color: #FFF6BF;
 }
+#form_tag label{
+	text-transform: uppercase;
+  	font-weight: normal; 
+  	font-size: 70%;
+}
+
  
 .simple_form label {
   float: left;
   margin: 1px 5px;
-  font-size: small;
+  font-size: 70%;
+  text-transform: uppercase; 
+  font-weight: normal; 
+
 }
 
 div.boolean label, label.collection_radio {
   float: left;
   margin: 0;
 }
+
 
 label.collection_radio {
   margin-right: 5px;

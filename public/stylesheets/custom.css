@@ -14,6 +14,8 @@ header h1{
 	font-size: 500%;
 	padding-left: 400px;
 	color: #FFFFFF;
+	padding-top: 20px;
+
 
 }
 section { 
@@ -21,7 +23,6 @@ section {
 	font-size: 120%; 
 	padding-left: 20px; 
 	padding-right: 20px; 
-	padding-top: 40px;
 	padding-bottom: 20px;
 	background: #fff;} 
 section h1 {
