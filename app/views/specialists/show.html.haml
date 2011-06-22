@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Type:
+  = @specialist.type
+
+= link_to 'Edit', edit_specialist_path(@specialist)
+\|
+= link_to 'Back', specialists_path

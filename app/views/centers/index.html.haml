@@ -1,0 +1,19 @@
+%h1 Listing centers
+
+%table
+  %tr
+    %th Name
+    %th
+    %th
+    %th
+
+  - @centers.each do |center|
+    %tr
+      %td= center.name
+      %td= link_to 'Show', center
+      %td= link_to 'Edit', edit_center_path(center)
+      %td= link_to 'Destroy', center, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Center', new_center_path

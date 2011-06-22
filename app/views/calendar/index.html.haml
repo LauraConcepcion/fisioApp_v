@@ -1,0 +1,14 @@
+%div.formulario
+  = form_tag do
+    %table.table_form
+      %tr
+        %td
+          = label_tag "Seleccione el especialista"
+          = grouped_collection_select(:specialist, :specialist_id, @specialisttypes, :specialist, :name, :id, :name)
+        %td
+          = label_tag "Seleccione el centro"
+          = select_tag 'Centro', options_from_collection_for_select(@centers, 'id', 'name')
+    = submit_tag 'Ver citas'
+%div.formulario
+  = render 'events/form'
+#calendar

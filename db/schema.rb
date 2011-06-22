@@ -10,21 +10,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110617094037) do
+ActiveRecord::Schema.define(:version => 20110621193708) do
+
+  create_table "centers", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "clinicalhistories", :force => true do |t|
-    t.date     "assessmentdate"
-    t.text     "medicalhistory"
-    t.text     "reasonconsultation"
-    t.text     "evaluation"
-    t.text     "treatment"
+    t.string   "assessmentdate"
+    t.string   "medicalhistory"
+    t.string   "reasonconsultation"
+    t.string   "evaluation"
+    t.string   "treatment"
     t.string   "medicaldiagnosic"
-    t.text     "physiotherapistdiagnostic"
-    t.date     "startdatetto"
-    t.date     "enddatetto"
+    t.string   "physiotherapistdiagnostic"
+    t.string   "startdatetto"
+    t.string   "enddatetto"
     t.integer  "nsessions"
     t.integer  "frequency"
-    t.text     "comments"
+    t.string   "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "paciente_id"
@@ -39,11 +45,15 @@ ActiveRecord::Schema.define(:version => 20110617094037) do
   end
 
   create_table "events", :force => true do |t|
-    t.string   "name"
-    t.datetime "start_at"
-    t.datetime "end_at"
+    t.string   "title"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.boolean  "all_day"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "center_id"
+    t.integer  "specialist_id"
   end
 
   create_table "feetypes", :force => true do |t|
@@ -72,15 +82,31 @@ ActiveRecord::Schema.define(:version => 20110617094037) do
     t.string   "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.date     "birthdate"
+    t.string   "birthdate"
     t.integer  "mobilephone"
     t.integer  "familyphone"
     t.integer  "homephone"
     t.string   "email"
-    t.text     "addres"
+    t.string   "addres"
     t.string   "zip"
     t.integer  "codigo"
     t.integer  "idtype_id"
+  end
+
+  create_table "specialists", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.integer  "phone1"
+    t.integer  "phone2"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "specialisttype_id"
+  end
+
+  create_table "specialisttypes", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "tabs", :force => true do |t|

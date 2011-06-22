@@ -1,4 +1,12 @@
 FisioApp::Application.routes.draw do
+  resources :specialisttypes
+
+  resources :centers
+
+  resources :specialists
+
+  resources :events
+
   resources :clinicalhistories
 
   get 'tabs/autocomplete_paciente_name'
@@ -10,6 +18,8 @@ FisioApp::Application.routes.draw do
   resources :tabs
   root :to => "pages#home"
   match 'tabs' => 'tabs#index'
+
+  get "calendar/index"
   
 
   # The priority is based upon order of creation:

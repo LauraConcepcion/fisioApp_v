@@ -1,0 +1,19 @@
+%h1 Listing specialisttypes
+
+%table
+  %tr
+    %th String
+    %th
+    %th
+    %th
+
+  - @specialisttypes.each do |specialisttype|
+    %tr
+      %td= specialisttype.string
+      %td= link_to 'Show', specialisttype
+      %td= link_to 'Edit', edit_specialisttype_path(specialisttype)
+      %td= link_to 'Destroy', specialisttype, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Specialisttype', new_specialisttype_path

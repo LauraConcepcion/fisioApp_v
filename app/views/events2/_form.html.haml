@@ -1,0 +1,12 @@
+= simple_form_for(@event) do |f|
+  = f.error_notification
+
+  .inputs
+    = f.input :starttime
+    = f.input :endtime
+    = f.input :specialist
+    = f.input :patient
+    = f.input :center
+
+  .actions
+    = f.button :submit

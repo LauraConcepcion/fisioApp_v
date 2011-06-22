@@ -1,0 +1,16 @@
+= simple_form_for(@event) do |f|
+  = f.error_notification
+  %div.formulario
+    %table.table_form
+      = form_tag do
+        %tr
+          %td
+            = label_tag "Seleccione el especialista"
+            = grouped_collection_select(:specialist, :specialist_id, @specialisttypes, :specialist, :name, :id, :name)
+          %td
+            = label_tag "Seleccione el centro"
+            = select_tag 'Centro', options_from_collection_for_select(@centers, 'id', 'name')
+          = submit_tag 'Ver citas'
+          
+= link_to "new event", new_event_path
+#calendar

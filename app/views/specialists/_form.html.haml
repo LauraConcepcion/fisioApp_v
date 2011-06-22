@@ -1,0 +1,10 @@
+= simple_form_for(@specialist) do |f|
+  = f.error_notification
+  %table.table_form
+    %tr
+      %td= f.input :type
+      %td= f.input :name
+      %td= f.input :phone1
+      %td= f.input :phone2
+      %td= f.input :email
+  = f.button :submit

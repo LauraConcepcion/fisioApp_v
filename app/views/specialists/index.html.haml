@@ -1,0 +1,27 @@
+%h1 Listing specialists
+
+%table
+  %tr
+    %th Tipo
+    %th Nombre
+    %th Teléfono Principal
+    %th Teléfono Secundario
+    %th Email
+    %th
+    %th
+    %th
+
+  - @specialists.each do |specialist|
+    %tr
+      %td= specialist.type
+      %td= specialist.name
+      %td= specialist.phone1
+      %td= specialist.phone2
+      %td= specialist.email
+      %td= link_to 'Show', specialist
+      %td= link_to 'Edit', edit_specialist_path(specialist)
+      %td= link_to 'Destroy', specialist, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'Crear un nuevo especialista', new_specialist_path
