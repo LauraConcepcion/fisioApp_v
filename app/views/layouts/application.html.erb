@@ -14,12 +14,15 @@
   </head>
   <body>
     <div class="container">
-    	<% if current_page?(:controller => 'pacientes', :action => 'index') || current_page?(:controller => 'calendar', :action => 'index') %>
-			<%= render 'layouts/header_simple'%>
+    	<% if user_signed_in? %>
+	    	<% if current_page?(:controller => 'pacientes', :action => 'index') || current_page?(:controller => 'calendar', :action => 'index') %>
+				<%= render 'layouts/header_simple'%>
+			<% else%>
+		  		<%= render 'layouts/header'%>
+		  	<% end%>
 		<% else%>
-	  		<%= render 'layouts/header'%>
-	  	<% end%>
-	  		
+			<%= render 'layouts/header'%>
+	  	<% end %>	
 	  <section class="round">
 		  <div class="arealogin">
 			<% if user_signed_in? %>
