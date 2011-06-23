@@ -1,6 +1,6 @@
 
 = simple_form_for(@paciente) do |f| 
-  = f.error_notification
+  = render "shared/error_messages", :target => @paciente
   %div.formulario
     %table.table_form
       %tr

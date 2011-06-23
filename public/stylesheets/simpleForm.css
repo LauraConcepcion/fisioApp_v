@@ -7,6 +7,7 @@
 	background-color: #DDDDDD;
 	padding: 10px;
 	margin-bottom: 20px;
+	margin-top: 10px;
 	
 }
 .table_form{
@@ -30,10 +31,10 @@
 .simple_form input{
   width: 140px;
   font-size: 95%;
-  display:block;
-  clear:both;
+
   font-weight: bold;
 }
+
 .simple_form input:focus, boolean:focus {
   	font-size: large;
   	background-color: #FFF6BF;
@@ -42,16 +43,16 @@
 	text-transform: uppercase;
   	font-weight: normal; 
   	font-size: 70%;
+  	display:block;
+  	clear:both;
 }
 
- 
 .simple_form label {
-  float: left;
-  margin: 1px 5px;
   font-size: 70%;
   text-transform: uppercase; 
   font-weight: normal; 
-
+  display:block;
+  clear:both;
 }
 
 div.boolean label, label.collection_radio {

@@ -1,8 +1,9 @@
 class Event < ActiveRecord::Base
-  attr_accessible  :starts_at, :ends_at, :all_day, :description, :center_id, :specialist_id
+  attr_accessible  :starts_at, :ends_at, :all_day, :description, :center_id, :specialist_id, :paciente_id
  
   belongs_to  :center
   belongs_to  :specialist
+  belongs_to  :paciente
   
   scope :before, lambda {|end_time| {:conditions => ["ends_at < ?", Event.format_date(end_time)] }}
   scope :after, lambda {|start_time| {:conditions => ["starts_at > ?", Event.format_date(start_time)] }}

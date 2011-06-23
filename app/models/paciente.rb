@@ -27,6 +27,8 @@
 class Paciente < ActiveRecord::Base
     attr_accessible :name, :firstsurname, :secondsurname, :idtype_id, :idcode, :profession, :feetype_id, :comments,
                     :birthdate, :mobilephone, :familyphone, :homephone, :email, :addres, :zip, :codigo
+#    validates :birthdate,
+ #             :format => { :with => /(0[0-9]|1[0-9]|2[0-9]|3[0-1])(\/)(0[0-9]|1[1-2])(\/)(\d{2,4})/}
 #Definimos el formato de mail
    # validates :email, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create }
 #Definimos así mismo los atributos que serán obligatorios, nombre, primer apellido, tipo de tarifa
@@ -38,6 +40,7 @@ class Paciente < ActiveRecord::Base
     #Relación de paciente con tipo de tarifa, un paciente tiene una tarifa, una tarifa puede tener muchos pacientes
     belongs_to :feetype      
     has_many :clinicalhistories, :dependent => :destroy 
+    has_many :events, :dependent => :destroy
     accepts_nested_attributes_for :clinicalhistories
     
     belongs_to  :idtype
