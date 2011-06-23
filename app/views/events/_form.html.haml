@@ -3,26 +3,21 @@
   %table.table_small
     %tr
       %td
-        %table.table_small
-          %tr
-            %td
-              = label_tag "Seleccione el especialista"
-              = grouped_collection_select(:specialist, :specialist_id, @specialisttypes, :specialist, :name, :id, :name)
-            %td
-              = label_tag "Seleccione el centro"
-              = select_tag 'Centro', options_from_collection_for_select(@centers, 'id', 'name')
-            %td
-              = label_tag "Seleccione el paciete"
-              = text_field_tag :search, params[:search],:type=>"hidden"
-              = autocomplete_field_tag 'paciente_name', '', tabs_autocomplete_paciente_name_path,:id_element => '#search'
-    %tr
-      %td= f.input :starts_at, :label => "Hora comienzo"
-      %td= f.input :ends_at, :label => "Hora fin"
+        = label_tag "Seleccione el paciente"
+        = text_field_tag :paciente_id,'', :type=>"hidden"
+        = autocomplete_field_tag 'paciente_name', '', tabs_autocomplete_paciente_name_path,:id_element => '#paciente_id'
+      %td
+        = label_tag "Seleccione el especialista"
+        = grouped_collection_select(:specialist, :specialist_id, @specialisttypes, :specialist, :name, :id, :name)
+      %td
+        = label_tag "Seleccione el centro"
+        = f.association :center , :label =>false , :include_blank => false
     %tr
       %td
-        = f.label '¿Asistencia?'
+        = f.input :starts_at, :label => "Hora comienzo"
+        = f.input :ends_at, :label => "Hora fin"
+      %td
+        = f.label '¿Asistió?'
         = f.input :attended, :label=>false, :as => :select,:collection => ['Si','No']
-    %tr
       %td= f.input :description, :label=>"Observaciones"
-      %td
   = f.submit

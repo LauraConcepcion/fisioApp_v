@@ -45,7 +45,7 @@ $(document).ready(function() {
         
         //http://arshaw.com/fullcalendar/docs/event_ui/eventDrop/
         eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc){
-            updateEvent(event);
+           // updateEvent(event);
         },
 
         // http://arshaw.com/fullcalendar/docs/event_ui/eventResize/

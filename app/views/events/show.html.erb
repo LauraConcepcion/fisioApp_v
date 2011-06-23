@@ -24,7 +24,13 @@
   <b>Description:</b>
   <%= @event.description %>
 </p>
-
-
+<p>
+  <b>Paciente:</b>
+  <%= @event.paciente.name %>
+</p>
+<p>
+  <b>Teléfono paciente:</b>
+  <%= @event.paciente.mobilephone %>
+</p>
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>

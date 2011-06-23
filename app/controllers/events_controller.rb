@@ -51,6 +51,9 @@ class EventsController < ApplicationController
   # POST /events.xml
   def create
     @event = Event.new(params[:event])
+    @event.specialist_id = params[:specialist]
+    @event.paciente_id = params["paciente_id"]
+    @event.title = @event.paciente.name + " " + @event.paciente.firstsurname + " " + @event.paciente.secondsurname
 
     respond_to do |format|
       if @event.save
