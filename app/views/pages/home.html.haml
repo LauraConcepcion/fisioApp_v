@@ -3,7 +3,7 @@
 #columna
   .left.column
     =link_to pacientes, :controller => "pacientes", :action => "index"
-    =link_to citas, "http://fisior.es"
+    =link_to citas, :controller => "calendar", :action => "index"
   .right.column
     =link_to facturacion, "http://fisior.es"
     =link_to informes, "http://fisior.es"
