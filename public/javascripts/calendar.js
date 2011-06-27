@@ -55,9 +55,29 @@ $(document).ready(function() {
 
         // http://arshaw.com/fullcalendar/docs/mouse/eventClick/
         eventClick: function(event, jsEvent, view){
-          // would like a lightbox here.
+         // would like a lightbox here.
         },
+	
+	
+		dayClick: function(date, allDay, jsEvent, view){
+			//captura los datos de fecha en inputs de tipo hidden
+			
+	        if (allDay) {
+	            alert('Clicked on the entire day: ' + date);
+	        }else{
+	            alert('Clicked on the slot: ' + date);
+	        }	
+	        alert('Current view: ' + view.name);
+	
+			$("#input_date").val($.fullCalendar.formatDate( date, 'yyyy-MM-dd HH:mm:ss' ));
+			$("#input_allDay").val(allDay);
+			//Mostrar el formulario
+			jQuery("#editaeventoform").dialog({ width:800, height:250, modal: true });
+		},
+		
+	
 	});
+	
 });
 
 function updateEvent(the_event) {
@@ -72,3 +92,4 @@ function updateEvent(the_event) {
       function (reponse) { alert('successfully updated task.'); }
     );
 };
+
