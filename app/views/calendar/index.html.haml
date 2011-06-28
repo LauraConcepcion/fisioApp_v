@@ -15,7 +15,8 @@
           = text_field_tag :search, params[:search],:type=>"hidden"
           = autocomplete_field_tag 'paciente_name', '', tabs_autocomplete_paciente_name_path,:id_element => '#search'
     = submit_tag 'Ver citas'
-%b Crear una nueva cita
-#editaeventoform
-  = render 'events/form'
+%div.formulariooculto
+  %b Crear una nueva cita
+  #nuevoevento
+    = render :partial =>'events/form'
 #calendar

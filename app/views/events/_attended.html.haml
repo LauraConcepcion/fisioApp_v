@@ -1,0 +1,24 @@
+= simple_form_for(@event) do |f|
+  = render "shared/error_messages", :target => @event
+  %table.table_small
+    %tr
+      %td
+        = label_tag "Seleccione el paciente"
+        = text_field_tag :paciente_id,'', :type=>"hidden"
+        = autocomplete_field_tag 'paciente_name', '', tabs_autocomplete_paciente_name_path,:id_element => '#paciente_id'
+      %td
+        = label_tag "Seleccione el especialista"
+        = grouped_collection_select(:specialist, :specialist_id, @specialisttypes, :specialist, :name, :id, :name) 
+      %td
+        = label_tag "Seleccione el centro"
+        = f.association :center , :label =>false , :include_blank => false
+    %tr
+      %td
+        = text_field_tag :dia, '', :id_element =>'dia',:disabled => true
+        = f.input :starts_at, :as=>:string, :label => "Hora comienzo",:disabled => true
+        = f.input :ends_at, :as=>:string, :label => "Hora fin",:disabled => true
+
+      %td
+        = f.input :attended, :label=>"Asistencia", :as => :select,:collection => ['Si','No']
+      %td= f.input :description, :label=>"Observaciones"
+  = f.submit

@@ -35,7 +35,7 @@ $(document).ready(function() {
         // a future calendar might have many sources.        
         eventSources: [{
             url: '/events',
-            color: 'yellow',
+            color: 'green',
             textColor: 'black',
             ignoreTimezone: false
         }],
@@ -56,23 +56,23 @@ $(document).ready(function() {
         // http://arshaw.com/fullcalendar/docs/mouse/eventClick/
         eventClick: function(event, jsEvent, view){
          // would like a lightbox here.
+         	var descripcion = event.title
+         	$("#dia").val($.fullCalendar.formatDate( event.start, 'yyyy-MM-dd' ));
+         	$("#event_starts_at").val($.fullCalendar.formatDate( event.start, 'HH:mm' ));
+            $("#event_ends_at").val($.fullCalendar.formatDate( event.end, 'HH:mm' ));
+         	$("#event_description").val(descripcion);
+         	$("#event_id").val(event.id);
+        	jQuery("#nuevoevento").dialog({ width:200, height:250, modal: true });
+        	return false;
         },
 	
 	
 		dayClick: function(date, allDay, jsEvent, view){
 			//captura los datos de fecha en inputs de tipo hidden
-			
-	        if (allDay) {
-	            alert('Clicked on the entire day: ' + date);
-	        }else{
-	            alert('Clicked on the slot: ' + date);
-	        }	
-	        alert('Current view: ' + view.name);
-	
-			$("#input_date").val($.fullCalendar.formatDate( date, 'yyyy-MM-dd HH:mm:ss' ));
+			$("#starts_at").val($.fullCalendar.formatDate( date, 'yyyy-MM-dd HH:mm:ss' ));
 			$("#input_allDay").val(allDay);
 			//Mostrar el formulario
-			jQuery("#editaeventoform").dialog({ width:800, height:250, modal: true });
+			jQuery("#nuevoevento").dialog({ width:800, height:250, modal: true, show: 'slide' });
 		},
 		
 	

@@ -5,16 +5,6 @@ $(function (){
     $('#clinicalhistory_assessmentdate').datepicker({ dateFormat: 'dd-mm-yy' });
     $('#clinicalhistory_startdatetto').datepicker({ dateFormat: 'dd-mm-yy' });
     $('#clinicalhistory_enddatetto').datepicker({ dateFormat: 'dd-mm-yy' });
-
-
-	$("#edita_evento_form").hide();
-	$('#editarEvento').dialog({
-		autoOpen: false,
-		width:300,	
-		height:400,
-		position: [30,100],
-		modal: true,
-	});
 });
 
 

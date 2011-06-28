@@ -10,6 +10,18 @@
 	margin-top: 10px;
 	
 }
+.formulariooculto {
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius:	10px;
+	background-color: #DDDDDD;
+	padding: 20px;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	display: none;
+	text-align: center;
+	
+}
 .table_form{
 	width: 50%;
 }

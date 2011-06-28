@@ -45,23 +45,40 @@ class EventsController < ApplicationController
   # GET /events/1/edit
   def edit
     @event = Event.find(params[:id])
+    @specialisttypes = Specialisttype.all
+    @centers = Center.all  
   end
 
   # POST /events
   # POST /events.xml
   def create
-    @event = Event.new(params[:event])
-    @event.specialist_id = params[:specialist]
-    @event.paciente_id = params["paciente_id"]
-    @event.title = @event.paciente.name + " " + @event.paciente.firstsurname + " " + @event.paciente.secondsurname
-
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to(@event, :notice => 'Event was successfully created.') }
-        format.xml  { render :xml => @event, :status => :created, :location => @event }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @event.errors, :status => :unprocessable_entity }
+    @event = Event.find(params[:event][:id])
+    if @event.blank?
+      @event = Event.new(params[:event])
+      @event.specialist_id = params[:specialist]
+      @event.paciente_id = params["paciente_id"]
+      @event.title = @event.paciente.name + " " + @event.paciente.firstsurname + " " + @event.paciente.secondsurname
+  
+      respond_to do |format|
+        if @event.save
+          format.html { redirect_to(@event, :notice => 'Se ha creado una nueva cita') }
+          format.xml  { render :xml => @event, :status => :created, :location => @event }
+        else
+          format.html { render :action => "new" }
+          format.xml  { render :xml => @event.errors, :status => :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        if @event.update_attributes(params[:event])
+          format.html { redirect_to(@event, :notice => 'Cita actualizada') }
+          format.xml  { head :ok }
+          format.js { head :ok}
+        else
+          format.html { render :action => "edit" }
+          format.xml  { render :xml => @event.errors, :status => :unprocessable_entity }
+          format.js  { render :js => @event.errors, :status => :unprocessable_entity }
+        end
       end
     end
   end
@@ -73,11 +90,11 @@ class EventsController < ApplicationController
   # it on the week or day view), this method will be called to update the values.
   # viv la REST!
   def update
-    @event = Event.find(params[:id])
+    @event = Event.find(params[:event][:id])
     
     respond_to do |format|
       if @event.update_attributes(params[:event])
-        format.html { redirect_to(@event, :notice => 'Event was successfully updated.') }
+        format.html { redirect_to(@event, :notice => 'Cita actualizada') }
         format.xml  { head :ok }
         format.js { head :ok}
       else
