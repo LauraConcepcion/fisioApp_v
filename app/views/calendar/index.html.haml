@@ -17,6 +17,9 @@
     = submit_tag 'Ver citas'
 %div.formulariooculto
   %b Crear una nueva cita
-  #nuevoevento
+  #actualizaevento
     = render :partial =>'events/form'
+  #nuevoevento
+    = render :partial =>'events/event'
+
 #calendar

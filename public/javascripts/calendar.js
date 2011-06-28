@@ -62,7 +62,7 @@ $(document).ready(function() {
             $("#event_ends_at").val($.fullCalendar.formatDate( event.end, 'HH:mm' ));
          	$("#event_description").val(descripcion);
          	$("#event_id").val(event.id);
-        	jQuery("#nuevoevento").dialog({ width:200, height:250, modal: true });
+        	jQuery("#actualizaevento").dialog({ width:200, height:250, modal: true });
         	return false;
         },
 	
