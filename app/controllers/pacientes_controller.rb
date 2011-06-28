@@ -3,6 +3,8 @@ class PacientesController < ApplicationController
   # GET /pacientes.xml
   def index
     @tab = Tab.new
+    @centers = Center.find(:all)
+    @specialisttypes = Specialisttype.find(:all)
     if Paciente.find_by_id(params[:search]).nil?
       @paciente = Paciente.new
       @clinicalhistory = Clinicalhistory.new
