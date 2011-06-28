@@ -17,6 +17,7 @@ class ClinicalhistoriesController < ApplicationController
     @clinicalhistory = Clinicalhistory.find(params[:id])
     @paciente = Paciente.find(@clinicalhistory.paciente_id)
     @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).order("assessmentdate DESC")
+    @edad = Paciente.age(@paciente.birthdate.to_date)
   end
 
   # GET /clinicalhistories/new

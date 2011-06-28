@@ -128,4 +128,10 @@ class PacientesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def clear
+    @paciente = Paciente.find(params[:id])
+    @clinicalhistory = Clinicalhistory.new
+    @duplicado = false
+  end
 end

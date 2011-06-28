@@ -1,19 +1,19 @@
+
+.derecha
+  - unless @clinicalhistories.blank?
+    .formulario
+      %table.table_form
+        %tr
+          %th F. Eval.
+          %th Diagnóstico Fisio
+          %th Tratamiento 
+        - @clinicalhistories.each do |clinicalhistory|
+          %tr
+            %td= link_to clinicalhistory.assessmentdate, clinicalhistory
+            %td= link_to clinicalhistory.physiotherapistdiagnostic, clinicalhistory
+            %td= link_to clinicalhistory.treatment, clinicalhistory
 = simple_form_for(@paciente) do |f| 
   = f.error_notification
-  .derecha
-    - unless @clinicalhistories.blank?
-      .formulario
-        %table.table_form
-          %tr
-            %th F. Evaluación
-            %th Diagnóstico Fisio
-            %th Tratamiento 
-          - @clinicalhistories.each do |clinicalhistory|
-            %tr
-              %td= link_to clinicalhistory.assessmentdate, clinicalhistory
-              %td= link_to clinicalhistory.physiotherapistdiagnostic, clinicalhistory
-              %td= link_to clinicalhistory.treatment, clinicalhistory
-
   .izquierda
     .formulario
       %table.table_form
@@ -86,5 +86,5 @@
             %td{:colspan=>"2"}
               = f.label "Crear un nevo tratamiento"
               = f.input :duplicado, :as => 'Boolean', :value => false, :label => false
-  .izquierda
+  .signup_button
   = f.submit 'Guardar'

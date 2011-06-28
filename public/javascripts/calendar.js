@@ -13,7 +13,7 @@ $(document).ready(function() {
             right: 'month,agendaWeek,agendaDay'
         },
         defaultView: 'agendaWeek',
-        height: 500,
+        height: 400,
         slotMinutes: 30,
         minTime:9,
         maxTime:21,
