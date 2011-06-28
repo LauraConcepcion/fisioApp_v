@@ -16,15 +16,16 @@ header h1{
 	color: #FFFFFF;
 	padding-top: 20px;
 
-
 }
 section { 
-	margin-top: 1em; 
+	margin-top: 2em; 
 	font-size: 120%; 
 	padding-left: 20px; 
 	padding-right: 20px; 
 	padding-bottom: 20px;
-	background: #fff;} 
+	background: #fff;
+	height: 700px;
+} 
 section h1 {
 	font-size: 200%;
 	}
@@ -41,7 +42,9 @@ section ul li{
 
 footer {	text-align: center; 
 	margin-top: 10px; 
-	width: 100%; 
+	width: 100%;
+	display: block;
+	clear: both; 
 } 
 footer nav {
 	float: none;
@@ -129,22 +132,6 @@ nav ul li a:hover {
 #error_explanation ul li { 
 	font-size: 12px; 
 	list-style: square;
-}
-
-
-.izquierda{
-	text-align: left;
-	vertical-align: top;
-}
-.derecha{
-	text-align: right;
-	vertical-align: top;
-
-}
-.centrado{
-	text-align: center; 
-	vertical-align: top;
-
 }
 .arealogin{
 	font-size: 75%;

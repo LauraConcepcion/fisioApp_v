@@ -18,8 +18,9 @@ FisioApp::Application.routes.draw do
   resources :tabs
   root :to => "pages#home"
   match 'tabs' => 'tabs#index'
-
-  get "calendar/index"
+  match 'clinicalhistories' => 'clinicalhistories#show'
+  get 'calendar/index'
+  match 'calendar' => 'calendar/index'
   
 
   # The priority is based upon order of creation:

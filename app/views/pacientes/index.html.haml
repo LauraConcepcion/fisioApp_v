@@ -6,7 +6,7 @@
     = autocomplete_field_tag 'paciente_name', '', tabs_autocomplete_paciente_name_path,:id_element => '#search'
     = submit_tag "Buscar", :name => nil
 - if Paciente.find_by_id(params[:search]).nil?
-  = render 'paciente'
+  = render 'form'
 - else
   = render 'form'
 

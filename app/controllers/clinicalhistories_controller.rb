@@ -11,11 +11,12 @@ class ClinicalhistoriesController < ApplicationController
   # GET /clinicalhistories/1
   # GET /clinicalhistories/1.xml
   def show
+    @tab = Tab.new
+    @centers = Center.find(:all)
+    @specialisttypes = Specialisttype.find(:all)
     @clinicalhistory = Clinicalhistory.find(params[:id])
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @clinicalhistory }
-    end
+    @paciente = Paciente.find(@clinicalhistory.paciente_id)
+    @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).order("assessmentdate DESC")
   end
 
   # GET /clinicalhistories/new

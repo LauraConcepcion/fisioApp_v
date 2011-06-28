@@ -1,42 +1,11 @@
-%p#notice= notice
-
-%p
-  %b Assessmentdate:
-  = @clinicalhistory.assessmentdate
-%p
-  %b Medicalhistory:
-  = @clinicalhistory.medicalhistory
-%p
-  %b Reasonconsultation:
-  = @clinicalhistory.reasonconsultation
-%p
-  %b Evaluation:
-  = @clinicalhistory.evaluation
-%p
-  %b Treatment:
-  = @clinicalhistory.treatment
-%p
-  %b Medicaldiagnosic:
-  = @clinicalhistory.medicaldiagnosic
-%p
-  %b Physiotherapistdiagnostic:
-  = @clinicalhistory.physiotherapistdiagnostic
-%p
-  %b Startdatetto:
-  = @clinicalhistory.startdatetto
-%p
-  %b Enddatetto:
-  = @clinicalhistory.enddatetto
-%p
-  %b Nsessions:
-  = @clinicalhistory.nsessions
-%p
-  %b Frequency:
-  = @clinicalhistory.frequency
-%p
-  %b Comments:
-  = @clinicalhistory.comments
-
-= link_to 'Edit', edit_clinicalhistory_path(@clinicalhistory)
-\|
-= link_to 'Back', clinicalhistories_path
+%b Ficha del paciente:
+%div.formulario
+  = form_tag pacientes_path, :method => 'get', :id=> 'form_tag' do 
+    = label_tag 'Nombre'
+    = text_field_tag :search, params[:search],:type=>"hidden"
+    = autocomplete_field_tag 'paciente_name', '', tabs_autocomplete_paciente_name_path,:id_element => '#search'
+    = submit_tag "Buscar", :name => nil
+- if Paciente.find_by_id(params[:search]).nil?
+  = render 'pacientes/form'
+- else
+  = render 'pacientes/form'

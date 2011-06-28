@@ -8,10 +8,10 @@ class PacientesController < ApplicationController
     if Paciente.find_by_id(params[:search]).nil?
       @paciente = Paciente.new
       @clinicalhistory = Clinicalhistory.new
-      @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).order("assessmentdate DESC").page(params[:page])
     else
       @paciente = Paciente.find_by_id(params[:search])
-      @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).order("assessmentdate DESC").page(params[:page])
+      @clinicalhistory = Clinicalhistory.where(:paciente_id => @paciente).order("assessmentdate DESC").first
+      @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).order("assessmentdate DESC")
       @edad = Paciente.age(@paciente.birthdate.to_date)
     end
   end
@@ -20,7 +20,7 @@ class PacientesController < ApplicationController
   # GET /pacientes/1.xml
   def show
     @paciente = Paciente.find(params[:id])
-    @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).order("assessmentdate DESC").page(params[:page])
+    @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).order("assessmentdate DESC")
 
     respond_to do |format|
       format.html # show.html.erb
@@ -43,7 +43,7 @@ class PacientesController < ApplicationController
   # GET /pacientes/1/edit
   def edit
     @paciente = Paciente.find_by_id(params[:id])
-    @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).order("assessmentdate DESC").page(params[:page])
+    @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).order("assessmentdate DESC")
     @edad = Paciente.age(@paciente.birthdate.to_date)
   end
 

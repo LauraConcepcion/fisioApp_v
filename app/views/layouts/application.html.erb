@@ -15,7 +15,7 @@
   <body>
     <div class="container">
     	<% if user_signed_in? %>
-	    	<% if current_page?(:controller => 'pacientes', :action => 'index') || current_page?(:controller => 'calendar', :action => 'index') %>
+	    	<% if current_page?(:controller => 'pacientes', :action => 'index') || current_page?(:controller => 'calendar', :action => 'index') || current_page?(:controller => 'clinicalhistories', :action => 'show')%>
 				<%= render 'layouts/header_simple'%>
 			<% else%>
 		  		<%= render 'layouts/header'%>
@@ -30,10 +30,10 @@
 				<%= link_to "Cerrar sesión", destroy_user_session_path%>
 			<% end %>
 		  </div >
-      <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, :id => "flash_#{name}" %>
-	      <% end %>
-	      <%= yield %>
+	      <% flash.each do |name, msg| %>
+	        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+		  <% end %>
+		      <%= yield %>
 	  </section>
 	  <%= render 'layouts/footer'%>
     </div>
