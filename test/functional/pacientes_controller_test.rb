@@ -3,6 +3,9 @@ require 'test_helper'
 class PacientesControllerTest < ActionController::TestCase
   setup do
     @paciente = pacientes(:one)
+    @update = {
+      :name => 'Laura'
+    }
   end
 
   test "should get index" do
@@ -18,7 +21,7 @@ class PacientesControllerTest < ActionController::TestCase
 
   test "should create paciente" do
     assert_difference('Paciente.count') do
-      post :create, :paciente => @paciente.attributes
+      post :create, :paciente => @update
     end
 
     assert_redirected_to paciente_path(assigns(:paciente))
@@ -35,7 +38,7 @@ class PacientesControllerTest < ActionController::TestCase
   end
 
   test "should update paciente" do
-    put :update, :id => @paciente.to_param, :paciente => @paciente.attributes
+    put :update, :id => @paciente.to_param, :paciente => @update
     assert_redirected_to paciente_path(assigns(:paciente))
   end
 

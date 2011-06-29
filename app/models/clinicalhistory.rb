@@ -1,23 +1,25 @@
 # == Schema Information
-# Schema version: 20110608151617
+# Schema version: 20110623111357
 #
 # Table name: clinicalhistories
 #
 #  id                        :integer         not null, primary key
-#  assessmentdate            :date
-#  medicalhistory            :text
-#  reasonconsultation        :text
-#  evaluation                :text
-#  treatment                 :text
+#  assessmentdate            :string(255)
+#  medicalhistory            :string(255)
+#  reasonconsultation        :string(255)
+#  evaluation                :string(255)
+#  treatment                 :string(255)
 #  medicaldiagnosic          :string(255)
-#  physiotherapistdiagnostic :text
-#  startdatetto              :date
-#  enddatetto                :date
+#  physiotherapistdiagnostic :string(255)
+#  startdatetto              :string(255)
+#  enddatetto                :string(255)
 #  nsessions                 :integer
 #  frequency                 :integer
-#  comments                  :text
+#  comments                  :string(255)
 #  created_at                :datetime
 #  updated_at                :datetime
+#  paciente_id               :integer
+#  code                      :integer
 #
 
 class Clinicalhistory < ActiveRecord::Base

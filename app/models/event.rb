@@ -1,3 +1,23 @@
+# == Schema Information
+# Schema version: 20110623111357
+#
+# Table name: events
+#
+#  id            :integer         not null, primary key
+#  title         :string(255)
+#  starts_at     :datetime
+#  ends_at       :datetime
+#  all_day       :boolean
+#  description   :text
+#  created_at    :datetime
+#  updated_at    :datetime
+#  center_id     :integer
+#  specialist_id :integer
+#  attended      :boolean
+#  paciente_id   :integer
+#  prueba        :string
+#
+
 class Event < ActiveRecord::Base
   attr_accessible  :starts_at, :ends_at, :all_day, :description, :center_id, :specialist_id, :paciente_id,:attended
  

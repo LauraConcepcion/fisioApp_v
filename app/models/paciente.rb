@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110608141649
+# Schema version: 20110623111357
 #
 # Table name: pacientes
 #
@@ -14,14 +14,15 @@
 #  comments      :string(255)
 #  created_at    :datetime
 #  updated_at    :datetime
-#  birthdate     :date
+#  birthdate     :string(255)
 #  mobilephone   :integer
 #  familyphone   :integer
 #  homephone     :integer
 #  email         :string(255)
-#  addres        :text
+#  addres        :string(255)
 #  zip           :string(255)
 #  codigo        :integer
+#  idtype_id     :integer
 #
 
 class Paciente < ActiveRecord::Base
