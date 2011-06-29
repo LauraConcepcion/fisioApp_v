@@ -8,5 +8,4 @@ class CalendarController < ApplicationController
     @centers = Center.all    
     @event = Event.new
   end
-
 end

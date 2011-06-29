@@ -1,25 +1,24 @@
 %b Buscador de citas
 %br
-%div.formulario
-  = form_tag '',:method => 'get',:id=> 'form_tag' do
-    %table.table_small
+.formulario
+  = form_tag events_path,:method => 'get',:id=> 'form_tag' do
+    %table.table_form
       %tr
         %td
           = label_tag "Seleccione el especialista"
-          = grouped_collection_select(:specialist, :specialist_id, @specialisttypes, :specialist, :name, :id, :name)
+          = grouped_collection_select(:specialist, :specialist_id, @specialisttypes, :specialist, :name, :id, :name, {:include_blank => true})
         %td
           = label_tag "Seleccione el centro"
-          = select_tag 'Centro', options_from_collection_for_select(@centers, 'id', 'name')
+          = select_tag 'Centro', options_from_collection_for_select(@centers, 'id', 'name'),:include_blank => true
         %td
           = label_tag "Seleccione el paciete"
-          = text_field_tag :search, params[:search],:type=>"hidden"
+          = text_field_tag :search, params[:paciente],:type=>"hidden"
           = autocomplete_field_tag 'paciente_name', '', tabs_autocomplete_paciente_name_path,:id_element => '#search'
     = submit_tag 'Ver citas'
-%div.formulariooculto
-  %b Crear una nueva cita
+.formulariooculto
   #actualizaevento
     = render :partial =>'events/form'
   #nuevoevento
     = render :partial =>'events/event'
 
-#calendar
+= render 'calendar'

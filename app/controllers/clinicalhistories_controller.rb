@@ -83,4 +83,8 @@ class ClinicalhistoriesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def clear
+    @clinicalhistory = Clinicalhistory.new;
+  end
 end

@@ -56,23 +56,27 @@ $(document).ready(function() {
         // http://arshaw.com/fullcalendar/docs/mouse/eventClick/
         eventClick: function(event, jsEvent, view){
          // would like a lightbox here.
-         	var descripcion = event.title
          	$("#dia").val($.fullCalendar.formatDate( event.start, 'yyyy-MM-dd' ));
          	$("#event_starts_at").val($.fullCalendar.formatDate( event.start, 'HH:mm' ));
             $("#event_ends_at").val($.fullCalendar.formatDate( event.end, 'HH:mm' ));
-         	$("#event_description").val(descripcion);
+         	$("#event_description").val(event.description);
          	$("#event_id").val(event.id);
-        	jQuery("#actualizaevento").dialog({ width:200, height:250, modal: true });
+         	$("#event_attended").val(event.attended);
+
+        	jQuery("#actualizaevento").dialog({ width:200, height:270, modal: true });
         	return false;
         },
 	
-	
+
 		dayClick: function(date, allDay, jsEvent, view){
 			//captura los datos de fecha en inputs de tipo hidden
-			$("#starts_at").val($.fullCalendar.formatDate( date, 'yyyy-MM-dd HH:mm:ss' ));
-			$("#input_allDay").val(allDay);
+         	dia = $.fullCalendar.formatDate(date, 'yyyy-MM-dd' );
+         	alert('Clicked on the entire day: ' + dia);
+         	$("#dia").val(dia);
+         	$("#event_starts_at").val($.fullCalendar.formatDate(date, 'HH:mm' ));
+            $("#event_ends_at").val($.fullCalendar.formatDate(date, 'HH:mm' ));
 			//Mostrar el formulario
-			jQuery("#nuevoevento").dialog({ width:800, height:250, modal: true, show: 'slide' });
+			jQuery("#nuevoevento").dialog({ width:850, height:200, modal: true, show: 'slide' });
 		},
 		
 	

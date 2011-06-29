@@ -1,4 +1,3 @@
-
 .derecha
   - unless @clinicalhistories.blank?
     .formulario
@@ -46,45 +45,5 @@
           %td{:colspan=>"2"}= f.input :mobilephone, :label => "Móvil "
           %td{:colspan=>"2"}= f.input :homephone, :label => "Tlfo "
           %td{:colspan=>"2"}=f.input :familyphone, :label => "Tlfo fam: "
-
-    .formulario
-      = simple_fields_for(@clinicalhistory) do |f| 
-        = f.error_notification
-        = f.input :code, :as=>"hidden"
-        %table.table_form
-          %tr
-            %td{:colspan=>"2"}
-              = f.label 'F. de evaluación'
-              = f.text_field :assessmentdate,:value => DateTime.now.strftime("%d/%m/%Y")
-            %td{:colspan=>"2"}= f.input :code, :label => "Nº Tratamiento", :disabled => true
-            %td= label_tag "Especialista"
-            %td= grouped_collection_select(:specialist, :specialist_id, @specialisttypes, :specialist, :name, :id, :name)
-          %tr
-            %td.grande{:colspan=>"6"}= f.input :medicalhistory, :label => "Antecedentes clín.: "
-          %tr
-            %td.grande{:colspan=>"6"}= f.input :reasonconsultation, :label => "Motivo consulta: "
-          %tr
-            %td.grande{:colspan=>"6"}= f.input :evaluation, :label => "Evaluación: "
-          %tr
-            %td.grande{:colspan=>"6"}= f.input :physiotherapistdiagnostic, :label => "Diagnósito Fisio: "
-          %tr
-            %td.grande{:colspan=>"6"}= f.input :treatment, :label => "Tratamiento: "
-          %tr
-            %td.grande{:colspan=>"6"}= f.input :medicaldiagnosic, :label => "Diagnóstico Méd.: "
-          %tr
-            %td.grande{:colspan=>"6"}= f.input :comments, :label => "Exámenes aux.: "
-          %tr
-            %td{:colspan=>"2"}
-              = f.label 'F. Inicio tto'
-              = f.text_field :startdatetto
-            %td{:colspan=>"2"}
-              = f.label 'F. Fin tto'
-              = f.text_field :enddatetto
-            %td{:colspan=>"2"}= f.input :nsessions, :label => "Sesiones: "
-  
-          %tr
-            %td{:colspan=>"2"}
-              = f.label "Crear un nevo tratamiento"
-              = f.input :duplicado, :as => 'Boolean', :value => false, :label => false
-  .signup_button
-  = f.submit 'Guardar'
+    = render 'clinicalhistories/form'
+    = f.submit 'Guardar'

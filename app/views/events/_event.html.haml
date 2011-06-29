@@ -1,24 +1,31 @@
 = simple_form_for(@event) do |f|
   = render "shared/error_messages", :target => @event
-  %table.table_small
+  %table.table_form
     %tr
       %td
-        = label_tag "Seleccione el paciente"
-        = text_field_tag :paciente_id,'', :type=>"hidden"
-        = autocomplete_field_tag 'paciente_name', '', tabs_autocomplete_paciente_name_path,:id_element => '#paciente_id'
+        = label_tag "Seleccione el paciete"
+        = text_field_tag :search, params[:search],:type=>"hidden"
+        = autocomplete_field_tag 'paciente_name', '', tabs_autocomplete_paciente_name_path,:id_element => '#search'
+      %td
+        = f.input :id, :as => "hidden"
+        = label_tag "Día de la consulta"
+        = text_field_tag :dia, '', :id_element =>'dia', :disabled => true
+      %td{:rowspan=>"3"}
+        = f.input :description, :label=>"Observaciones"
+    %tr
       %td
         = label_tag "Seleccione el especialista"
-        = grouped_collection_select(:specialist, :specialist_id, @specialisttypes, :specialist, :name, :id, :name) 
+        = grouped_collection_select(:specialist, :specialist_id, @specialisttypes, :specialist, :name, :id, :name)
       %td
-        = label_tag "Seleccione el centro"
-        = f.association :center , :label =>false , :include_blank => false
+        = f.input :starts_at, :as=>:string, :label => "Hora comienzo",:disabled => true
+      %td
     %tr
       %td
-        = text_field_tag :dia, '', :id_element =>'dia',:disabled => true
-        = f.input :starts_at, :as=>:string, :label => "Hora comienzo",:disabled => true
-        = f.input :ends_at, :as=>:string, :label => "Hora fin",:disabled => true
+        = label_tag "Seleccione el centro"
+        = select_tag 'Centro', options_from_collection_for_select(@centers, 'id', 'name')
 
+      %td= f.input :ends_at, :as=>:string, :label => "Hora fin",:disabled => true
+    %tr
       %td
-        = f.input :attended, :label=>"Asistencia", :as => :select,:collection => ['Si','No']
-      %td= f.input :description, :label=>"Observaciones"
-  = f.submit
+      %td
+      %td= f.submit 'Crear'

@@ -10,10 +10,12 @@ class EventsController < ApplicationController
     @events = Event.scoped  
     @events = @events.after(params['start']) if (params['start'])
     @events = @events.before(params['end']) if (params['end'])
-    
-
+    @events = @events.filter_c(1)
+    @specialisttypes = Specialisttype.all
+    @centers = Center.all    
+    @event = Event.new
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.xml  { render :xml => @events }
       format.js  { render :json => @events }
     end
@@ -53,7 +55,7 @@ class EventsController < ApplicationController
   # POST /events.xml
   def create
     @event = Event.find(params[:event][:id])
-    if @event.blank?
+    if @event.id.blank?
       @event = Event.new(params[:event])
       @event.specialist_id = params[:specialist]
       @event.paciente_id = params["paciente_id"]
