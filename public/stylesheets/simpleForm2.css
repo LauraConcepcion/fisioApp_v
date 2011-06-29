@@ -4,29 +4,11 @@
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	border-radius:	10px;
-	background-color: #EEEEEE;
-	padding: 3px;
-	margin-top: 3px;
-}
-
-.formulario a{
-	color: #000000;
-	text-decoration: none;
-	font-weight: bold;
-	font-size: 80%;
-
-}
-.formulario a:hover{
-	color: #000000;
-	text-decoration: underline;
-}
-.izquierda{
-	float: left;
-	width: 640px;
-}
-.derecha{
-	float: right;
-	width: 317px;
+	background-color: #DDDDDD;
+	padding: 10px;
+	margin-bottom: 20px;
+	margin-top: 10px;
+	
 }
 .formulariooculto {
 	-moz-border-radius: 10px;
@@ -38,44 +20,31 @@
 	margin-top: 20px;
 	display: none;
 	text-align: center;
+	
 }
-
 .table_form{
-	width: 97%;
-
+	width: 50%;
+}
+.table_form td{
+	padding-bottom: 7px;
 }
 .table_small{
-	width: 100%;
+	width: 50%;
+	vertical-align: top;
 }
-.table_form th{
-	background: none;
-  	font-weight: normal; 
-  	font-size: 70%;
-	text-transform: uppercase;
 
-}
-.table_form td, th{
-	padding-bottom: 2px;
-	padding-right: 2px;
-	padding-left: 3px;
-}
 .simple_form .small input{
 	width: 30px;
 }
 .simple_form .grande input{
-	width: 430px;
+	width: 180px;
 }
 
 .simple_form input{
-  width: 100px;
+  width: 140px;
+  font-size: 95%;
+
   font-weight: bold;
-  float: right;
-  font-size: 80%;
-
-}
-
-.simple_form select{
-	float: right;
 }
 
 .simple_form input:focus, boolean:focus {
@@ -86,16 +55,16 @@
 	text-transform: uppercase;
   	font-weight: normal; 
   	font-size: 70%;
-  	vertical-align: middle;
+  	display:block;
+  	clear:both;
 }
 
 .simple_form label {
   font-size: 70%;
   text-transform: uppercase; 
   font-weight: normal; 
-  margin-left: 15px;
-  vertical-align: middle;
-
+  display:block;
+  clear:both;
 }
 
 div.boolean label, label.collection_radio {
@@ -123,6 +92,7 @@ label.collection_radio {
 }
 
 .simple_form .hint {
+  clear: left;
   font-size:    12px;
   color: #555;
   display: block;

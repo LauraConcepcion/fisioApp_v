@@ -19,8 +19,7 @@ FisioApp::Application.routes.draw do
   root :to => "pages#home"
   match 'tabs' => 'tabs#index'
   match 'clinicalhistories' => 'clinicalhistories#show'
-    match 'clinicalhistories/clear' => 'clinicalhistories#clear'
-
+  
   get 'calendar/index'
   match 'calendar' => 'calendar/index'
   
