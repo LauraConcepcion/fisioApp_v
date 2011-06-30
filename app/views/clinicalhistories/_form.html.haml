@@ -10,7 +10,9 @@
             = f.text_field :assessmentdate,:value => DateTime.now.strftime("%d/%m/%Y")
           - else
             = f.text_field :assessmentdate
-        %td{:colspan=>"2"}= f.input :code, :label => "Nº Tto", :disabled => true
+        %td{:colspan=>"2"}
+          = label_tag "Centro"
+          = select_tag 'Centro', options_from_collection_for_select(@centers, 'id', 'name')
         %td= label_tag "Especialista"
         %td= grouped_collection_select(:specialist, :specialist_id, @specialisttypes, :specialist, :name, :id, :name)
       %tr
@@ -40,4 +42,5 @@
         %td{:colspan=>"2"}
           = f.label "Crear un nevo tratamiento"
           = f.input :duplicado, :as => 'Boolean', :value => false, :label => false
+        %td{:colspan=>"2"}= f.input :code, :label => "Nº Tto", :disabled => true, :as => "hidden"
 
