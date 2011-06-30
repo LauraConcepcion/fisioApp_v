@@ -1,6 +1,6 @@
 class AddAtributosToPaciente < ActiveRecord::Migration
   def self.up
-    add_column :pacientes, :birthdate, :date
+    add_column :pacientes, :birthdate, :string
     add_column :pacientes, :mobilephone, :integer
     add_column :pacientes, :familyphone, :integer
     add_column :pacientes, :homephone, :integer

@@ -4,7 +4,6 @@ class CreatePacientes < ActiveRecord::Migration
       t.string :name
       t.string :firstsurname
       t.string :secondsurname
-      t.integer :idtype
       t.string :idcode
       t.string :profession
       t.integer :feetype_id

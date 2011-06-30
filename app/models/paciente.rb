@@ -68,7 +68,7 @@ class Paciente < ActiveRecord::Base
     
     #Función para definir qué queremos mostrar en el autcompletar.
     def funky_method
-      "#{self.name} #{self.firstsurname} #{self.secondsurname}"
+      "#{self.name} #{self.firstsurname} #{self.secondsurname}, #{self.idcode}"
     end
 end
 
