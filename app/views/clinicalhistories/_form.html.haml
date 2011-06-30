@@ -10,7 +10,7 @@
             = f.text_field :assessmentdate,:value => DateTime.now.strftime("%d/%m/%Y")
           - else
             = f.text_field :assessmentdate
-        %td{:colspan=>"2"}= f.input :code, :label => "Nº Tratamiento", :disabled => true
+        %td{:colspan=>"2"}= f.input :code, :label => "Nº Tto", :disabled => true
         %td= label_tag "Especialista"
         %td= grouped_collection_select(:specialist, :specialist_id, @specialisttypes, :specialist, :name, :id, :name)
       %tr

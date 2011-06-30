@@ -29,6 +29,7 @@ class Paciente < ActiveRecord::Base
     attr_accessible :name, :firstsurname, :secondsurname, :idtype_id, :idcode, :profession, :feetype_id, :comments,
                     :birthdate, :mobilephone, :familyphone, :homephone, :email, :addres, :zip, :codigo
     attr_accessor  :fullname
+    validates :name, :firstsurname, :presence => true
 #    validates :birthdate,
  #             :format => { :with => /(0[0-9]|1[0-9]|2[0-9]|3[0-1])(\/)(0[0-9]|1[1-2])(\/)(\d{2,4})/}
 #Definimos el formato de mail

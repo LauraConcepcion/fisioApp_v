@@ -23,11 +23,11 @@
 }
 .izquierda{
 	float: left;
-	width: 575px;
+	width: 590px;
 }
 .derecha{
 	float: right;
-	width: 523px;
+	width: 510px;
 }
 .formulariooculto {
 	-moz-border-radius: 10px;
