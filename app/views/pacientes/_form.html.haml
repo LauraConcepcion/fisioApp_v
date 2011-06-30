@@ -27,8 +27,8 @@
             = select_tag 'Centro', options_from_collection_for_select(@centers, 'id', 'name')
         %tr
           %td{:colspan=>"2"}= f.input :name, :label => "Nombre "
-          %td{:colspan=>"2"}= f.input :firstsurname, :label => "1er apellido " 
-          %td{:colspan=>"2"}= f.input :secondsurname, :label => "2do apellido "     
+          %td{:colspan=>"2"}= f.input :firstsurname, :label => "1 apellido " 
+          %td{:colspan=>"2"}= f.input :secondsurname, :label => "2 apellido "     
         %tr
           %td{:colspan=>"2"}= f.input :profession, :label => "Ocupación"
           %td{:colspan=>"2"}= f.input :birthdate, :as=>:string, :label => "F.Nac" 
@@ -45,5 +45,8 @@
           %td{:colspan=>"2"}= f.input :mobilephone, :label => "Móvil "
           %td{:colspan=>"2"}= f.input :homephone, :label => "Tlfo "
           %td{:colspan=>"2"}=f.input :familyphone, :label => "Tlfo fam: "
+        %tr
+          %td.grande{:colspan=>"6"}=f.input :email, :label => "Email:  "
+
     = render 'clinicalhistories/form'
     = f.submit 'Guardar'

@@ -5,7 +5,6 @@
 	-webkit-border-radius: 10px;
 	border-radius:	10px;
 	background-color: #EEEEEE;
-	padding: 3px;
 	margin-top: 3px;
 }
 
@@ -22,18 +21,18 @@
 }
 .izquierda{
 	float: left;
-	width: 640px;
+	width: 575px;
 }
 .derecha{
 	float: right;
-	width: 317px;
+	width: 423px;
 }
 .formulariooculto {
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	border-radius:	10px;
 	background-color: #DDDDDD;
-	padding: 20px;
+	padding: 10px;
 	margin-bottom: 20px;
 	margin-top: 20px;
 	display: none;
@@ -53,8 +52,7 @@
 }
 .table_form td, th{
 	padding-bottom: 2px;
-	padding-right: 2px;
-	padding-left: 3px;
+	padding-left: 4px;
 }
 .simple_form .small input{
 	width: 30px;
@@ -83,7 +81,7 @@
 	text-transform: uppercase;
   	font-weight: normal; 
   	font-size: 70%;
-  	margin-left: 15px;
+  	margin-left: 5px;
   	vertical-align: middle;
 }
 
@@ -91,7 +89,7 @@
   font-size: 70%;
   text-transform: uppercase; 
   font-weight: normal; 
-  margin-left: 15px;
+  margin-left: 5px;
   vertical-align: middle;
 
 }
@@ -103,7 +101,7 @@ div.boolean label, label.collection_radio {
 
 
 label.collection_radio {
-  margin-right: 5px;
+  margin-right: 3px;
   vertical-align: -2px;
   margin-left:   2px;
 }
@@ -132,7 +130,7 @@ label.collection_radio {
 }
 
 input.radio {
-  margin-right: 5px;
+  margin-right: 3px;
   vertical-align: -3px;
 }
 
