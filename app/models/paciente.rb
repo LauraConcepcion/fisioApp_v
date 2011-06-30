@@ -28,6 +28,7 @@
 class Paciente < ActiveRecord::Base
     attr_accessible :name, :firstsurname, :secondsurname, :idtype_id, :idcode, :profession, :feetype_id, :comments,
                     :birthdate, :mobilephone, :familyphone, :homephone, :email, :addres, :zip, :codigo
+    attr_accessor  :fullname
 #    validates :birthdate,
  #             :format => { :with => /(0[0-9]|1[0-9]|2[0-9]|3[0-1])(\/)(0[0-9]|1[1-2])(\/)(\d{2,4})/}
 #Definimos el formato de mail
@@ -43,7 +44,7 @@ class Paciente < ActiveRecord::Base
     has_many :clinicalhistories, :dependent => :destroy 
     has_many :events, :dependent => :destroy
     accepts_nested_attributes_for :clinicalhistories
-    
+    before_create :fullname_f
     belongs_to  :idtype
     
     def self.search(search)
@@ -59,6 +60,12 @@ class Paciente < ActiveRecord::Base
         ((DateTime.now - birthdate)/365).to_i
       end
     end
+    
+    #Función para definir qué queremos mostrar en el autcompletar.
+    def fullname_f
+      self.fullname = self.name + self.firstsurname + self.secondsurname
+    end    
+    
     #Función para definir qué queremos mostrar en el autcompletar.
     def funky_method
       "#{self.name} #{self.firstsurname} #{self.secondsurname}"
