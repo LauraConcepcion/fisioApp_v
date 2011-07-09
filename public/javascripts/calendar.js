@@ -5,6 +5,8 @@ $(document).ready(function() {
 	var m = date.getMonth();
 	var y = date.getFullYear();
 	
+						
+	
 	$('#calendar').fullCalendar({
 		editable: true,        
 		header: {
@@ -13,13 +15,14 @@ $(document).ready(function() {
             right: 'month,agendaWeek,agendaDay'
         },
         defaultView: 'agendaWeek',
-        height: 400,
+        height: 500,
         slotMinutes: 30,
         minTime:9,
         maxTime:21,
         defaultEventMinutes:60,
         firstDay:1,
-        theme:true,
+        theme:true,        
+        
         loading: function(bool){
             if (bool) 
                 $('#loading').show();
@@ -27,25 +30,27 @@ $(document).ready(function() {
                 $('#loading').hide();
         },
         
+        // a future calendar might have many sources.        
+        eventSources: [{
+            url: '/events',
+            color: 'yellow',
+            textColor: 'black',
+            ignoreTimezone: false,
+            error: function() {
+                alert('there was an error while fetching events!');
+            },
+        }],
         sayNames:['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
         dayNamesShort:['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
         monthNames:['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
         monthNamesShort:['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul','Ago','Sept','Oct','Nov','Dic'],
-
-        // a future calendar might have many sources.        
-        eventSources: [{
-            url: '/events',
-            color: 'green',
-            textColor: 'black',
-            ignoreTimezone: false
-        }],
         
         timeFormat: 'h:mm t{ - h:mm t} ',
         dragOpacity: "0.5",
         
         //http://arshaw.com/fullcalendar/docs/event_ui/eventDrop/
         eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc){
-           // updateEvent(event);
+            updateEvent(event);
         },
 
         // http://arshaw.com/fullcalendar/docs/event_ui/eventResize/
@@ -55,34 +60,47 @@ $(document).ready(function() {
 
         // http://arshaw.com/fullcalendar/docs/mouse/eventClick/
         eventClick: function(event, jsEvent, view){
-         // would like a lightbox here.
-         	$("#dia").val($.fullCalendar.formatDate( event.start, 'yyyy-MM-dd' ));
-         	$("#event_starts_at").val($.fullCalendar.formatDate( event.start, 'HH:mm' ));
-            $("#event_ends_at").val($.fullCalendar.formatDate( event.end, 'HH:mm' ));
-         	$("#event_description").val(event.description);
-         	$("#event_id").val(event.id);
-         	$("#event_attended").val(event.attended);
-
-        	jQuery("#actualizaevento").dialog({ width:200, height:270, modal: true });
-        	return false;
+          // would like a lightbox here.
+   			
         },
-	
-
-		dayClick: function(date, allDay, jsEvent, view){
+        
+        dayClick: function(date, allDay, jsEvent, view){
 			//captura los datos de fecha en inputs de tipo hidden
+			
          	dia = $.fullCalendar.formatDate(date, 'yyyy-MM-dd' );
-         	alert('Clicked on the entire day: ' + dia);
          	$("#dia").val(dia);
          	$("#event_starts_at").val($.fullCalendar.formatDate(date, 'HH:mm' ));
             $("#event_ends_at").val($.fullCalendar.formatDate(date, 'HH:mm' ));
 			//Mostrar el formulario
-			jQuery("#nuevoevento").dialog({ width:850, height:200, modal: true, show: 'slide' });
+			jQuery("#nuevoevento").dialog({ 
+				width:850, 
+				height:200, 
+				modal: true, 
+				show: 'slide',
+				close: function(event, ui){
+            		$(this).dialog("destroy");
+            },
+        	});        	
 		},
-		
-	
+
 	});
-	
 });
+
+
+function showEventDetails(event){
+    $('#dia').html($.fullCalendar.formatDate( event.start, 'yyyy-MM-dd' ));
+    jQuery("#actualizaevento").dialog({ 
+				width:300, 
+				height:200, 
+				modal: true, 
+				show: 'slide',
+				close: function(event, ui){
+            		$(this).dialog("destroy");
+            },
+        	});   
+    
+}
+
 
 function updateEvent(the_event) {
     $.update(

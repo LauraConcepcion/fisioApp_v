@@ -22,9 +22,7 @@ FisioApp::Application.routes.draw do
   match 'clinicalhistories' => 'clinicalhistories#show'
   
   get 'calendar/index'
-  match 'calendar' => 'calendar/index'
-  
-
+  match 'calendar' => 'calendar#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -92,11 +92,11 @@ class EventsController < ApplicationController
   # it on the week or day view), this method will be called to update the values.
   # viv la REST!
   def update
-    @event = Event.find(params[:event][:id])
+    @event = Event.find(params[:id])
     
     respond_to do |format|
       if @event.update_attributes(params[:event])
-        format.html { redirect_to(@event, :notice => 'Cita actualizada') }
+        format.html { redirect_to(@event, :notice => 'Event was successfully updated.') }
         format.xml  { head :ok }
         format.js { head :ok}
       else

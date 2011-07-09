@@ -38,7 +38,6 @@ gem 'kaminari'
  gem 'jquery-rails', '>=1.0.3' 
  gem "meta_where"
  gem "meta_search"
- gem 'table_builder', '0.0.3', :git => 'git://github.com/jchunky/table_builder.git'
  group :development do
    gem 'annotate-models', '1.0.4'
    gem 'rspec-rails', '2.6.1'
