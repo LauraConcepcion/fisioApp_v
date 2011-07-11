@@ -7,7 +7,5 @@ class CalendarController < ApplicationController
     @specialisttypes = Specialisttype.all
     @centers = Center.all    
     @event = Event.new
-
-    end
   end
 end
