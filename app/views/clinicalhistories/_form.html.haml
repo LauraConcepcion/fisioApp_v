@@ -52,10 +52,10 @@
           = f.label 'Nº Registro: '
           %b #{@paciente.codigo}
         %td
-          = collection_select(nil, :provenance_id, Provenance.all, :id,:name, { :prompt   => "Seleccione la procedencia"},{:id =>'provenance_id'})
+          = f.collection_select :provenance_id, Provenance.all, :id,:name, :prompt => "Seleccione la procedencia"
         %td
           #rate
-            =render :partial => 'pacientes/rates'
+            =render :partial => 'clinicalhistories/rates'
       %tr
         %td= f.input :expedient, :label => 'Nº Exp'
         %td= f.input :authorization, :label =>'Nº Aut'

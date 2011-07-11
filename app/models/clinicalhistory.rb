@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110711120852
+# Schema version: 20110711141818
 #
 # Table name: clinicalhistories
 #
@@ -22,13 +22,17 @@
 #  code                      :integer
 #  expedient                 :string(255)
 #  authorization             :string(255)
+#  authorizationcomments     :string(255)
+#  rate_id                   :integer
 #
 
 class Clinicalhistory < ActiveRecord::Base
       attr_accessible :assessmentdate,:medicalhistory, :reasonconsultation, :evaluation, :treatment,
                       :medicaldiagnosic, :physiotherapistdiagnostic, :startdatetto ,:enddatetto,
-                      :nsessions, :frequency,:comments, :paciente_id, :code, :expedient, :authorization
+                      :nsessions, :frequency,:comments, :paciente_id, :code, :expedient, :authorization, :rate_id, :provenance_id
       attr_accessor :duplicado             
       belongs_to  :paciente
+      belongs_to  :rate      
+      belongs_to  :provenance
       paginates_per 1
 end

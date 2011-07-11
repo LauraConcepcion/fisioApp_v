@@ -1,5 +1,0 @@
-= simple_form_for(:paciente,:remote=>true, :html=>{:multipart=>true}) do |f| 
-  -if !rates.blank?
-    = f.collection_select :rate, rates, :id,:name, :prompt   => "Seleccione la tarifa"
-  -else
-    = f.collection_select :rate, Rate.all, :id,:name, :prompt   => "Seleccione la tarifa"

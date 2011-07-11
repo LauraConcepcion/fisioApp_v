@@ -86,4 +86,9 @@ class ClinicalhistoriesController < ApplicationController
   def clear
     @clinicalhistory = Clinicalhistory.new;
   end
+  
+  def update_rate_select
+    rates = Rate.where(:provenance_id=>params[:id]).order(:name) unless params[:id].blank?
+    render :partial => "rates", :locals => { :rates => rates }
+  end
 end

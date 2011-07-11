@@ -5,11 +5,11 @@ $(function (){
     $('#clinicalhistory_assessmentdate').datepicker({ dateFormat: 'dd-mm-yy' });
     $('#clinicalhistory_startdatetto').datepicker({ dateFormat: 'dd-mm-yy' });
     $('#clinicalhistory_enddatetto').datepicker({ dateFormat: 'dd-mm-yy' });
-    $("#provenance_id").change(function() {
+    $("#clinicalhistory_provenance_id").change(function() {
 	    // make a POST call and replace the content
-	    var provenance = $('select#provenance_id :selected').val();
+	    var provenance = $('select#clinicalhistory_provenance_id :selected').val();
 	    if(provenance == "") provenance="0";
-	    jQuery.get('/pacientes/update_rate_select/' + provenance, function(data){
+	    jQuery.get('/clinicalhistories/update_rate_select/' + provenance, function(data){
 	        $("#rate").html(data);
 	    })
 	    return false;

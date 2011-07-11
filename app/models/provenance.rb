@@ -16,5 +16,6 @@
 class Provenance < ActiveRecord::Base
   attr_accessible  :description, :name
   has_many  :rate
+  has_many  :clinicalhistory
   
 end
