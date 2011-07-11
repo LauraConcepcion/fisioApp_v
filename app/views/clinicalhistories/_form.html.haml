@@ -50,7 +50,7 @@
       %tr
         %td
           = f.label 'Nº Registro: '
-          %b #{@paciente.codigo}
+          %b #{@clinicalhistory.code}
         %td
           = f.collection_select :provenance_id, Provenance.all, :id,:name, :prompt => "Seleccione la procedencia"
         %td

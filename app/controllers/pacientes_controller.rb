@@ -6,14 +6,9 @@ class PacientesController < ApplicationController
     @centers = Center.find(:all)
     @specialisttypes = Specialisttype.find(:all)
     @provenances = Provenance.find(:all)
-    if Paciente.find_by_id(params[:search]).nil?
-      @paciente = Paciente.new
-      @clinicalhistory = Clinicalhistory.new
-    else
-      @paciente = Paciente.find_by_id(params[:search])
-      @clinicalhistory = Clinicalhistory.where(:paciente_id => @paciente).order("assessmentdate DESC").first
-      @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).order("assessmentdate DESC")
-    end
+    @paciente = Paciente.find_by_id(params[:search])
+    @clinicalhistory = Clinicalhistory.where(:paciente_id => @paciente).order("assessmentdate DESC").first
+    @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).order("assessmentdate DESC")
   end
 
   # GET /pacientes/1
@@ -31,17 +26,17 @@ class PacientesController < ApplicationController
   # GET /pacientes/new
   # GET /pacientes/new.xml
   def new
+    @tab = Tab.new
+    @centers = Center.find(:all)
+    @specialisttypes = Specialisttype.find(:all)
+    @provenances = Provenance.find(:all)
     @paciente = Paciente.new
     @clinicalhistory = Clinicalhistory.new
-    @tab = Tab.new
-    respond_to do |format|
-      format.html# new.html.erb
-      format.xml  { render :xml => @paciente }
-    end
   end
 
   # GET /pacientes/1/edit
   def edit
+    @tab = Tab.new
     @paciente = Paciente.find_by_id(params[:id])
     @clinicalhistory = Clinicalhistory.where(:paciente_id => @paciente).order("assessmentdate DESC").first
     @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).order("assessmentdate DESC")
@@ -72,7 +67,7 @@ class PacientesController < ApplicationController
       if @paciente.save
         if @clinicalhistory.save
           flash[:notice] = "Ficha de paciente creada correctamente"
-          format.html {redirect_to(pacientes_url)}
+          format.html {redirect_to edit_paciente_path(@paciente)}
           format.xml {head :ok}
         end
       else
