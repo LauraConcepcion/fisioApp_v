@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110623111357
+# Schema version: 20110709170608
 #
 # Table name: pacientes
 #
@@ -10,7 +10,6 @@
 #  idtype        :integer
 #  idcode        :string(255)
 #  profession    :string(255)
-#  feetype_id    :integer
 #  comments      :string(255)
 #  created_at    :datetime
 #  updated_at    :datetime
@@ -23,6 +22,7 @@
 #  zip           :string(255)
 #  codigo        :integer
 #  idtype_id     :integer
+#  feetype_id    :integer
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html

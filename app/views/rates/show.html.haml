@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @rate.name
+%p
+  %b Description:
+  = @rate.description
+%p
+  %b Sessions:
+  = @rate.sessions
+%p
+  %b Rate:
+  = @rate.rate
+%p
+  %b Provenance:
+  = @rate.provenance_id
+
+= link_to 'Edit', edit_rate_path(@rate)
+\|
+= link_to 'Back', rates_path

@@ -1,4 +1,8 @@
 FisioApp::Application.routes.draw do
+  resources :rates
+
+  resources :provenances
+
   resources :specialisttypes
 
   resources :centers
@@ -8,6 +12,7 @@ FisioApp::Application.routes.draw do
   resources :events
 
   resources :clinicalhistories
+
 
   get 'tabs/autocomplete_paciente_name'
   get 'tabs/autocomplete_paciente_firstsurname'
@@ -23,6 +28,7 @@ FisioApp::Application.routes.draw do
   
   get 'calendar/index'
   match 'calendar' => 'calendar#index'
+  match 'pacientes/update_rate_select/:id', :controller=>'pacientes', :action => 'update_rate_select'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

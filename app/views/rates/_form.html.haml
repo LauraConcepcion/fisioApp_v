@@ -1,0 +1,12 @@
+= simple_form_for(@rate) do |f|
+  = f.error_notification
+
+  .inputs
+    = f.input :name
+    = f.input :description
+    = f.input :sessions
+    = f.input :rate
+    = f.input :provenance_id
+
+  .actions
+    = f.button :submit

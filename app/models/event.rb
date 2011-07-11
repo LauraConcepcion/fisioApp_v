@@ -15,7 +15,6 @@
 #  specialist_id :integer
 #  attended      :boolean
 #  paciente_id   :integer
-#  prueba        :string
 #
 
 class Event < ActiveRecord::Base

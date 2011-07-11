@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110623111357) do
+ActiveRecord::Schema.define(:version => 20110711075934) do
 
   create_table "centers", :force => true do |t|
     t.string   "name"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(:version => 20110623111357) do
     t.integer  "center_id"
     t.integer  "specialist_id"
     t.boolean  "attended"
-    t.integer  "patient_id"
+    t.integer  "paciente_id"
   end
 
   create_table "feetypes", :force => true do |t|
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20110623111357) do
     t.float    "rate"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "provenance_id"
   end
 
   create_table "idtypes", :force => true do |t|
@@ -80,7 +81,6 @@ ActiveRecord::Schema.define(:version => 20110623111357) do
     t.integer  "idtype"
     t.string   "idcode"
     t.string   "profession"
-    t.integer  "feetype_id"
     t.string   "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -93,6 +93,24 @@ ActiveRecord::Schema.define(:version => 20110623111357) do
     t.string   "zip"
     t.integer  "codigo"
     t.integer  "idtype_id"
+    t.integer  "feetype_id"
+  end
+
+  create_table "provenances", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rates", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "sessions"
+    t.float    "rate"
+    t.integer  "provenance_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "specialists", :force => true do |t|

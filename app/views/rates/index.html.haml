@@ -1,0 +1,27 @@
+%h1 Listing rates
+
+%table
+  %tr
+    %th Name
+    %th Description
+    %th Sessions
+    %th Rate
+    %th Provenance
+    %th
+    %th
+    %th
+
+  - @rates.each do |rate|
+    %tr
+      %td= rate.name
+      %td= rate.description
+      %td= rate.sessions
+      %td= rate.rate
+      %td= rate.provenance_id
+      %td= link_to 'Show', rate
+      %td= link_to 'Edit', edit_rate_path(rate)
+      %td= link_to 'Destroy', rate, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Rate', new_rate_path

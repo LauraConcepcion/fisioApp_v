@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @provenance.name
+%p
+  %b Description:
+  = @provenance.description
+
+= link_to 'Edit', edit_provenance_path(@provenance)
+\|
+= link_to 'Back', provenances_path

@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110623111357
+# Schema version: 20110709170608
 #
 # Table name: pacientes
 #
@@ -10,7 +10,6 @@
 #  idtype        :integer
 #  idcode        :string(255)
 #  profession    :string(255)
-#  feetype_id    :integer
 #  comments      :string(255)
 #  created_at    :datetime
 #  updated_at    :datetime
@@ -23,10 +22,11 @@
 #  zip           :string(255)
 #  codigo        :integer
 #  idtype_id     :integer
+#  feetype_id    :integer
 #
 
 class Paciente < ActiveRecord::Base
-    attr_accessible :name, :firstsurname, :secondsurname, :idtype_id, :idcode, :profession, :feetype_id, :comments,
+    attr_accessible :name, :firstsurname, :secondsurname, :idtype_id, :idcode, :profession, :rate_id, :comments,
                     :birthdate, :mobilephone, :familyphone, :homephone, :email, :addres, :zip, :codigo
     attr_accessor  :fullname
     validates :name, :firstsurname, :presence => true
@@ -41,7 +41,7 @@ class Paciente < ActiveRecord::Base
     #validates  :mobilephone, :familyphone, :homephone, :codigo, :numericality => true
     
     #Relación de paciente con tipo de tarifa, un paciente tiene una tarifa, una tarifa puede tener muchos pacientes
-    belongs_to :feetype      
+    belongs_to :rate      
     has_many :clinicalhistories, :dependent => :destroy 
     has_many :events, :dependent => :destroy
     accepts_nested_attributes_for :clinicalhistories

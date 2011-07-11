@@ -1,0 +1,21 @@
+%h1 Listing provenances
+
+%table
+  %tr
+    %th Name
+    %th Description
+    %th
+    %th
+    %th
+
+  - @provenances.each do |provenance|
+    %tr
+      %td= provenance.name
+      %td= provenance.description
+      %td= link_to 'Show', provenance
+      %td= link_to 'Edit', edit_provenance_path(provenance)
+      %td= link_to 'Destroy', provenance, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Provenance', new_provenance_path

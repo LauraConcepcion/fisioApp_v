@@ -1,4 +1,4 @@
-= simple_form_for(@paciente) do |f| 
+= simple_form_for(@paciente,:remote=>true) do |f| 
   = f.error_notification
   .derecha
     .formulario
@@ -7,15 +7,18 @@
           %td
             = f.label 'Nº Registro: '
             %b #{@paciente.codigo}
-          %td= f.association :feetype, :label => "Tarifa"
           %td
-            = label_tag 'Código'
-            = text_field_tag 'Código', ''
+            = collection_select(nil, :provenance_id, Provenance.all, :id,:name, { :prompt   => "Seleccione la procedencia"},{:id =>'provenance_id'})
+          %td
+            #rate
+              =render :partial => 'rates'
         %tr
           %td
             = label_tag 'Nº expediente'
           %td
-            = label_tag 'Procedencia'
+            = label_tag 'Nº autorización'
+          %td
+            = label_tag 'Observaciones'
                          
     - unless @clinicalhistories.blank?
       .formulario

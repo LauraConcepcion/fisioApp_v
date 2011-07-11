@@ -5,6 +5,7 @@ class PacientesController < ApplicationController
     @tab = Tab.new
     @centers = Center.find(:all)
     @specialisttypes = Specialisttype.find(:all)
+    @provenances = Provenance.find(:all)
     if Paciente.find_by_id(params[:search]).nil?
       @paciente = Paciente.new
       @clinicalhistory = Clinicalhistory.new
@@ -12,7 +13,6 @@ class PacientesController < ApplicationController
       @paciente = Paciente.find_by_id(params[:search])
       @clinicalhistory = Clinicalhistory.where(:paciente_id => @paciente).order("assessmentdate DESC").first
       @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).order("assessmentdate DESC")
-      @edad = Paciente.age(@paciente.birthdate.to_date)
     end
   end
 
@@ -134,4 +134,10 @@ class PacientesController < ApplicationController
     @clinicalhistory = Clinicalhistory.new
     @duplicado = false
   end
+  
+  
+  def update_rate_select
+    rates = Rate.where(:provenance_id=>params[:id]).order(:name) unless params[:id].blank?
+    render :partial => "rates", :locals => { :rates => rates }
+end
 end
