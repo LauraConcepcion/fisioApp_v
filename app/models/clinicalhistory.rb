@@ -27,7 +27,7 @@
 class Clinicalhistory < ActiveRecord::Base
       attr_accessible :assessmentdate,:medicalhistory, :reasonconsultation, :evaluation, :treatment,
                       :medicaldiagnosic, :physiotherapistdiagnostic, :startdatetto ,:enddatetto,
-                      :nsessions, :frequency,:comments, :paciente_id, :code  
+                      :nsessions, :frequency,:comments, :paciente_id, :code, :expedient, :authorization
       attr_accessor :duplicado             
       belongs_to  :paciente
       paginates_per 1

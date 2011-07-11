@@ -43,4 +43,20 @@
           = f.label "Crear un nevo tratamiento"
           = f.input :duplicado, :as => 'Boolean', :value => false, :label => false
         %td{:colspan=>"2"}= f.input :code, :label => "Nº Tto", :disabled => true, :as => "hidden"
+        
+.formulario
+  = simple_fields_for(@clinicalhistory) do |f| 
+    %table.table_form
+      %tr
+        %td
+          = f.label 'Nº Registro: '
+          %b #{@paciente.codigo}
+        %td
+          = collection_select(nil, :provenance_id, Provenance.all, :id,:name, { :prompt   => "Seleccione la procedencia"},{:id =>'provenance_id'})
+        %td
+          #rate
+            =render :partial => 'rates'
+      %tr
+        %td= f.input :expedient, :label => 'Nº Expediente'
+        %td= f.input :authorization, :label =>'Nº Autorización'
 
