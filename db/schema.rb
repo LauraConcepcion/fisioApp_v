@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110711075934) do
+ActiveRecord::Schema.define(:version => 20110711120852) do
 
   create_table "centers", :force => true do |t|
     t.string   "name"
@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(:version => 20110711075934) do
     t.datetime "updated_at"
     t.integer  "paciente_id"
     t.integer  "code"
+    t.string   "expedient"
+    t.string   "authorization"
   end
 
   create_table "countreferences", :force => true do |t|

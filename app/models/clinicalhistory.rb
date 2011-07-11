@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110623111357
+# Schema version: 20110711120852
 #
 # Table name: clinicalhistories
 #
@@ -20,6 +20,8 @@
 #  updated_at                :datetime
 #  paciente_id               :integer
 #  code                      :integer
+#  expedient                 :string(255)
+#  authorization             :string(255)
 #
 
 class Clinicalhistory < ActiveRecord::Base
