@@ -7,7 +7,7 @@
         %td{:colspan=>"2"}
           = f.label 'F. de evaluación'
           - if @clinicalhistory.assessmentdate.blank?
-            = f.text_field :assessmentdate,:value => DateTime.now.strftime("%d/%m/%Y")
+            = f.text_field :assessmentdate,:value => DateTime.now.strftime("%d/%m/%Y"), :disable=>true
           - else
             = f.text_field :assessmentdate
         %td{:colspan=>"2"}
@@ -55,8 +55,9 @@
           = collection_select(nil, :provenance_id, Provenance.all, :id,:name, { :prompt   => "Seleccione la procedencia"},{:id =>'provenance_id'})
         %td
           #rate
-            =render :partial => 'rates'
+            =render :partial => 'pacientes/rates'
       %tr
-        %td= f.input :expedient, :label => 'Nº Expediente'
-        %td= f.input :authorization, :label =>'Nº Autorización'
+        %td= f.input :expedient, :label => 'Nº Exp'
+        %td= f.input :authorization, :label =>'Nº Aut'
+        %td= f.input :authorizationcomments, :label=>'Observaciones'
 

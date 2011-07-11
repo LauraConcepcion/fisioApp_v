@@ -43,8 +43,11 @@ class PacientesController < ApplicationController
   # GET /pacientes/1/edit
   def edit
     @paciente = Paciente.find_by_id(params[:id])
+    @clinicalhistory = Clinicalhistory.where(:paciente_id => @paciente).order("assessmentdate DESC").first
     @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).order("assessmentdate DESC")
-    @edad = Paciente.age(@paciente.birthdate.to_date)
+    @centers = Center.all
+    @specialisttypes = Specialisttype.find(:all)
+    @provenances = Provenance.find(:all)
   end
 
   # POST /pacientes
@@ -99,7 +102,7 @@ class PacientesController < ApplicationController
         respond_to do |format|
           if @clinicalhistory.save
             flash[:notice] = "Se han guardado los cambios"
-            format.html {redirect_to :action=>'index'}
+            format.html {redirect_to edit_paciente_path}
             format.xml {head :ok}
           end
         end
@@ -107,7 +110,7 @@ class PacientesController < ApplicationController
         respond_to do |format|
             if @clinicalhistory.update_attributes(params[:clinicalhistory])
               flash[:notice] = "Se han guardado los cambios correctamente"
-              format.html {redirect_to :action=>'index'}
+              format.html {redirect_to edit_paciente_path}
               format.xml  { head :ok }
             else
               format.html { render :action => "edit" }
