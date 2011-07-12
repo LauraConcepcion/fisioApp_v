@@ -15,7 +15,7 @@
   <body>
     <div class="container">
     	<% if user_signed_in? %>
-	    	<% if current_page?(:controller => 'pacientes', :action => 'new') || current_page?(:controller => 'calendar', :action => 'index') || current_page?(:controller => 'clinicalhistories', :action => 'show')|| current_page?(:controller => 'pacientes', :action=> 'index')%>
+	    	<% if current_page?(:controller => 'events', :action => 'show') || current_page?(:controller => 'pacientes', :action => 'new') || current_page?(:controller => 'calendar', :action => 'index') || current_page?(:controller => 'clinicalhistories', :action => 'show')|| current_page?(:controller => 'pacientes', :action=> 'index')%>
 				<%= render 'layouts/header_simple'%>
 			<% else%>
 		  		<%= render 'layouts/header'%>
