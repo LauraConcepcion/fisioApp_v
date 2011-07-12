@@ -91,4 +91,11 @@ class ClinicalhistoriesController < ApplicationController
     rates = Rate.where(:provenance_id=>params[:id]).order(:name) unless params[:id].blank?
     render :partial => "rates", :locals => { :rates => rates }
   end
+  
+  def update_rate
+    rates = Rate.where(:provenance_id=>params[:id]).order(:name) unless params[:id].blank?
+    respond_to do |format|
+      format.json { render :json => rates.map {|rate| [rate.name, rate.id] }.to_json }
+    end
+  end
 end

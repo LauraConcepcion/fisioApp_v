@@ -4,15 +4,16 @@ $(function (){
     $('#paciente_birthdate').datepicker({ dateFormat: 'dd-mm-yy' , changeYear: true,yearRange: '1950:2010'});
     $('#clinicalhistory_assessmentdate').datepicker({ dateFormat: 'dd-mm-yy' });
     $('#clinicalhistory_startdatetto').datepicker({ dateFormat: 'dd-mm-yy' });
-    $('#clinicalhistory_enddatetto').datepicker({ dateFormat: 'dd-mm-yy' });
+    $('#clinicalhistory_enddatetto').datepicker({ dateFormat: 'dd-mm-yy' });  
+    
     $("#clinicalhistory_provenance_id").change(function() {
-	    // make a POST call and replace the content
-	    var provenance = $('select#clinicalhistory_provenance_id :selected').val();
-	    if(provenance == "") provenance="0";
-	    jQuery.get('/clinicalhistories/update_rate_select/' + provenance, function(data){
-	        $("#rate").html(data);
-	    })
-	    return false;
-  	});
-
+    	var provenance = $('#clinicalhistory_provenance_id');
+        $.getJSON('/clinicalhistories/update_rate/' + provenance.val() || "0", function(rates) {
+       		var options = '';
+           	for(var i = 0; i < rates.length; i++)
+            	options += '<option value="' + rates[i][1] +'">' +  rates[i][0]+ '</option>';
+           	$("select#clinicalhistory_rate_id").html(options);
+           	});
+           	return false;
+       });       
 });

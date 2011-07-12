@@ -1,4 +1,4 @@
-= simple_form_for(:clinicalhistory) do |f| 
+= simple_form_for(@clinicalhistory) do |f| 
   -if !rates.blank?
     = f.collection_select :rate_id, rates, :id,:name, :prompt   => "Seleccione la tarifa"
   -else
