@@ -61,7 +61,22 @@ $(document).ready(function() {
         // http://arshaw.com/fullcalendar/docs/mouse/eventClick/
         eventClick: function(event, jsEvent, view){
           // would like a lightbox here.
-   			
+          	$('#tab').tabs( "load" , 0 )
+   			dia = $.fullCalendar.formatDate(date, 'yyyy-MM-dd' );
+         	$("#dia").val(dia);
+         	$("#event_starts_at").val($.fullCalendar.formatDate(date, 'HH:mm' ));
+            $("#event_ends_at").val($.fullCalendar.formatDate(date, 'HH:mm' ));
+			//Mostrar el formulario
+			jQuery("#actualizaevento").dialog({ 
+				width:200, 
+				height:300, 
+				modal: true, 
+				show: 'slide',
+				close: function(event, ui){
+            		$(this).dialog("destroy");
+            },
+        	});   
+        	return false;
         },
         
         dayClick: function(date, allDay, jsEvent, view){

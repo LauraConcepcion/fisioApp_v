@@ -11,7 +11,7 @@ class EventsController < ApplicationController
     @events = @events.after(params['start']) if (params['start'])
     @events = @events.before(params['end']) if (params['end'])
     respond_to do |format|
-      format.html  { redirect_to(:controller =>"calendar", :action => "index", :events=>@events)}
+      format.html  { redirect_to(calendar_path(params))}
       format.xml  { render :xml => @events }
       format.js  { render :json => @events }
     end
@@ -33,11 +33,6 @@ class EventsController < ApplicationController
   # GET /events/new.xml
   def new
     @event = Event.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @event }
-    end
   end
 
   # GET /events/1/edit
@@ -96,4 +91,6 @@ class EventsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  
 end

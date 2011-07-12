@@ -1,0 +1,23 @@
+= simple_form_for @event do |f|
+  = render "shared/error_messages", :target => @event
+  %table.table_form
+    %tr
+      %td
+        = label_tag 'Día de la cita'
+        = text_field_tag :dia, '', :id_element =>'dia',:disabled => true
+    %tr
+      %td
+        = f.input :starts_at, :as=>:string, :label => "Hora comienzo",:disabled => true
+        = f.input :id, :as => "hidden"
+    %tr
+      %td
+        = f.input :ends_at, :as=>:string, :label => "Hora fin",:disabled => true
+    %tr
+      %td
+        = f.input :attended, :label=>"Asistencia"
+        - if @event.attended.blank?
+          - @event.attended = false
+    %tr
+      %td= submit_tag 'Guardar'
+      
+

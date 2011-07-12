@@ -15,5 +15,10 @@ $(function (){
            	$("select#clinicalhistory_rate_id").html(options);
            	});
            	return false;
-       });       
+       });   
+    $( "#tabs" ).tabs({
+		event: "mouseover",
+		collapsible: true
+		//var current_index = $("#tabs").tabs("option","selected");
+	});    
 });

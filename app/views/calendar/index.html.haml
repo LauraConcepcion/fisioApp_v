@@ -16,20 +16,13 @@
           = autocomplete_field_tag 'paciente_name', '', tabs_autocomplete_paciente_name_path,:id_element => '#search'
     = submit_tag 'Ver citas'
 
-#calendar
-
-
-
-
-
-
-
-
- 
-.formulariooculto  
-  #actualizaevento
-  = render :partial =>'events/form'
-  #nuevoevento
+#tabs
+  %ul
+    %li= link_to 'CONFIRMAR', :controller => "events", :action => "edit"
+    %li= link_to 'NUEVA', :controller => "events", :action => "new"
+  #ui-tabs-1
+    = render :partial =>'events/form'
+  #ui-tabs-2
     = render :partial =>'events/event'
 
 = render 'calendar'

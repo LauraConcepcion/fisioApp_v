@@ -29,6 +29,7 @@ FisioApp::Application.routes.draw do
   get 'calendar/index'
   match 'calendar' => 'calendar#index'
   match 'events' => 'events#show'
+  match 'events' => 'events#edit'
 
   match 'clinicalhistories/update_rate_select/:id', :controller=>'clinicalhistories', :action => 'update_rate_select'
   match 'clinicalhistories/update_rate/:id', :controller=>'clinicalhistories', :action => 'update_rate'
