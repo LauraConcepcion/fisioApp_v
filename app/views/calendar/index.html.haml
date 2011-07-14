@@ -1,28 +1,5 @@
-%b Buscador de citas
+%b Gestión de citas
+
+= render :partial =>'events/form'
 %br
-.formulario
-  = form_tag calendar_path,:url=>{:action => 'index'},:method => 'get',:id=> 'form_tag' do
-    %table.table_form
-      %tr
-        %td
-          = label_tag "Seleccione el especialista"
-          = grouped_collection_select(:specialist, :specialist_id, @specialisttypes, :specialist, :name, :id, :name, {:include_blank => true})
-        %td
-          = label_tag "Seleccione el centro"
-          = select_tag 'center', options_from_collection_for_select(@centers, 'id', 'name'),:include_blank => true
-        %td
-          = label_tag "Seleccione el paciete"
-          = text_field_tag :search, params[:paciente],:type=>"hidden"
-          = autocomplete_field_tag 'paciente_name', '', tabs_autocomplete_paciente_name_path,:id_element => '#search'
-    = submit_tag 'Ver citas'
-
-#tabs
-  %ul
-    %li= link_to 'CONFIRMAR', :controller => "events", :action => "edit"
-    %li= link_to 'NUEVA', :controller => "events", :action => "new"
-  #ui-tabs-1
-    = render :partial =>'events/form'
-  #ui-tabs-2
-    = render :partial =>'events/event'
-
 = render 'calendar'

@@ -29,14 +29,6 @@
         %td.grande{:colspan=>"6"}= f.input :medicaldiagnosic, :label => "Diagnóstico Méd.: "
       %tr
         %td.grande{:colspan=>"6"}= f.input :comments, :label => "Exámenes aux.: "
-      %tr
-        %td{:colspan=>"2"}
-          = f.label 'F. Inicio tto'
-          = f.text_field :startdatetto
-        %td{:colspan=>"2"}
-          = f.label 'F. Fin tto'
-          = f.text_field :enddatetto
-        %td{:colspan=>"2"}= f.input :nsessions, :label => "Sesiones: "
 
       %tr
         %td{:colspan=>"2"}
@@ -56,6 +48,14 @@
         %td
           #rate
             =render :partial => 'clinicalhistories/rates'
+      %tr
+        %td
+          = f.label 'F. Inicio tto'
+          = f.text_field :startdatetto
+        %td
+          = f.label 'F. Fin tto'
+          = f.text_field :enddatetto
+        %td= f.input :nsessions, :label => "Sesiones: "
       %tr
         %td= f.input :expedient, :label => 'Nº Exp'
         %td= f.input :authorization, :label =>'Nº Aut'

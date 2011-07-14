@@ -62,10 +62,10 @@ $(document).ready(function() {
         eventClick: function(event, jsEvent, view){
           // would like a lightbox here.
           	$('#tab').tabs( "load" , 0 )
-   			dia = $.fullCalendar.formatDate(date, 'yyyy-MM-dd' );
+   			dia = $.fullCalendar.formatDate(event, 'ddd, yyyy-MM-dd' );
          	$("#dia").val(dia);
-         	$("#event_starts_at").val($.fullCalendar.formatDate(date, 'HH:mm' ));
-            $("#event_ends_at").val($.fullCalendar.formatDate(date, 'HH:mm' ));
+         	$("#starts_at").val($.fullCalendar.formatDate(event, 'HH:mm' ));
+            $("#ends_at").val($.fullCalendar.formatDate(event, 'HH:mm' ));
 			//Mostrar el formulario
 			jQuery("#actualizaevento").dialog({ 
 				width:200, 
@@ -82,10 +82,13 @@ $(document).ready(function() {
         dayClick: function(date, allDay, jsEvent, view){
 			//captura los datos de fecha en inputs de tipo hidden
 			
-         	dia = $.fullCalendar.formatDate(date, 'yyyy-MM-dd' );
+         	dia = $.fullCalendar.formatDate(date, 'ddd ,yyyy-MM-dd' );
          	$("#dia").val(dia);
          	$("#event_starts_at").val($.fullCalendar.formatDate(date, 'HH:mm' ));
             $("#event_ends_at").val($.fullCalendar.formatDate(date, 'HH:mm' ));
+            $("#start").val(date);
+            $("#end").val($.fullCalendar.formatDate(date, 'HH:mm' ));
+
 			//Mostrar el formulario
 			jQuery("#nuevoevento").dialog({ 
 				width:850, 

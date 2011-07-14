@@ -34,6 +34,9 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
   end
+  def find
+    
+  end
 
   # GET /events/1/edit
   def edit
@@ -45,11 +48,13 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(params[:event])
     @event.specialist_id = params[:specialist]
-    @event.paciente_id = params["paciente_id"]
-    @event.title = @event.paciente.name + " " + @event.paciente.firstsurname + " " + @event.paciente.secondsurname
+    @event.paciente = Paciente.find_by_id(params[:search])
+    @event.starts_at = params[:start]
+    @event.ends_at = params[:start]
+
     respond_to do |format|
       if @event.save
-        format.html { redirect_to(@event, :notice => 'Event was successfully created.') }
+        format.html { redirect_to calendar_path}
         format.xml  { render :xml => @event, :status => :created, :location => @event }
       else
         format.html { render :action => "new" }

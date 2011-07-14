@@ -18,7 +18,9 @@
           = label_tag "Seleccione el especialista"
           = grouped_collection_select(:specialist, :specialist_id, @specialisttypes, :specialist, :name, :id, :name)
         %td
-          = f.input :starts_at, :as=>:string, :label => "Hora comienzo",:disabled => true
+          = label_tag "Hora comienzo: "
+          = text_field_tag :starts_at, ''
+        //  = f.input :starts_at, :as=>:string, :label => "Hora comienzo",:disabled => true
         %td
       %tr
         %td

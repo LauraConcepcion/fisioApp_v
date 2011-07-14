@@ -1,23 +1,35 @@
 .formulario
   = simple_form_for @event do |f|
     = render "shared/error_messages", :target => @event
-    %table.table_form
-      .mitad
-        %tr
-          %td
-            = label_tag 'Día de la cita'
-            = text_field_tag :dia, '', :id_element =>'dia',:disabled => true
-          %td
-            = f.input :starts_at, :as=>:string, :label => "Hora comienzo",:disabled => true
-            = f.input :id, :as => "hidden"
-          %td
-            = f.input :ends_at, :as=>:string, :label => "Hora fin",:disabled => true
-        %tr
-          %td
-            = f.input :attended, :label=>"Asistencia"
-            - if @event.attended.blank?
-              - @event.attended = false
-        %tr
-          %td= submit_tag 'Guardar'
-          
+    %table.table_tabs
+      %tr
+        %td
+          = label_tag "Seleccione el paciente"
+          = text_field_tag :search, params[:search],:type=>"hidden"
+          = autocomplete_field_tag 'paciente_name', '', tabs_autocomplete_paciente_name_path,:id_element => '#search'
+        %td
+          = label_tag "Seleccione el especialista"
+          = grouped_collection_select(:specialist, :specialist_id, @specialisttypes, :specialist, :name, :id, :name)
+        %td
+          = label_tag "Seleccione el centro"
+          = select_tag 'Centro', options_from_collection_for_select(@centers, 'id', 'name')
+        %td
+        %td
+        %td
+          = button_to "Buscar", :action => "find", :controller => 'events'
+      %tr
+        %td
+          = label_tag 'Día de la cita'
+          = text_field_tag :dia, '', :id_element =>'dia',:disabled => true
+        %td
+          = f.input :starts_at, :as=>:string, :label => "Hora comienzo",:disabled => true      
+        %td.mediano{:colspan=>"2"}= f.input :description, :label=>"Observaciones"
+        %td.check
+          = label_tag "¿Ha asistido?"
+          = f.input :attended, :label => false
+          - if @event.attended.blank?
+            - @event.attended = false  
+        %td
+          = submit_tag 'Guardar'
+          = text_field_tag :start,''
 

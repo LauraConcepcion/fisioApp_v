@@ -44,6 +44,18 @@
 .table_form{
 	width: 97%;
 }
+.table_tabs{
+	width: 100%;
+	font-size: 130%;
+}
+.table_tabs td{
+  	font-size: 70%;
+  	padding-bottom: 2px;
+	padding-left: 4px;
+}
+.check label{
+	padding-left: 100px; 
+}
 
 .table_form th{
 	background: none;
@@ -60,7 +72,6 @@
 .tabs {
   background-color: #DDDDDD;
   padding: 5px;
-  width: 50%;
 }
 
 .simple_form .small input{
@@ -68,6 +79,9 @@
 }
 .simple_form .grande input{
 	width: 430px;
+}
+.simple_form .mediano input{
+	width: 200px;
 }
 
 .simple_form input{
@@ -144,7 +158,7 @@ input.radio {
 }
 
 input.check_boxes {
-  margin-left: 3px;
+  margin-left: -3px;
   vertical-align: -3px;
 }
 input.boolean{
