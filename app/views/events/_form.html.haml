@@ -14,7 +14,11 @@
           = label_tag "Seleccione el centro"
           = select_tag 'Centro', options_from_collection_for_select(@centers, 'id', 'name')
         %td
-        %td
+        %td.check
+          = label_tag "¿Ha asistido?"
+          = f.input :attended, :label => false
+          - if @event.attended.blank?
+            - @event.attended = false  
         %td
           = button_to "Buscar", :action => "find", :controller => 'events'
       %tr
@@ -24,12 +28,8 @@
         %td
           = f.input :starts_at, :as=>:string, :label => "Hora comienzo",:disabled => true      
         %td.mediano{:colspan=>"2"}= f.input :description, :label=>"Observaciones"
-        %td.check
-          = label_tag "¿Ha asistido?"
-          = f.input :attended, :label => false
-          - if @event.attended.blank?
-            - @event.attended = false  
+        %td
         %td
           = submit_tag 'Guardar'
-          = text_field_tag :start,''
+          = text_field_tag :start,'', :type => "hidden"
 
