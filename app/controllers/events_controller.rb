@@ -50,8 +50,9 @@ class EventsController < ApplicationController
     @event.specialist_id = params[:specialist]
     @event.paciente = Paciente.find_by_id(params[:search])
     @event.starts_at = params[:start]
-    @event.ends_at = params[:start]
-
+    @event.ends_at = params[:start].to_time
+    @event.title = @event.paciente.funky_method
+    @event.description = @event.specialist.name
     respond_to do |format|
       if @event.save
         format.html { redirect_to calendar_path}

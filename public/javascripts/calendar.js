@@ -61,21 +61,21 @@ $(document).ready(function() {
         // http://arshaw.com/fullcalendar/docs/mouse/eventClick/
         eventClick: function(event, jsEvent, view){
           // would like a lightbox here.
-          	$('#tab').tabs( "load" , 0 )
-   			dia = $.fullCalendar.formatDate(event, 'ddd, yyyy-MM-dd' );
+          	dia = $.fullCalendar.formatDate(event.start, 'ddd ,yyyy-MM-dd' );
          	$("#dia").val(dia);
-         	$("#starts_at").val($.fullCalendar.formatDate(event, 'HH:mm' ));
-            $("#ends_at").val($.fullCalendar.formatDate(event, 'HH:mm' ));
+         	$("#event_starts_at").val($.fullCalendar.formatDate(event.start, 'HH:mm' ));
+            $("#event_ends_at").val($.fullCalendar.formatDate(date, 'HH:mm' ));
+            $("#start").val(event.start);
+            $("#event_description").val(event.description);
+            $("#end").val($.fullCalendar.formatDate(date, 'HH:mm' ));
+            $("#Centro").val(event.center_id);
+            $("#specialist_specialist_id").val(event.specialist_id);
+            $("#event_attended").val(event.attended);
+            $("#paciente_name").val(event.paciente_id);
+
+
 			//Mostrar el formulario
-			jQuery("#actualizaevento").dialog({ 
-				width:200, 
-				height:300, 
-				modal: true, 
-				show: 'slide',
-				close: function(event, ui){
-            		$(this).dialog("destroy");
-            },
-        	});   
+   
         	return false;
         },
         
@@ -90,16 +90,11 @@ $(document).ready(function() {
             $("#end").val($.fullCalendar.formatDate(date, 'HH:mm' ));
 
 			//Mostrar el formulario
-			jQuery("#nuevoevento").dialog({ 
-				width:850, 
-				height:200, 
-				modal: true, 
-				show: 'slide',
-				close: function(event, ui){
-            		$(this).dialog("destroy");
-            },
-        	});        	
 		},
+		//Mostramos la información que queramos del evento en el calendario.
+		eventRender: function(event, element) { 
+            element.find('.fc-event-title').append("<br/><b>" + event.description); 
+       },
 
 	});
 });
