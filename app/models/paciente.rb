@@ -59,12 +59,7 @@ class Paciente < ActiveRecord::Base
       if !birthdate.blank?
         ((DateTime.now - birthdate)/365).to_i
       end
-    end
-    
-    #Función para definir qué queremos mostrar en el autcompletar.
-    def fullname_f
-      self.fullname = self.name + self.firstsurname + self.secondsurname
-    end    
+    end 
     
     #Función para definir qué queremos mostrar en el autcompletar.
     def funky_method

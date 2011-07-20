@@ -71,11 +71,13 @@ $(document).ready(function() {
             $("#Centro").val(event.center_id);
             $("#specialist_specialist_id").val(event.specialist_id);
             $("#event_attended").val(event.attended);
-            $("#paciente_name").val(event.paciente_id);
+            $("#event_id").val(event.id);
 
-
+            var paciente_id = event.paciente_id;
+	        $.getJSON('/events/info/' + paciente_id, function(paciente) {
+	        	$("#paciente_name").val(paciente[0][0]);
+	        });
 			//Mostrar el formulario
-   
         	return false;
         },
         
@@ -127,4 +129,11 @@ function updateEvent(the_event) {
       function (reponse) { alert('successfully updated task.'); }
     );
 };
+
+function cleanForm(frm){
+    var inputs = document.frm.getElementsByTagName("input");
+    for(var i=0;i<inputs.length;i++){
+    inputs[i].value = "";
+    }
+}
 

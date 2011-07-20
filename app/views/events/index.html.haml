@@ -1,5 +1,6 @@
 %b Buscador de citas
 %br
+  = render 'pacientes/search_paciente'
 .formulario
   = form_tag events_path,:url=>{:action => 'index'},:method => 'get',:id=> 'form_tag' do
     %table.table_form
@@ -15,5 +16,6 @@
           = text_field_tag :search, params[:paciente],:type=>"hidden"
           = autocomplete_field_tag 'paciente_name', '', tabs_autocomplete_paciente_name_path,:id_element => '#search'
     = submit_tag 'Ver citas'
+
 
 #calendar

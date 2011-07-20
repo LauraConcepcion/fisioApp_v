@@ -4,9 +4,17 @@
     %table.table_tabs
       %tr
         %td
-          = label_tag "Seleccione el paciente"
-          = text_field_tag :search, params[:search],:type=>"hidden"
+          = label_tag 'Nombre'
+          = text_field_tag :search, params[:search], :type=>"hidden"
           = autocomplete_field_tag 'paciente_name', '', tabs_autocomplete_paciente_name_path,:id_element => '#search'
+        %td
+          = label_tag '1 Apellido'
+          = autocomplete_field_tag 'paciente_firstsurname', '', tabs_autocomplete_paciente_firstsurname_path, :id_element => '#search'
+        %td
+          = label_tag '2 Apellido'
+          = autocomplete_field_tag 'paciente_secondsurname', '', tabs_autocomplete_paciente_secondsurname_path,:id_element => '#search'
+      %tr
+        %td
         %td
           = label_tag "Seleccione el especialista"
           = grouped_collection_select(:specialist, :specialist_id, @specialisttypes, :specialist, :name, :id, :name)
@@ -30,6 +38,9 @@
         %td.mediano{:colspan=>"2"}= f.input :description, :label=>"Observaciones"
         %td
         %td
-          = submit_tag 'Guardar'
+          = submit_tag 'Nueva Cita'
           = text_field_tag :start,'', :type => "hidden"
+          = f.input :id, :type=>"hidden"
+          = link_to 'Eliminar', :confirm => 'Are you sure?', :method => :delete
+          = link_to 'Confirmar', :controller => 'events', :action => 'confirm'
 

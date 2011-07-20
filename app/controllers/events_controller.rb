@@ -48,11 +48,12 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(params[:event])
     @event.specialist_id = params[:specialist]
+    @event.center_id = params[:Centro]
     @event.paciente = Paciente.find_by_id(params[:search])
     @event.starts_at = params[:start]
     @event.ends_at = params[:start].to_time
     @event.title = @event.paciente.funky_method
-    @event.description = @event.specialist.name
+    @event.description = @event.fulldescription
     respond_to do |format|
       if @event.save
         format.html { redirect_to calendar_path}
@@ -98,5 +99,14 @@ class EventsController < ApplicationController
     end
   end
   
+  def info
+    paciente = Paciente.where(:id=>params[:id]) unless params[:id].blank?
+    respond_to do |format|
+      format.json { render :json => paciente.map {|paciente| ["#{paciente.name} #{paciente.firstsurname} #{paciente.secondsurname}, #{paciente.idcode}", paciente.id] }.to_json }
+    end
+  end
   
+  def confirm
+    @event = Event.find(params[:id])  
+  end
 end

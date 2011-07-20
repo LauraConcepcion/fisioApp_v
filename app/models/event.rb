@@ -61,5 +61,8 @@ class Event < ActiveRecord::Base
       find(:all)
     end
   end
+  def fulldescription
+      "#{self.specialist.name}, #{self.center.name}"
+  end
 
 end
