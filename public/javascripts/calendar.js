@@ -35,7 +35,7 @@ $(document).ready(function() {
             url: '/events',
             color: 'yellow',
             textColor: 'black',
-            ignoreTimezone: false,
+            ignoreTimezone: true,
             error: function() {
                 alert('there was an error while fetching events!');
             },

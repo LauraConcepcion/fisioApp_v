@@ -51,7 +51,7 @@ class EventsController < ApplicationController
     @event.center_id = params[:Centro]
     @event.paciente = Paciente.find_by_id(params[:search])
     @event.starts_at = params[:start]
-    @event.ends_at = params[:start].to_time
+    @event.ends_at = params[:start]
     @event.title = @event.paciente.funky_method
     @event.description = @event.fulldescription
     respond_to do |format|
