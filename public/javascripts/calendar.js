@@ -37,14 +37,15 @@ $(document).ready(function() {
             textColor: 'black',
             ignoreTimezone: true,
             error: function() {
-                alert('there was an error while fetching events!');
+                alert('Ha habido un error al buscar las citas, contacte con soporte!');
             },
         }],
         sayNames:['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
         dayNamesShort:['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
         monthNames:['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
         monthNamesShort:['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul','Ago','Sept','Oct','Nov','Dic'],
-        
+        allDaySlot: false,
+
         timeFormat: 'h:mm t{ - h:mm t} ',
         dragOpacity: "0.5",
         
