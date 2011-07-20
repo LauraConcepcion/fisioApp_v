@@ -47,7 +47,7 @@ class EventsController < ApplicationController
   # POST /events.xml
   def create
     @event = Event.new(params[:event])
-    @event.specialist_id = params[:specialist]
+    @event.specialist_id = params[:specialist][:specialist_id]
     @event.center_id = params[:Centro]
     @event.paciente = Paciente.find_by_id(params[:search])
     @event.starts_at = params[:start]

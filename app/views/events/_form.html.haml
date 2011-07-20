@@ -28,7 +28,6 @@
           - if @event.attended.blank?
             - @event.attended = false  
         %td
-          = button_to "Buscar", :action => "find", :controller => 'events'
       %tr
         %td
           = label_tag 'Día de la cita'
@@ -40,7 +39,6 @@
         %td
           = submit_tag 'Nueva Cita'
           = text_field_tag :start,'', :type => "hidden"
-          = f.input :id, :type=>"hidden"
-          = link_to 'Eliminar', :confirm => 'Are you sure?', :method => :delete
-          = link_to 'Confirmar', :controller => 'events', :action => 'confirm'
+          = f.input :id, :as=>"hidden"
+
 
