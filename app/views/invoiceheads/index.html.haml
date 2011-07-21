@@ -1,0 +1,25 @@
+%h1 Listing invoiceheads
+
+%table
+  %tr
+    %th Name
+    %th Firstsurname
+    %th Secondsurname
+    %th Comments
+    %th
+    %th
+    %th
+
+  - @invoiceheads.each do |invoicehead|
+    %tr
+      %td= invoicehead.Name
+      %td= invoicehead.FirstSurname
+      %td= invoicehead.secondsurname
+      %td= invoicehead.comments
+      %td= link_to 'Show', invoicehead
+      %td= link_to 'Edit', edit_invoicehead_path(invoicehead)
+      %td= link_to 'Destroy', invoicehead, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Invoicehead', new_invoicehead_path

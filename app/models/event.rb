@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110623111357
+# Schema version: 20110721065357
 #
 # Table name: events
 #
@@ -8,7 +8,7 @@
 #  starts_at     :datetime
 #  ends_at       :datetime
 #  all_day       :boolean
-#  description   :text
+#  description   :string(255)
 #  created_at    :datetime
 #  updated_at    :datetime
 #  center_id     :integer

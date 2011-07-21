@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110711144029) do
+ActiveRecord::Schema.define(:version => 20110721065357) do
 
   create_table "centers", :force => true do |t|
     t.string   "name"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(:version => 20110711144029) do
     t.datetime "starts_at"
     t.datetime "ends_at"
     t.boolean  "all_day"
-    t.text     "description"
+    t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "center_id"
@@ -75,6 +75,26 @@ ActiveRecord::Schema.define(:version => 20110711144029) do
 
   create_table "idtypes", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "invoiceheads", :force => true do |t|
+    t.string   "Name"
+    t.string   "FirstSurname"
+    t.string   "secondsurname"
+    t.string   "comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "invoicelines", :force => true do |t|
+    t.integer  "linenumber"
+    t.string   "concept"
+    t.integer  "sessions"
+    t.float    "price"
+    t.float    "total"
+    t.integer  "invoicehead_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

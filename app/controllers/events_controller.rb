@@ -10,6 +10,7 @@ class EventsController < ApplicationController
     @events = Event.scoped  
     @events = @events.after(params['start']) if (params['start'])
     @events = @events.before(params['end']) if (params['end'])
+     
     respond_to do |format|
       format.html  { redirect_to(calendar_path(params))}
       format.xml  { render :xml => @events }

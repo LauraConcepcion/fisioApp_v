@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @invoicehead.Name
+%p
+  %b Firstsurname:
+  = @invoicehead.FirstSurname
+%p
+  %b Secondsurname:
+  = @invoicehead.secondsurname
+%p
+  %b Comments:
+  = @invoicehead.comments
+
+= link_to 'Edit', edit_invoicehead_path(@invoicehead)
+\|
+= link_to 'Back', invoiceheads_path

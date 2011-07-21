@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Linenumber:
+  = @invoiceline.linenumber
+%p
+  %b Concept:
+  = @invoiceline.concept
+%p
+  %b Sessions:
+  = @invoiceline.sessions
+%p
+  %b Price:
+  = @invoiceline.price
+%p
+  %b Total:
+  = @invoiceline.total
+%p
+  %b Invoicehead:
+  = @invoiceline.invoicehead_id
+
+= link_to 'Edit', edit_invoiceline_path(@invoiceline)
+\|
+= link_to 'Back', invoicelines_path

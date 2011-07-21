@@ -1,4 +1,8 @@
 FisioApp::Application.routes.draw do
+  resources :invoicelines
+
+  resources :invoiceheads
+
   resources :rates
 
   resources :provenances

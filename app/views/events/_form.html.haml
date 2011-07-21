@@ -13,6 +13,11 @@
         %td
           = label_tag '2 Apellido'
           = autocomplete_field_tag 'paciente_secondsurname', '', tabs_autocomplete_paciente_secondsurname_path,:id_element => '#search'
+        %td
+        %td
+        %td
+          = link_to 'Eliminar', :confirm => 'Are you sure?', :method => :delete
+
       %tr
         %td
         %td
@@ -27,7 +32,8 @@
           = f.input :attended, :label => false
           - if @event.attended.blank?
             - @event.attended = false  
-        %td
+        %td= link_to 'Confirmar', :controller => 'events', :action => 'confirm'
+
       %tr
         %td
           = label_tag 'Día de la cita'
@@ -40,5 +46,4 @@
           = submit_tag 'Nueva Cita'
           = text_field_tag :start,'', :type => "hidden"
           = f.input :id, :as=>"hidden"
-
 

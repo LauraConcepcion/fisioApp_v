@@ -1,0 +1,11 @@
+= simple_form_for(@invoicehead) do |f|
+  = f.error_notification
+
+  .inputs
+    = f.input :Name
+    = f.input :FirstSurname
+    = f.input :secondsurname
+    = f.input :comments
+
+  .actions
+    = f.button :submit

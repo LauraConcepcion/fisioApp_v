@@ -1,0 +1,13 @@
+= simple_form_for(@invoiceline) do |f|
+  = f.error_notification
+
+  .inputs
+    = f.input :linenumber
+    = f.input :concept
+    = f.input :sessions
+    = f.input :price
+    = f.input :total
+    = f.input :invoicehead_id
+
+  .actions
+    = f.button :submit

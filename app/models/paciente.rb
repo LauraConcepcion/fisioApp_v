@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110711143540
+# Schema version: 20110721065357
 #
 # Table name: pacientes
 #
@@ -22,7 +22,6 @@
 #  zip           :string(255)
 #  codigo        :integer
 #  idtype_id     :integer
-#  provenance_id :integer
 #
 
 class Paciente < ActiveRecord::Base
