@@ -2,8 +2,21 @@ class InvoiceheadsController < ApplicationController
   # GET /invoiceheads
   # GET /invoiceheads.xml
   def index
-    @invoiceheads = Invoicehead.all
-
+    @invoiceheads = Events.where(:id => params[:id])
+    
+    @events = Event.where(:paciente_id=>params[:search])
+    @clinicalhistories = Clinicalhistory.where(:paciente_id => params[:search]).order("assessmentdate DESC")
+    @clinicalhistory = @clinicalhistories.first
+    @invoiceline = Invoiceline.new
+    @search = Invoiceline.all
+    @events.size.times do |i|
+      @invoiceline.linenumber = i
+      @invoiceline.concept = @events[i].description
+      @invoiceline.price = @clinicalhistory.rate.rate
+      @invoiceline.sessions = 1
+      @invoiceline.total = @invoiceline.price*@invoiceline.sessions 
+       
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @invoiceheads }
@@ -25,7 +38,9 @@ class InvoiceheadsController < ApplicationController
   # GET /invoiceheads/new.xml
   def new
     @invoicehead = Invoicehead.new
-
+    2.times do
+       @invoicehead.invoicelines.build
+    end
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @invoicehead }
@@ -41,7 +56,7 @@ class InvoiceheadsController < ApplicationController
   # POST /invoiceheads.xml
   def create
     @invoicehead = Invoicehead.new(params[:invoicehead])
-
+    
     respond_to do |format|
       if @invoicehead.save
         format.html { redirect_to(@invoicehead, :notice => 'Invoicehead was successfully created.') }

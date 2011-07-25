@@ -1,11 +1,49 @@
-= simple_form_for(@invoicehead) do |f|
-  = f.error_notification
+%script{:type => "text/javascript"}
+  function ilumina(obj) {
+  obj.style.background = (obj.style.background=='') ? 'red' : '';
+  }
 
-  .inputs
-    = f.input :Name
-    = f.input :FirstSurname
-    = f.input :secondsurname
-    = f.input :comments
+= form_for @invoicehead, invoiceheads_path do |f|
+  .formulario
+    %table.tabla_editable
+      %tr
+        %td%td Número de factura
+        %td{:colspan=>3}
+        %td= f.label :created_at, "Fecha Creación" 
+        %td= f.text_field :created_at, :disabled => 'true', :value=> DateTime.now.to_date unless @invoicehead.created_at.blank?
+      %tr
+        %td= f.label :name, "Nombre Cliente"       
+        %td= f.text_field :name
+        %td= f.label :name, "Observaciones" 
+        %td.grande{:colspan=>3,:rowspan=>2 }= f.text_area :comments, :label => 'Observaciones'
+      %tr
+        %td= f.label :firstsurname, "Apellido1" 
+        %td= f.text_field :firstsurname
+        %td{:colspan=>4}
 
-  .actions
-    = f.button :submit
+      %tr
+        %td= f.label :firstsurname, "Apellido2" 
+        %td= f.text_field :secondsurname, :label => 'Apellido2'
+        %td{:colspan=>4}
+
+  .formulario
+    %table.tabla_editable
+      %tr
+        %td nºLínea
+        %td Concepto
+        %td nºSesiones
+        %td Precio
+        %td Total
+        = f.fields_for :invoicelines do |builder|  
+          %tr
+            %td{:onclick=>"ilumina(this)"}= :linenumber 
+            %td= :concept
+            %td= builder.text_field :sessions
+            %td= :price
+            %td= :total
+            %td= builder.text_field :select  
+            %td= builder.check_box :_destroy 
+            %td= builder.label :_destroy, "Remove Question" 
+            %td= builder.hidden_field :_destroy
+            %td= link_to_function "remove", "remove_fields(this)"     
+  = f.submit "Crear Factura"

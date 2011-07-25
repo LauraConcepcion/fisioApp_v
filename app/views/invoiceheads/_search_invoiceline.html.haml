@@ -1,0 +1,13 @@
+%div.formulario
+  = form_for @search do 
+    = label 'Nombre'
+    = text_field :search, params[:search],:type=>"hidden"
+    = autocomplete_field 'paciente_name', '', tabs_autocomplete_paciente_name_path,:id_element => '#search'
+    = label '1 Apellido'
+    = autocomplete_field 'paciente_firstsurname', '', tabs_autocomplete_paciente_firstsurname_path, :id_element => '#search'
+    = label '2 Apellido'
+    = autocomplete_field 'paciente_secondsurname', '', tabs_autocomplete_paciente_secondsurname_path,:id_element => '#search'
+    = label 'Identificación'
+    = autocomplete_field 'paciente_idcode', '', tabs_autocomplete_paciente_idcode_path, :id_element => '#search'
+  
+    = submit "Buscar", :name => nil

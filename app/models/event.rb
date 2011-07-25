@@ -1,28 +1,30 @@
 # == Schema Information
-# Schema version: 20110721065357
+# Schema version: 20110725172235
 #
 # Table name: events
 #
-#  id            :integer         not null, primary key
-#  title         :string(255)
-#  starts_at     :datetime
-#  ends_at       :datetime
-#  all_day       :boolean
-#  description   :string(255)
-#  created_at    :datetime
-#  updated_at    :datetime
-#  center_id     :integer
-#  specialist_id :integer
-#  attended      :boolean
-#  paciente_id   :integer
+#  id             :integer         not null, primary key
+#  title          :string(255)
+#  starts_at      :datetime
+#  ends_at        :datetime
+#  all_day        :boolean
+#  description    :string(255)
+#  created_at     :datetime
+#  updated_at     :datetime
+#  center_id      :integer
+#  specialist_id  :integer
+#  attended       :boolean
+#  paciente_id    :integer
+#  invoiceline_id :integer
 #
 
 class Event < ActiveRecord::Base
-  attr_accessible  :starts_at, :ends_at, :all_day, :description, :center_id, :specialist_id, :paciente_id,:attended
+  attr_accessible  :starts_at, :ends_at, :all_day, :description, :center_id, :specialist_id, :paciente_id,:attended, :invoiceline_id
  
   belongs_to  :center
   belongs_to  :specialist
   belongs_to  :paciente
+  has_one     :invoiceline
   
   scope :before, lambda {|end_time| {:conditions => ["ends_at < ?", Event.format_date(end_time)] }}
   scope :after, lambda {|start_time| {:conditions => ["starts_at > ?", Event.format_date(start_time)] }}

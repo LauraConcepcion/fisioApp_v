@@ -38,6 +38,7 @@ gem 'kaminari'
  gem 'jquery-rails', '>=1.0.3' 
  gem "meta_where"
  gem "meta_search"
+ 
  group :development do
    gem 'annotate-models', '1.0.4'
    gem 'rspec-rails', '2.6.1'

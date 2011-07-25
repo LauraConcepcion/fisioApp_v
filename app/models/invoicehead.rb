@@ -1,17 +1,20 @@
 # == Schema Information
-# Schema version: 20110721065357
+# Schema version: 20110725171623
 #
 # Table name: invoiceheads
 #
 #  id            :integer         not null, primary key
-#  Name          :string(255)
-#  FirstSurname  :string(255)
+#  name          :string(255)
+#  firstsurname  :string(255)
 #  secondsurname :string(255)
 #  comments      :string(255)
 #  created_at    :datetime
 #  updated_at    :datetime
+#  paciente_id   :integer
 #
 
 class Invoicehead < ActiveRecord::Base
-  has_many  :invoiceline
+  attr_accessible :name, :firstsurname, :invoiceline_attributes,:created_at, :paciente_id
+  has_many  :invoicelines, :dependent => :destroy 
+  accepts_nested_attributes_for :invoicelines, :reject_if => :all_blank, :allow_destroy => true  
 end

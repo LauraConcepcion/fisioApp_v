@@ -46,14 +46,6 @@ class Paciente < ActiveRecord::Base
     before_create :fullname_f
     belongs_to  :idtype
     
-    def self.search(search)
-      if !search.blank?
-        where(:id => search)
-      else
-        scoped
-      end
-    end
-    
     def self.age(birthdate)
       if !birthdate.blank?
         ((DateTime.now - birthdate)/365).to_i
@@ -64,5 +56,6 @@ class Paciente < ActiveRecord::Base
     def funky_method
       "#{self.name} #{self.firstsurname} #{self.secondsurname}, #{self.idcode}"
     end
+    
 end
 

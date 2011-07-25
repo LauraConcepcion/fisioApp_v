@@ -36,4 +36,5 @@ class Clinicalhistory < ActiveRecord::Base
       belongs_to  :rate      
       belongs_to  :provenance
       paginates_per 1
+      
 end

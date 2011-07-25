@@ -1,13 +1,21 @@
-= simple_form_for(@invoiceline) do |f|
+= f.field_form(@invoiceline) do |f|
   = f.error_notification
-
-  .inputs
-    = f.input :linenumber
-    = f.input :concept
-    = f.input :sessions
-    = f.input :price
-    = f.input :total
-    = f.input :invoicehead_id
-
-  .actions
-    = f.button :submit
+  .formulario
+    %table.tabla_editable
+      %tr
+        %td nºLínea
+        %td Concepto
+        %td nºSesiones
+        %td Precio
+        %td Total
+      - @invoicelines.each do |invoiceline|
+        - @events.each do |event|
+          %tr
+            %td= @invoiceline.linenumber 
+            %td= @invoiceline.concept
+            %td= f.input :sessions, :label=>false
+            %td= @invoiceline.price
+            %td= @invoiceline.total
+            %td= f.input :select, :label=>false      
+            %td= f.button :submit
+    

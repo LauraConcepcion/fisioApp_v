@@ -5,6 +5,7 @@ $(function (){
     $('#clinicalhistory_assessmentdate').datepicker({ dateFormat: 'dd-mm-yy' });
     $('#clinicalhistory_startdatetto').datepicker({ dateFormat: 'dd-mm-yy' });
     $('#clinicalhistory_enddatetto').datepicker({ dateFormat: 'dd-mm-yy' });  
+    $('#invoicehead_created_at').datepicker({ dateFormat: 'dd-mm-yy' });  
     
     $("#clinicalhistory_provenance_id").change(function() {
     	var provenance = $('#clinicalhistory_provenance_id');
@@ -20,5 +21,10 @@ $(function (){
 		event: "mouseover",
 		collapsible: true
 		//var current_index = $("#tabs").tabs("option","selected");
-	});    
+	});
+	function remove_fields(link) {  
+    $(link).previous("input[type=hidden]").value = "1";  
+    $(link).up(".fields").hide();  
+}     
+  
 });

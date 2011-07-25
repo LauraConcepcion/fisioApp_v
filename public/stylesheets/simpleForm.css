@@ -44,6 +44,35 @@
 .table_form{
 	width: 97%;
 }
+.tabla_editable{
+    text-align: left;
+    width: 100%;
+}
+.tabla_editable td, th{
+	padding-bottom: 2px;
+	padding-left: 4px;
+	text-align: right;
+	background: none repeat scroll 0 0 #CCCCCC;
+    border-bottom: 1px solid #FFFFFF;
+    border-top: 2px solid #DDDDDD;
+    font-size: 13px;
+    font-weight: normal;
+    padding: 5px;
+}
+
+.tabla_editable input{
+	padding-bottom: 2px;
+	padding-left: 4px;
+	text-align: right;
+	margin-left: 5px;
+
+}
+.tabla_editable textarea{
+	width: 440px;
+	height: 40px;
+
+
+}
 .table_tabs{
 	width: 100%;
 	font-size: 130%;

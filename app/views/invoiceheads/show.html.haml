@@ -2,10 +2,10 @@
 
 %p
   %b Name:
-  = @invoicehead.Name
+  = @invoicehead.name
 %p
   %b Firstsurname:
-  = @invoicehead.FirstSurname
+  = @invoicehead.firstsurname
 %p
   %b Secondsurname:
   = @invoicehead.secondsurname
@@ -16,3 +16,5 @@
 = link_to 'Edit', edit_invoicehead_path(@invoicehead)
 \|
 = link_to 'Back', invoiceheads_path
+- for invoicelines in @invoicehead.invoicelines
+  -invoicelines.concept
