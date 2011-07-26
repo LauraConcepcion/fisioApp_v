@@ -2,20 +2,24 @@ class InvoiceheadsController < ApplicationController
   # GET /invoiceheads
   # GET /invoiceheads.xml
   def index
-    @invoiceheads = Events.where(:id => params[:id])
-    
-    @events = Event.where(:paciente_id=>params[:search])
-    @clinicalhistories = Clinicalhistory.where(:paciente_id => params[:search]).order("assessmentdate DESC")
-    @clinicalhistory = @clinicalhistories.first
+    @paciente = Paciente.search(params[:search])
+    @invoiceheads = Events.new
+    @clinicalhistory = Clinicalhistory.where(:paciente_id => params[:search]).order("assessmentdate DESC").first
+
+    #TODO Faltaría añadir aquellos eventos que no se han pagado, osea que tienen invoiceline.null?
+    @events = Event.where({:paciente_id=>params[:search]} | {:paciente_id=>params[:search]}).order("starts_at DESC")
+    #Simplificar
     @invoiceline = Invoiceline.new
-    @search = Invoiceline.all
+    @invoiceheads.invoicelines << @invoiceline
+ 
     @events.size.times do |i|
       @invoiceline.linenumber = i
       @invoiceline.concept = @events[i].description
       @invoiceline.price = @clinicalhistory.rate.rate
       @invoiceline.sessions = 1
       @invoiceline.total = @invoiceline.price*@invoiceline.sessions 
-       
+      @invoiceheads.invoicelines << @invoiceline
+      
     end
     respond_to do |format|
       format.html # index.html.erb

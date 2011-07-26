@@ -42,6 +42,7 @@ gem 'kaminari'
  group :development do
    gem 'annotate-models', '1.0.4'
    gem 'rspec-rails', '2.6.1'
+   gem 'ruby-debug19'
  end
  group :test do
    gem 'rspec', '2.6.0'
