@@ -1,0 +1,12 @@
+%div.search-client
+  = label_tag 'Nombre'
+  = text_field_tag :search_client_id, '',:type=>"hidden"
+  = autocomplete_field_tag 'paciente_name', '', tabs_autocomplete_paciente_name_path,:id_element => '#search_client_id'
+  = label_tag '1 Apellido'
+  = autocomplete_field_tag 'paciente_firstsurname', '', tabs_autocomplete_paciente_firstsurname_path, :id_element => '#search_client_id'
+  = label_tag '2 Apellido'
+  = autocomplete_field_tag 'paciente_secondsurname', '', tabs_autocomplete_paciente_secondsurname_path,:id_element => '#search_client_id'
+  = label_tag 'Identificación'
+  = autocomplete_field_tag 'paciente_idcode', '', tabs_autocomplete_paciente_idcode_path, :id_element => '#search_client_id'
+  %button{:onClick => "search_paciente_events()"}
+    Buscar 

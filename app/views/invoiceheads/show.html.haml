@@ -16,5 +16,7 @@
 = link_to 'Edit', edit_invoicehead_path(@invoicehead)
 \|
 = link_to 'Back', invoiceheads_path
-- for invoicelines in @invoicehead.invoicelines
-  -invoicelines.concept
+
+- for invoiceline in @invoicehead.invoicelines
+  =invoiceline.concept
+    

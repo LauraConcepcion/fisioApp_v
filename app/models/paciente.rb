@@ -57,5 +57,10 @@ class Paciente < ActiveRecord::Base
       "#{self.name} #{self.firstsurname} #{self.secondsurname}, #{self.idcode}"
     end
     
+    #Función para definir qué queremos mostrar en el autcompletar.
+    def full_name_f
+      "#{self.name} #{self.firstsurname} #{self.secondsurname}, #{self.idcode}"
+    end
+    
 end
 

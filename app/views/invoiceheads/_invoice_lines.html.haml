@@ -5,7 +5,5 @@
   %td= :price
   %td= :total
   %td= f.text_field :select  
-  %td= f.check_box :_destroy 
-  %td= f.label :_destroy, "Remove Question" 
   %td= f.hidden_field :_destroy
   %td= link_to_function "remove", "remove_fields(this)" 

@@ -107,6 +107,18 @@ class EventsController < ApplicationController
     end
   end
   
+  def search_paciente_events
+    events = Event.where(:paciente_id=>params[:id]) unless params[:id].blank?
+    #  linenumber     :integer
+#  concept        :string(255)
+#  sessions       :integer
+#  price          :float
+    respond_to do |format|
+      format.json { render :json => events.map {|event| [event.clinicalhistory.treatment, event.clinicalhistory.rate.rate, event.starts_at, event.paciente_id] }.to_json }
+    end
+  end
+  
+  
   def confirm
     @event = Event.find(params[:id])  
   end
