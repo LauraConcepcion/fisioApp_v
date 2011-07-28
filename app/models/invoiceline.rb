@@ -15,7 +15,7 @@
 #
 
 class Invoiceline < ActiveRecord::Base
-  attr_accessible :linenumber,:concept,:sessions,:price,:total
+  attr_accessible :linenumber,:concept,:sessions,:price,:total, :treatmentdate
   belongs_to  :invoicehead
   belongs_to  :event
 end

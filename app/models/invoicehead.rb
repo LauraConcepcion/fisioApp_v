@@ -15,6 +15,8 @@
 
 class Invoicehead < ActiveRecord::Base
   attr_accessible :name, :firstsurname, :invoicelines_attributes,:created_at, :paciente_id
+  attr_accessor :sessions, :total
+  
   has_many  :invoicelines, :dependent => :destroy 
   accepts_nested_attributes_for :invoicelines, :reject_if => lambda { |a| a[:sessions].blank? }, :allow_destroy => true  
 end

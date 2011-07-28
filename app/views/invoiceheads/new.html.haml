@@ -4,7 +4,7 @@
 
 = form_for @invoicehead, invoiceheads_path do |f|
   .formulario
-    %table.tabla_editable
+    %table
       %tr
         %td%td Número de factura
         %td{:colspan=>3}
@@ -53,21 +53,28 @@
           function search_paciente_events(paciente){
             var paciente_id = $("#search_client_id").val();
             var template_new_line = "#{escape_javascript new_line_template}";
-
-            
+            var total = 0;
             $.getJSON('/events/search_paciente_events/' + paciente_id, function(events) {
               for (var i = 0; i < events.length; i++) {
                create_new_line();
-               $("#invoicehead_invoicelines_attributes_10000"+i+"_linenumber").val(events[i][2]);
+               var date1 = new Date(events[i][2]);
+               var nmonth = date1.getMonth();
+               var ntoday = date1.getDate();
+               var nyear = date1.getFullYear();
+               var onlyDate = ntoday + "/" + nmonth + "/" + nyear; 
+               $("#invoicehead_invoicelines_attributes_10000"+i+"_treatmentdate").val(onlyDate);
                $("#invoicehead_invoicelines_attributes_10000"+i+"_sessions").val(1);
                $("#invoicehead_invoicelines_attributes_10000"+i+"_concept").val(events[i][0]);
                $("#invoicehead_invoicelines_attributes_10000"+i+"_price").val(events[i][1]);
                $("#invoicehead_invoicelines_attributes_10000"+i+"_total").val(1*events[i][1]);
-
-           } 
+               total += total + events[i][1];
+              } 
+              $("#total").val(total);
+              $("#sessions").val(events.length);
             });
           }
 
+  = render 'invoice_total'
   = link_to_function "Crear Línea", "create_new_line()"             
   = f.submit "Crear Factura"
 

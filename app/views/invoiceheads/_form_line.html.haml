@@ -1,8 +1,8 @@
 %tr.form_line
-  %td= builder.text_field :linenumber,:disabled => 'true'
+  %td= builder.text_field :treatmentdate,:disabled => 'true', :type=>:date, :size => 10
   %td= builder.text_field :concept, :disabled => 'true'
-  %td= builder.text_field :sessions,  :disabled => 'true'
-  %td= builder.text_field :price, :disabled => 'true'
-  %td= builder.text_field :total, :disabled => 'true'
+  %td= builder.text_field :sessions,  :disabled => 'true', :size => 5
+  %td= builder.text_field :price, :disabled => 'true', :size => 10
+  %td= builder.text_field :total, :disabled => 'true', :size => 10
   %td= builder.hidden_field :_destroy
   %td= link_to_function "remove", "remove_fields(this)" 
