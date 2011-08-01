@@ -1,4 +1,6 @@
 module ApplicationHelper
+  
+  #Desde APPLICATION HELPER podremos acceder a estos helpers desde cualquier parte de la aplicación
   def logo
     image_tag("logo.png", :alt => "Fisior", :class => "round")
   end
@@ -17,7 +19,14 @@ module ApplicationHelper
   def citas
     image_tag("menu/citas.png", :alt => "Gestion de citas")
   end
-  def title
+  
+  def fulltitle
+    base_title = "FisioApp, Fisioterapia Fisior Las palmas"
+    if @title.nil?
+      base_title
+    else
+      "#{base_title}|#{@title}"
+    end
   end
   
   def toDate(date_text)

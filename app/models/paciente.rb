@@ -28,7 +28,15 @@ class Paciente < ActiveRecord::Base
     attr_accessible :name, :firstsurname, :secondsurname, :idtype_id, :idcode, :profession, :comments,
                     :birthdate, :mobilephone, :familyphone, :homephone, :email, :addres, :zip, :codigo
     attr_accessor  :fullname
-    validates :name, :firstsurname, :presence => true
+    email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  #  idcode_regex = /^\d{8}[a-zA-Z]$/i
+    validates :name, :firstsurname, :presence => true,
+                                    :length => { :maximum => 100 }
+    validates :email, :presence => true, 
+                      :format  => { :with => email_regex }  
+    validates :idcode, :uniqueness => { :case_sensitive => false }
+    #,  :format => { :with => idcode_regex}                 
+                                    
 #    validates :birthdate,
  #             :format => { :with => /(0[0-9]|1[0-9]|2[0-9]|3[0-1])(\/)(0[0-9]|1[1-2])(\/)(\d{2,4})/}
 #Definimos el formato de mail
@@ -42,7 +50,8 @@ class Paciente < ActiveRecord::Base
     #Relación de paciente con tipo de tarifa, un paciente tiene una tarifa, una tarifa puede tener muchos pacientes
     has_many :clinicalhistories, :dependent => :destroy 
     has_many :events, :dependent => :destroy
-    accepts_nested_attributes_for :clinicalhistories
+    accepts_nested_attributes_for :clinicalhistories, :reject_if => lambda { |a| a[:treatment].blank? }, :allow_destroy => true  
+
     before_create :fullname_f
     belongs_to  :idtype
     
@@ -51,14 +60,14 @@ class Paciente < ActiveRecord::Base
         ((DateTime.now - birthdate)/365).to_i
       end
     end 
-    
+   
     #Función para definir qué queremos mostrar en el autcompletar.
     def funky_method
       "#{self.name} #{self.firstsurname} #{self.secondsurname}, #{self.idcode}"
     end
     
     #Función para definir qué queremos mostrar en el autcompletar.
-    def full_name_f
+    def fullname_f
       "#{self.name} #{self.firstsurname} #{self.secondsurname}, #{self.idcode}"
     end
     

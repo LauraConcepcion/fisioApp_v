@@ -43,8 +43,10 @@ gem 'kaminari'
    gem 'annotate-models', '1.0.4'
    gem 'rspec-rails', '2.6.1'
    gem 'ruby-debug19'
+   gem 'webrat'
  end
  group :test do
    gem 'rspec', '2.6.0'
+   gem 'webrat'
  end
 

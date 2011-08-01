@@ -40,5 +40,5 @@
         %tr
           %td.grande{:colspan=>"6"}=f.input :email, :label => "Email:  "
 
-    = render 'clinicalhistories/form'
+    = render 'clinicalhistories/form',:locals => { :f => f }
     = f.submit 'Guardar'

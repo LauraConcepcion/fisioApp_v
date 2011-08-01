@@ -71,6 +71,7 @@ GEM
       arel (~> 2.0.7)
     mime-types (1.16)
     nifty-generators (0.4.6)
+    nokogiri (1.4.5)
     orm_adapter (0.0.5)
     pg (0.11.0)
     polyglot (0.3.1)
@@ -124,6 +125,10 @@ GEM
     tzinfo (0.3.27)
     warden (1.0.4)
       rack (>= 1.0)
+    webrat (0.7.3)
+      nokogiri (>= 1.2.0)
+      rack (>= 1.0)
+      rack-test (>= 0.5.3)
 
 PLATFORMS
   ruby
@@ -144,3 +149,4 @@ DEPENDENCIES
   rspec-rails (= 2.6.1)
   ruby-debug19
   simple_form
+  webrat

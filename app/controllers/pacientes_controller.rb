@@ -2,13 +2,10 @@ class PacientesController < ApplicationController
   # GET /pacientes
   # GET /pacientes.xml
   def index
-    @tab = Tab.new
     @centers = Center.find(:all)
     @specialisttypes = Specialisttype.find(:all)
     @provenances = Provenance.find(:all)
     @paciente = Paciente.find_by_id(params[:search])
-    @clinicalhistory = Clinicalhistory.where(:paciente_id => @paciente).order("assessmentdate DESC").first
-    @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).order("assessmentdate DESC")
   end
 
   # GET /pacientes/1
