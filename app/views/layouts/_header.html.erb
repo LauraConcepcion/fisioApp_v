@@ -5,7 +5,7 @@
 		<nav class="blanco">		<ul> <% if user_signed_in? -%>
 				<li><%= link_to "Pacientes", new_paciente_path %></li> 
 				<li><%= link_to "Citas", calendar_path %></li> 
-				<li><%= link_to "Facturación", '#' %></li>
+				<li><%= link_to "Facturación", new_invoicehead_path %></li>
 				<li><%= link_to "Informes", '#' %></li> 
 				<li><%= link_to "Salir", destroy_user_session_path %>
 			<%else%>

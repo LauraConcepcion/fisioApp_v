@@ -23,6 +23,7 @@ class PacientesController < ApplicationController
   # GET /pacientes/new
   # GET /pacientes/new.xml
   def new
+    @title = "Nuevo paciente"
     @tab = Tab.new
     @centers = Center.find(:all)
     @specialisttypes = Specialisttype.find(:all)
