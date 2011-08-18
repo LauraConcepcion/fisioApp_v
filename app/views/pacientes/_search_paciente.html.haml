@@ -8,6 +8,7 @@
   = autocomplete_field_tag 'paciente_secondsurname', '', tabs_autocomplete_paciente_secondsurname_path,:id_element => '#search_client_id'
   = label_tag 'Identificación'
   = autocomplete_field_tag 'paciente_idcode', '', tabs_autocomplete_paciente_idcode_path, :id_element => '#search_client_id'
+
   %button{:onClick => "edit_paciente()"}
     Buscar 
   :javascript

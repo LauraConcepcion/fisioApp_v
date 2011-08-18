@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110721065357
+# Schema version: 20110728153102
 #
 # Table name: invoicelines
 #
@@ -12,6 +12,7 @@
 #  invoicehead_id :integer
 #  created_at     :datetime
 #  updated_at     :datetime
+#  treatmentdate  :date
 #
 
 class Invoiceline < ActiveRecord::Base

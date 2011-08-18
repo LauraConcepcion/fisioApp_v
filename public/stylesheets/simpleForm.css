@@ -1,15 +1,13 @@
 /* ----- SimpleForm Styles ----- */
 
-.formulario {
+.formulario, .search-paciente, .table_izquierda {
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	border-radius:	10px;
 	background-color: #EEEEEE;
 	padding: 3px;
-	margin-top: 3px;
-	
+	margin-top: 10px;
 }
-
 .formulario a{
 	color: #000000;
 	text-decoration: none;
@@ -21,24 +19,13 @@
 	color: #000000;
 	text-decoration: underline;
 }
-.izquierda{
+.izquierda, .table_izquierda{
 	float: left;
 	width: 590px;
 }
 .derecha{
 	float: right;
 	width: 510px;
-}
-.formulariooculto {
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	border-radius:	10px;
-	background-color: #DDDDDD;
-	padding: 10px;
-	margin-bottom: 20px;
-	margin-top: 20px;
-	display: none;
-	text-align: center;
 }
 
 .table_form{

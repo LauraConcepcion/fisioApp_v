@@ -1,51 +1,45 @@
-.formulario
-  %table.clinical-histories{:id => "clinical-histories"}
-    %tr
-      %td{:colspan=>"2"}
-        = builder.label 'F. de evaluación'
-        //- if true builder.clinicalhistory.assessmentdate.blank?
-        //  = builder.text_field :assessmentdate,:value => DateTime.now.strftime("%d/%m/%Y"), :readonly=>true
-        //- else
-        = builder.text_field :assessmentdate
-      %td{:colspan=>"2"}= label_tag "Centro"
-      %td= select_tag 'Centro', options_from_collection_for_select(@centers, 'id', 'name')
-      %td= label_tag "Especialista"
-      %td= grouped_collection_select(:specialist, :specialist_id, @specialisttypes, :specialist, :name, :id, :name)
-    %tr
-      %td.grande{:colspan=>"6"}= builder.input :medicalhistory, :label => "Antecedentes clín.: "
-    %tr
-      %td.grande{:colspan=>"6"}= builder.input :reasonconsultation, :label => "Motivo consulta: "
-    %tr
-      %td.grande{:colspan=>"6"}= builder.input :evaluation, :label => "Evaluación: "
-    %tr
-      %td.grande{:colspan=>"6"}= builder.input :physiotherapistdiagnostic, :label => "Diagnósito Fisio: "
-    %tr
-      %td.grande{:colspan=>"6"}= builder.input :treatment, :label => "Tratamiento: "
-    %tr
-      %td.grande{:colspan=>"6"}= builder.input :medicaldiagnosic, :label => "Diagnóstico Méd.: "
-    %tr
-      %td.grande{:colspan=>"6"}= builder.input :comments, :label => "Exámenes aux.: "
+%table.clinical-histories{:id => "clinical-histories"}
+  %tr
+    %td= builder.input :assessmentdate, :label => 'F. de evaluación'
+    %td= builder.association :center, :collection => Center.all(:order => 'name'), :prompt => "Choose a Company"
+    %td= select_tag 'Centro', options_from_collection_for_select(@centers, 'id', 'name')
+    %td= label_tag "Especialista"
+    %td= grouped_collection_select(:specialist, :specialist_id, @specialisttypes, :specialist, :name, :id, :name)
+  %tr
+    %td.grande{:colspan=>"3"}= builder.input :medicalhistory, :label => "Antecedentes clín.: "
+  %tr
+    %td.grande{:colspan=>"3"}= builder.input :reasonconsultation, :label => "Motivo consulta: "
+  %tr
+    %td.grande{:colspan=>"3"}= builder.input :evaluation, :label => "Evaluación: "
+  %tr
+    %td.grande{:colspan=>"3"}= builder.input :physiotherapistdiagnostic, :label => "Diagnósito Fisio: "
+  %tr
+    %td.grande{:colspan=>"3"}= builder.input :treatment, :label => "Tratamiento: "
+  %tr
+    %td.grande{:colspan=>"3"}= builder.input :medicaldiagnosic, :label => "Diagnóstico Méd.: "
+  %tr
+    %td.grande{:colspan=>"3"}= builder.input :comments, :label => "Exámenes aux.: "
 
-    %tr
-      %td{:colspan=>"2"}
-      %td{:colspan=>"2"}= builder.input :code, :label => "Nº Tto", :readonly => 'true'  
-      %td= builder.input :id, :label =>"Identificador", :readonly => 'true'     
-    %tr
-      %td
-        = builder.collection_select :provenance_id, Provenance.all, :id,:name, :prompt => "Seleccione la procedencia"
-      %td
-        = builder.collection_select :rate_id, Rate.all, :id,:name, :prompt   => "Seleccione la tarifa"
+  %tr
+    %td{:colspan=>"2"}
+    %td{:colspan=>"2"}= builder.input :code, :label => "Nº Tto", :readonly => 'true'  
+    %td= builder.input :id, :label =>"Identificador", :readonly => 'true'     
+  %tr
+    %td
+      = builder.collection_select :provenance_id, Provenance.all, :id,:name, :prompt => "Seleccione la procedencia"
+    %td
+      = builder.collection_select :rate_id, Rate.all, :id,:name, :prompt   => "Seleccione la tarifa"
 
-    %tr
-      %td
-        = builder.label 'F. Inicio tto'
-        = builder.text_field :startdatetto
-      %td
-        = builder.label 'F. Fin tto'
-        = builder.text_field :enddatetto
-      %td= builder.input :nsessions, :label => "Sesiones: "
-    %tr
-      %td= builder.input :expedient, :label => 'Nº Exp'
-      %td= builder.input :authorization, :label =>'Nº Aut'
-      %td= builder.input :authorizationcomments, :label=>'Observaciones'
+  %tr
+    %td
+      = builder.label 'F. Inicio tto'
+      = builder.text_field :startdatetto
+    %td
+      = builder.label 'F. Fin tto'
+      = builder.text_field :enddatetto
+    %td= builder.input :nsessions, :label => "Sesiones: "
+  %tr
+    %td= builder.input :expedient, :label => 'Nº Exp'
+    %td= builder.input :authorization, :label =>'Nº Aut'
+    %td= builder.input :authorizationcomments, :label=>'Observaciones'
 
