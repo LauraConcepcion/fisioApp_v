@@ -1,6 +1,6 @@
 %h1 New invoicehead
 
-= render 'pacientes/search_component'
+= render 'pacientes/search_paciente_events'
 
 = form_for @invoicehead, invoiceheads_path do |f|
   .formulario
@@ -50,23 +50,24 @@
             $(fila).parent().parent().remove();
           }
           
-          function search_paciente_events(paciente){
+          function search_paciente_events(){
             var paciente_id = $("#search_client_id").val();
             var template_new_line = "#{escape_javascript new_line_template}";
             var total = 0;
             $.getJSON('/events/search_paciente_events/' + paciente_id, function(events) {
+              /* añadir los parámetros con los que creo la línea pa después usarlos abajo*/
               for (var i = 0; i < events.length; i++) {
-               create_new_line();
+               create_new_line(/* parámetros */);
                var date1 = new Date(events[i][2]);
                var nmonth = date1.getMonth();
                var ntoday = date1.getDate();
                var nyear = date1.getFullYear();
                var onlyDate = ntoday + "/" + nmonth + "/" + nyear; 
-               $("#invoicehead_invoicelines_attributes_10000"+i+"_treatmentdate").val(onlyDate);
-               $("#invoicehead_invoicelines_attributes_10000"+i+"_sessions").val(1);
-               $("#invoicehead_invoicelines_attributes_10000"+i+"_concept").val(events[i][0]);
-               $("#invoicehead_invoicelines_attributes_10000"+i+"_price").val(events[i][1]);
-               $("#invoicehead_invoicelines_attributes_10000"+i+"_total").val(1*events[i][1]);
+               $("#invoicehead_invoicelines_attributes_"+window._last_line_created+"_treatmentdate").val(onlyDate);
+               $("#invoicehead_invoicelines_attributes_"+window._last_line_created+"_sessions").val(1);
+               $("#invoicehead_invoicelines_attributes_"+window._last_line_created+"_concept").val(events[i][0]);
+               $("#invoicehead_invoicelines_attributes_"+window._last_line_created+"_price").val(events[i][1]);
+               $("#invoicehead_invoicelines_attributes_"+window._last_line_created+"_total").val(1*events[i][1]);
                total += total + events[i][1];
               } 
               $("#total").val(total);

@@ -12,7 +12,6 @@ class PacientesController < ApplicationController
   # GET /pacientes/1.xml
   def show
     @paciente = Paciente.find(params[:id])
-    @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).order("assessmentdate DESC")
 
     respond_to do |format|
       format.html # show.html.erb
@@ -29,45 +28,27 @@ class PacientesController < ApplicationController
     @specialisttypes = Specialisttype.find(:all)
     @provenances = Provenance.find(:all)
     @paciente = Paciente.new
-    @clinicalhistory = Clinicalhistory.new
   end
 
   # GET /pacientes/1/edit
   def edit
     @tab = Tab.new
-    @paciente = Paciente.find_by_id(params[:id])
-    @clinicalhistory = Clinicalhistory.where(:paciente_id => @paciente).order("assessmentdate DESC").first
-    @clinicalhistories = Clinicalhistory.where(:paciente_id => @paciente).order("assessmentdate DESC")
+    @paciente = Paciente.find(params[:id])
     @centers = Center.all
     @specialisttypes = Specialisttype.find(:all)
     @provenances = Provenance.find(:all)
+    @clinicalhistory = @paciente.clinicalhistories.order("assessmentdate DESC").first
   end
 
   # POST /pacientes
   # POST /pacientes.xml
   def create
     @paciente = Paciente.new(params[:paciente])
-    @clinicalhistory = Clinicalhistory.new(params[:clinicalhistory])
-    @paciente.clinicalhistories << @clinicalhistory
-    @codigo = Countreference.find_by_name('P')
-    @codigo.value = @codigo.value + 1
-    @codigo.save
-    @paciente.codigo = @codigo.value
-    
-    @codigo = Countreference.find_by_name('C')
-    @codigo.value = @codigo.value + 1
-    @codigo.save
-    @clinicalhistory.code = @codigo.value
-    # @clinicalhistory.assessmentdate = @clinicalhistory.assessmentdate.to_date unless @clinicalhistory.assessmentdate.nil?
-    # @clinicalhistory.startdatetto = @clinicalhistory.startdatetto.to_date unless @clinicalhistory.startdatetto.nil?
-    # @clinicalhistory.enddatetto = @clinicalhistory.enddatetto.to_date unless @clinicalhistory.enddatetto.nil?
-    respond_to do |format|
+     respond_to do |format|
       if @paciente.save
-        if @clinicalhistory.save
-          flash[:notice] = "Ficha de paciente creada correctamente"
-          format.html {redirect_to edit_paciente_path(@paciente)}
-          format.xml {head :ok}
-        end
+        flash[:notice] = "Ficha de paciente creada correctamente"
+        format.html { redirect_to(edit_paciente_path(@paciente)) }
+        format.xml  { render :xml => @paciente, :status => :created, :location => @invoicehead }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @paciente.errors, :status => :unprocessable_entity }
@@ -80,36 +61,15 @@ class PacientesController < ApplicationController
   def update
     #Buscamos 
     @paciente = Paciente.find(params[:id])
-    @clinicalhistory = Clinicalhistory.find_by_code(params[:clinicalhistory][:code])
-    @duplicado = false
-    @duplicado = params[:clinicalhistory][:duplicado]
-    
-    if @paciente.update_attributes(params[:paciente])
-      if @duplicado == "1"
-        @clinicalhistory = Clinicalhistory.new(params[:clinicalhistory])
-        @codigo = Countreference.find_by_name('C')
-        @codigo.value = @codigo.value + 1
-        @codigo.save
-        @clinicalhistory.code = @codigo.value
-        @paciente.clinicalhistories << @clinicalhistory
-        respond_to do |format|
-          if @clinicalhistory.save
-            flash[:notice] = "Se han guardado los cambios"
-            format.html {redirect_to edit_paciente_path}
-            format.xml {head :ok}
-          end
-        end
+    @clinicalhistory = Clinicalhistory.find_by_id(params[:clinicalhistory][:id])
+    respond_to do |format|
+      if @paciente.update_attributes(params[:paciente]) && @clinicalhistory.update_attributes(params[:clinicalhistory])
+        flash[:notice] = "Ficha de paciente actualizada correctamente"
+        format.html { redirect_to(edit_paciente_path(@paciente)) }
+        format.xml  { head :ok }
       else
-        respond_to do |format|
-            if @clinicalhistory.update_attributes(params[:clinicalhistory])
-              flash[:notice] = "Se han guardado los cambios correctamente"
-              format.html {redirect_to edit_paciente_path}
-              format.xml  { head :ok }
-            else
-              format.html { render :action => "edit" }
-              format.xml  { render :xml => @paciente.errors, :status => :unprocessable_entity }
-            end
-        end
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @paciente.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -125,9 +85,13 @@ class PacientesController < ApplicationController
     end
   end
   
-  def clear
-    @paciente = Paciente.find(params[:id])
-    @clinicalhistory = Clinicalhistory.new
-    @duplicado = false
+  def new_clinicalhistory
+    clinicalhistory = Clinicalhistory.new
+    clinicalhistories = [clinicalhistory]
+    @paciente = Paciente.find_by_id(params[:id]) unless params[:id].blank?
+    @paciente.clinicalhistories << clinicalhistory
+    respond_to do |format|
+      format.json { render :json => clinicalhistories.map {|clinicalhistory| [clinicalhistory.medicalhistory, clinicalhistory.reasonconsultation, clinicalhistory.evaluation, clinicalhistory.physiotherapistdiagnostic, clinicalhistory.assessmentdate, clinicalhistory.treatment, clinicalhistory.medicaldiagnosic, clinicalhistory.provenance_id, clinicalhistory.comments, clinicalhistory.startdatetto, clinicalhistory.rate_id, clinicalhistory.enddatetto, clinicalhistory.expedient, clinicalhistory.authorization, clinicalhistory.authorizationcomments, clinicalhistory.code, clinicalhistory.id] }.to_json }
+    end
   end
 end

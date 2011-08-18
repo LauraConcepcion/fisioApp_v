@@ -30,8 +30,22 @@ $(document).ready(function() {
                 $('#loading').hide();
         },
         
-        // a future calendar might have many sources.        
-        eventSources: [{
+        // a future calendar might have many sources. 
+        events: function(start, end, callback) {
+	        $.ajax({
+	            url: '/events',
+	            dataType: 'json',
+	            data: {
+	                start: Math.round(start.getTime() / 1000),
+	                end: Math.round(end.getTime() / 1000),
+	                paciente_id: $("#search_client_id").val(),
+	            },
+	            success: function(response) {
+	                callback(response);
+	            }
+	        });
+	    },
+        /*eventSources: [{
             url: '/events',
             color: 'yellow',
             textColor: 'black',
@@ -39,7 +53,7 @@ $(document).ready(function() {
             error: function() {
                 alert('Ha habido un error al buscar las citas, contacte con soporte!');
             },
-        }],
+        }],*/
         sayNames:['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
         dayNamesShort:['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
         monthNames:['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
@@ -75,7 +89,7 @@ $(document).ready(function() {
             $("#event_id").val(event.id);
 
             var paciente_id = event.paciente_id;
-	        $.getJSON('/events/info/' + paciente_id, function(paciente) {
+	        $.getJSON('/events/' + paciente_id + '/info', function(paciente) {
 	        	$("#paciente_name").val(paciente[0][0]);
 	        });
 			//Mostrar el formulario

@@ -17,13 +17,5 @@ $(function (){
            	});
            	return false;
        });   
-    $( "#tabs" ).tabs({
-		event: "mouseover",
-		collapsible: true
-		//var current_index = $("#tabs").tabs("option","selected");
-	});
-	$("button").click(function () {
-    	$("p").remove();
-    });
   
 });

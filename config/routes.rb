@@ -13,7 +13,11 @@ FisioApp::Application.routes.draw do
 
   resources :specialists
 
-  resources :events
+  resources :events do
+    member do
+      get :info
+    end
+  end
 
   resources :clinicalhistories
 
@@ -30,18 +34,14 @@ FisioApp::Application.routes.draw do
   match 'tabs' => 'tabs#index'
   match 'clinicalhistories' => 'clinicalhistories#show'
   
-  get 'calendar/index'
-  match 'calendar' => 'calendar#index'
-  match 'events' => 'events#show'
-  match 'events' => 'events#edit'
-  match 'events' => 'events#find'
-
-
   match 'clinicalhistories/update_rate_select/:id', :controller=>'clinicalhistories', :action => 'update_rate_select'
   match 'clinicalhistories/update_rate/:id', :controller=>'clinicalhistories', :action => 'update_rate'
-  match 'events/info/:id', :controller=>'events', :action => 'info'
+  #match 'events/info/:id', :controller=>'events', :action => 'info'
   match 'events/confirm/', :controller=>'events', :action => 'confirm'
   match 'events/search_paciente_events/:id', :controller=>'events', :action => 'search_paciente_events'
+
+  match 'clinicalhistories/search_clinicalhistory/:id', :controller=>'clinicalhistories', :action => 'search_clinicalhistory'
+  match 'pacientes/new_clinicalhistory/:id', :controller=>'pacientes', :action => 'new_clinicalhistory'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

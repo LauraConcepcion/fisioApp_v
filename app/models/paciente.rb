@@ -26,16 +26,16 @@
 
 class Paciente < ActiveRecord::Base
     attr_accessible :name, :firstsurname, :secondsurname, :idtype_id, :idcode, :profession, :comments,
-                    :birthdate, :mobilephone, :familyphone, :homephone, :email, :addres, :zip, :codigo
+                    :birthdate, :mobilephone, :familyphone, :homephone, :email, :addres, :zip, :codigo,
+                    :clinicalhistories_attributes
+                    
     attr_accessor  :fullname
-    email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  #  idcode_regex = /^\d{8}[a-zA-Z]$/i
     validates :name, :firstsurname, :presence => true,
                                     :length => { :maximum => 100 }
-    validates :email, :presence => true, 
-                      :format  => { :with => email_regex }  
-    validates :idcode, :uniqueness => { :case_sensitive => false }
-    #,  :format => { :with => idcode_regex}                 
+ #   validates :email, :allow_nil => true,
+  #                    :format  => { :with => /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }  
+   # validates :idcode,  :uniqueness => { :case_sensitive => false },
+    #                    :format => { :with =>/\d{8}[a-zA-Z]$/i}
                                     
 #    validates :birthdate,
  #             :format => { :with => /(0[0-9]|1[0-9]|2[0-9]|3[0-1])(\/)(0[0-9]|1[1-2])(\/)(\d{2,4})/}
@@ -50,9 +50,10 @@ class Paciente < ActiveRecord::Base
     #Relación de paciente con tipo de tarifa, un paciente tiene una tarifa, una tarifa puede tener muchos pacientes
     has_many :clinicalhistories, :dependent => :destroy 
     has_many :events, :dependent => :destroy
-    accepts_nested_attributes_for :clinicalhistories, :reject_if => lambda { |a| a[:treatment].blank? }, :allow_destroy => true  
+    accepts_nested_attributes_for :clinicalhistories, :allow_destroy => true  
 
-    before_create :fullname_f
+    before_create :fullname_f, :set_default_parameters
+
     belongs_to  :idtype
     
     def self.age(birthdate)
@@ -60,7 +61,6 @@ class Paciente < ActiveRecord::Base
         ((DateTime.now - birthdate)/365).to_i
       end
     end 
-   
     #Función para definir qué queremos mostrar en el autcompletar.
     def funky_method
       "#{self.name} #{self.firstsurname} #{self.secondsurname}, #{self.idcode}"
@@ -71,5 +71,14 @@ class Paciente < ActiveRecord::Base
       "#{self.name} #{self.firstsurname} #{self.secondsurname}, #{self.idcode}"
     end
     
+      
+    private
+      def set_default_parameters
+        code = Countreference.find_by_name('P')
+        self.codigo = code.value
+        code.value = code.value + 1
+        code.save
+      end
+
 end
 

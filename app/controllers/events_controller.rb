@@ -10,9 +10,13 @@ class EventsController < ApplicationController
     @events = Event.scoped  
     @events = @events.after(params['start']) if (params['start'])
     @events = @events.before(params['end']) if (params['end'])
-     
+    @events = @events.where(:paciente_id => params['paciente_id']) unless params['paciente_id'].blank?
+    
+    @specialisttypes = Specialisttype.all
+    @centers = Center.all    
+    @event = Event.new
     respond_to do |format|
-      format.html  { redirect_to(calendar_path(params))}
+      format.html 
       format.xml  { render :xml => @events }
       format.js  { render :json => @events }
     end
@@ -57,7 +61,7 @@ class EventsController < ApplicationController
     @event.description = @event.fulldescription
     respond_to do |format|
       if @event.save
-        format.html { redirect_to calendar_path}
+        format.html { redirect_to events_path}
         format.xml  { render :xml => @event, :status => :created, :location => @event }
       else
         format.html { render :action => "new" }
@@ -110,7 +114,7 @@ class EventsController < ApplicationController
   def search_paciente_events
     events = Event.where(:paciente_id=>params[:id]) unless params[:id].blank?
     respond_to do |format|
-      format.json { render :json => events.map {|event| [event.clinicalhistory.treatment, event.clinicalhistory.rate.rate, event.starts_at, event.paciente_id] }.to_json }
+      format.json { render :json => events.map {|event| [event.title, 10, event.starts_at, event.paciente_id] }.to_json }
     end
   end
   
@@ -118,4 +122,5 @@ class EventsController < ApplicationController
   def confirm
     @event = Event.find(params[:id])  
   end
+  
 end
