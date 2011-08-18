@@ -11,6 +11,7 @@
 
 class Center < ActiveRecord::Base
   has_many :events
+  has_many  :clinicalhistories
   validates :name, :presence => true,
                    :length => { :maximum => 80 },
                    :uniqueness => { :case_sensitive => false }

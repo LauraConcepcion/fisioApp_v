@@ -1,10 +1,12 @@
 %table.clinical-histories{:id => "clinical-histories"}
   %tr
     %td= builder.input :assessmentdate, :label => 'F. de evaluación'
-    %td= builder.association :center, :collection => Center.all(:order => 'name'), :prompt => "Choose a Company"
-    %td= select_tag 'Centro', options_from_collection_for_select(@centers, 'id', 'name')
-    %td= label_tag "Especialista"
-    %td= grouped_collection_select(:specialist, :specialist_id, @specialisttypes, :specialist, :name, :id, :name)
+    %td= builder.association :center, :label => "Centro", :collection => Center.all(:order => 'name'), :prompt => "Elija el centro"
+    %td= builder.association :specialist, :label => "Especialista", :collection => Specialist.all, :prompt => "Elija su especialista"
+    %td= grouped_collection_select :specialist, :specialist_id, @specialisttypes, :specialist, :name, :id, :name
+    %td= builder.collection_select :specialisttype_id, Specialisttype.all, :id,:name, :prompt => "Seleccione la especialidad"
+    %td= builder.collection_select :specialist_id, Specialist.all, :id,:name, :prompt => "Seleccione el especialista"
+
   %tr
     %td.grande{:colspan=>"3"}= builder.input :medicalhistory, :label => "Antecedentes clín.: "
   %tr
