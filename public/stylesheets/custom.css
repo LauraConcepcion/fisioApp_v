@@ -17,6 +17,7 @@ header h1{
 	padding-top: 20px;
 
 }
+
 section { 
 	margin-top: 1em; 
 	font-size: 120%; 
@@ -24,7 +25,6 @@ section {
 	padding-right: 10px; 
 	padding-bottom: 10px;
 	background: #fff;
-	height: 650px;
 } 
 section h1 {
 	font-size: 200%;

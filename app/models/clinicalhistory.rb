@@ -40,6 +40,7 @@ class Clinicalhistory < ActiveRecord::Base
       belongs_to  :provenance
       belongs_to  :center
       belongs_to  :specialist
+      belongs_to  :specialisttype
 
       paginates_per 1
       has_many  :events

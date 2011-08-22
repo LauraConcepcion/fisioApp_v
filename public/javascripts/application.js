@@ -2,9 +2,9 @@
 // This file is automatically included by javascript_include_tag :defaults
 $(function (){  
     $('#paciente_birthdate').datepicker({ dateFormat: 'dd-mm-yy' , changeYear: true,yearRange: '1950:2010'});
-    $('#clinicalhistory_assessmentdate').datepicker({ dateFormat: 'dd-mm-yy' });
-    $('#clinicalhistory_startdatetto').datepicker({ dateFormat: 'dd-mm-yy' });
-    $('#clinicalhistory_enddatetto').datepicker({ dateFormat: 'dd-mm-yy' });  
+    $('#paciente_clinicalhistories_attributes_0_assessmentdate').datepicker({ dateFormat: 'dd-mm-yy' });
+    $('#paciente_clinicalhistories_attributes_0_startdatetto').datepicker({ dateFormat: 'dd-mm-yy' });
+    $('#paciente_clinicalhistories_attributes_0_enddatetto').datepicker({ dateFormat: 'dd-mm-yy' });  
     $('#invoicehead_created_at').datepicker({ dateFormat: 'dd-mm-yy' });  
     
     $("#clinicalhistory_provenance_id").change(function() {

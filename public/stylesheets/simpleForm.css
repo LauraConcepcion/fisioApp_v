@@ -1,93 +1,54 @@
 /* ----- SimpleForm Styles ----- */
 
-.formulario, .search-paciente, .table_izquierda {
+/*ESTILO PARA LOS ENUNCIADOS DE LOS FORMULARIOS*/
+.cabecera {
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius:	10px;
+	background-color: #DDDDDD;
+	padding: 10px;
+	text-transform: uppercase;
+	display: block;
+	margin-top: 10px;
+}
+
+/*FONDO GRIS Y REDONDEADO PARA RESALTAR LAS SECCIONES EN LA WEB*/
+.formulario, .search-paciente {
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	border-radius:	10px;
 	background-color: #EEEEEE;
-	padding: 3px;
-	margin-top: 10px;
+	padding: 10px;
+
+	margin-left: 8px;
+	margin-top: 5px;
 }
+/*ESTILO PARA LOS LINK DENTRO DE LOS FORMULARIOS*/
 .formulario a{
 	color: #000000;
 	text-decoration: none;
 	font-weight: bold;
 	font-size: 80%;
+}
 
+
+.izquierda{
+	width: 600px;
 }
-.formulario a:hover{
-	color: #000000;
-	text-decoration: underline;
-}
-.izquierda, .table_izquierda{
-	float: left;
-	width: 590px;
-}
+
 .derecha{
 	float: right;
-	width: 510px;
+	width: 392px;
+}
+.derecha td{
+	margin: 6px;
+	padding-top: 2px;
 }
 
-.table_form{
-	width: 97%;
-}
+
 .invoice-lines{
     text-align: left;
     width: 100%;
-}
-.tabla_editable td, th{
-	padding-bottom: 2px;
-	padding-left: 4px;
-	text-align: right;
-	background: none repeat scroll 0 0 #CCCCCC;
-    border-bottom: 1px solid #FFFFFF;
-    border-top: 2px solid #DDDDDD;
-    font-size: 13px;
-    font-weight: normal;
-    padding: 5px;
-}
-
-.tabla_editable input{
-	padding-bottom: 2px;
-	padding-left: 4px;
-	text-align: right;
-	margin-left: 5px;
-
-}
-.tabla_editable textarea{
-	width: 440px;
-	height: 40px;
-
-
-}
-.table_tabs{
-	width: 100%;
-	font-size: 130%;
-}
-.table_tabs td{
-  	font-size: 70%;
-  	padding-bottom: 2px;
-	padding-left: 4px;
-}
-.check label{
-	padding-left: 100px; 
-}
-
-.table_form th{
-	background: none;
-  	font-weight: normal; 
-  	font-size: 70%;
-	text-transform: uppercase;
-
-}
-.table_form td, th{
-	padding-bottom: 2px;
-	padding-left: 4px;
-}
-
-.tabs {
-  background-color: #DDDDDD;
-  padding: 5px;
 }
 
 .simple_form .small input{
@@ -97,15 +58,12 @@
 	width: 430px;
 }
 .simple_form .mediano input{
-	width: 200px;
+	width: 350px;
 }
-
 .simple_form input{
   width: 100px;
-/*  font-weight: bold; */
   float: right;
-  font-size: 80%;
-
+  clear: right;
 }
 
 .simple_form select{
@@ -116,28 +74,12 @@
   	font-size: large;
   	background-color: #FFF6BF;
 }
-#form_tag label{
-	text-transform: uppercase;
-  	font-weight: normal; 
-  	font-size: 70%;
-  	margin-left: 5px;
-  	vertical-align: middle;
-}
 
-.simple_form label {
-  font-size: 70%;
-  text-transform: uppercase; 
-  font-weight: normal; 
-  margin-left: 5px;
+.simple_form label, .search-paciente label{
+  margin-left: 10px;
   vertical-align: middle;
-
+  font-weight: normal;
 }
-
-div.boolean label, label.collection_radio {
-  float: left;
-  margin: 0;
-}
-
 
 label.collection_radio {
   margin-right: 3px;
@@ -147,6 +89,7 @@ label.collection_radio {
 
 .field_with_errors {
   background-color: #ff3333;
+  margin:4px;
 }
 
 .simple_form .error {
@@ -187,3 +130,51 @@ label.collection_check_boxes {
   vertical-align: -2px;
   margin-left:   2px;
 }
+
+    
+
+fieldset legend {
+  font-size: 120%;
+  font-weight: normal;
+  color: #000000;
+  margin: 0 0 0 0;
+  padding: 0 5px;
+}
+
+fieldset {
+	background:#DDDDDD;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius:	10px;
+	text-transform: uppercase;
+	font-size: 85%;
+}
+
+.columna4l{
+	width: 40%;
+	float: left
+}
+
+.columna2r{
+	width: 20%;	
+	float: right;
+}
+.columna5r{
+	width: 50%;	
+	float: right;
+}
+.columna5l{
+	width: 50%;	
+	float: left;
+}
+.columna1 label, .columna2 label, .columna3 label{
+	float: left;
+	width: 35%;
+	vertical-align: middle;
+}
+.columna1 input, .columna2 label, .columna3 label{
+	vertical-align: middle;
+}
+
+
+

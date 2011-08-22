@@ -1,31 +1,35 @@
-%b.cabecera Buscador de pacientes
+%br
 = render 'search_paciente'
-%b.cabecera Ficha del paciente
 = simple_form_for @paciente, pacientes_path do |f|
-  %table.table_izquierda
-    %tr
-      %td{:colspan=>"2"}= f.input :name, :label => "Nombre "
-      %td{:colspan=>"2"}= f.input :firstsurname, :label => "1 apellido " 
-      %td{:colspan=>"2"}= f.input :secondsurname, :label => "2 apellido "     
-    %tr
-      %td{:colspan=>"2"}= f.input :profession, :label => "Ocupación"
-      %td{:colspan=>"2"}= f.input :birthdate, :as=>:string, :label => "F.Nac" 
-      %td{:colspan=>"2"}
-        = f.label 'Edad' 
-        %b #{@edad} años         
-    %tr
-      %td{:colspan=>"2"}= f.input :zip, :label => "C.p"
-      %td{:colspan=>"2"}= f.input :addres, :label => "Dirección"
-      %td= f.association :idtype , :label =>false , :include_blank => false
-      %td= f.input :idcode, :label => false, :placeholder => 'DNI/NIF/CIF'
+  %fieldset.izquierda
+    %legend Ficha del Paciente
+    %table.izquierda
+      %tr
+        %td=f.input :name, :label => "Nombre ",:placeholder => 'Nombre'
+        %td=f.input :firstsurname, :label => "1 apellido " ,:placeholder => '1 apellido'
+        %td=f.input :secondsurname, :label => "2 apellido ",:placeholder => '2 apellido'
+      %tr
+        %td=f.input :profession, :label => "Ocupación"
+        %td= f.association :idtype , :label =>false , :include_blank => false
+        %td= f.input :idcode, :label => false, :placeholder => 'DNI/NIF/CIF'
+      %tr
+        %td=f.input :birthdate, :as=>:string, :label => "F.Nac" 
+        %td
+          =f.label 'Edad'       
+          #{@edad} años
+        %td
+      %tr
+        %td=f.input :addres, :label => "Dirección"
+        %td= f.input :zip, :label => "C.p"
+        %td
+      %tr
+        %td=f.input :mobilephone, :label => "Móvil "
+        %td=f.input :familyphone, :label => "Tlfo fam: "
+        %td= f.input :homephone, :label => "Tlfo "
+    %br
+    .mediano
+      =f.input :email, :label => "Email:  ",:placeholder => 'Dirección de correo electrónico'
 
-    %tr
-      %td{:colspan=>"2"}= f.input :mobilephone, :label => "Móvil "
-      %td{:colspan=>"2"}= f.input :homephone, :label => "Tlfo "
-      %td{:colspan=>"2"}=f.input :familyphone, :label => "Tlfo fam: "
-    %tr
-      %td.grande{:colspan=>"6"}=f.input :email, :label => "Email:  "
-  = f.simple_fields_for :clinicalhistories, Clinicalhistory.new do |builder|
-    = render :partial => 'clinicalhistories/form',:locals => { :builder => builder }
-
-  = f.submit 'Guardar'
+    = f.simple_fields_for :clinicalhistories, Clinicalhistory.new do |builder|
+      = render :partial => 'clinicalhistories/form',:locals => { :builder => builder }
+    = f.submit 'Guardar'

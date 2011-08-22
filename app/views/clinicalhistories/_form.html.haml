@@ -1,47 +1,51 @@
-%table.clinical-histories{:id => "clinical-histories"}
-  %tr
-    %td= builder.input :assessmentdate, :label => 'F. de evaluación'
-    %td= builder.association :center, :label => "Centro", :collection => Center.all(:order => 'name'), :prompt => "Elija el centro"
-    %td= builder.association :specialist, :label => "Especialista", :collection => Specialist.all, :prompt => "Elija su especialista"
-    %td= grouped_collection_select :specialist, :specialist_id, @specialisttypes, :specialist, :name, :id, :name
-    %td= builder.collection_select :specialisttype_id, Specialisttype.all, :id,:name, :prompt => "Seleccione la especialidad"
-    %td= builder.collection_select :specialist_id, Specialist.all, :id,:name, :prompt => "Seleccione el especialista"
+%fieldset        
+  %legend Historial clínico
+  %table.izquierda
+    %tr
+      %td= builder.input :assessmentdate, :as=>:string,:label => 'F. Ev.'
+      %td= builder.association :center, :label => false, :collection => Center.all(:order => 'name'), :prompt => "Elija el centro"
+      %td= builder.collection_select :specialist_id, Specialist.all, :id,:name, :prompt => "Elija el especialista"
+      %td= builder.collection_select :specialisttype_id, Specialisttype.all, :id,:name, :prompt => "Elija la especialidad"
+    %tr
+      %td{:colspan=>'4'}
+        .mediano=builder.input :medicalhistory, :label => "Antecedentes clín.: "
+    %tr
+      %td{:colspan=>'4'}
+        .mediano=builder.input :reasonconsultation, :label => "Motivo consulta: "
+    %tr
+      %td{:colspan=>'4'}
+        .mediano=builder.input :evaluation, :label => "Evaluación: "
+    %tr
+      %td{:colspan=>'4'}
+        .mediano=builder.input :physiotherapistdiagnostic, :label => "Diagnósito Fisio: "
+    %tr
+      %td{:colspan=>'4'}
+        .mediano=builder.input :treatment, :label => "Tratamiento: "
+    %tr
+      %td{:colspan=>'4'}
+        .mediano=builder.input :medicaldiagnosic, :label => "Diagnóstico Méd.: "
+    %tr
+      %td{:colspan=>'4'}
+        .mediano=builder.input :comments, :label => "Exámenes aux.: "
+    %tr
+      %td{:colspan=>'4'}
+        .mediano=builder.input :code, :label => false, :readonly => 'true',:as=>"hidden" 
+    %tr
+      %td{:colspan=>'4'}
+        .mediano=builder.input :id, :label =>false, :readonly => 'true' , :as=>"hidden"    
 
-  %tr
-    %td.grande{:colspan=>"3"}= builder.input :medicalhistory, :label => "Antecedentes clín.: "
-  %tr
-    %td.grande{:colspan=>"3"}= builder.input :reasonconsultation, :label => "Motivo consulta: "
-  %tr
-    %td.grande{:colspan=>"3"}= builder.input :evaluation, :label => "Evaluación: "
-  %tr
-    %td.grande{:colspan=>"3"}= builder.input :physiotherapistdiagnostic, :label => "Diagnósito Fisio: "
-  %tr
-    %td.grande{:colspan=>"3"}= builder.input :treatment, :label => "Tratamiento: "
-  %tr
-    %td.grande{:colspan=>"3"}= builder.input :medicaldiagnosic, :label => "Diagnóstico Méd.: "
-  %tr
-    %td.grande{:colspan=>"3"}= builder.input :comments, :label => "Exámenes aux.: "
-
-  %tr
-    %td{:colspan=>"2"}
-    %td{:colspan=>"2"}= builder.input :code, :label => "Nº Tto", :readonly => 'true'  
-    %td= builder.input :id, :label =>"Identificador", :readonly => 'true'     
-  %tr
-    %td
-      = builder.collection_select :provenance_id, Provenance.all, :id,:name, :prompt => "Seleccione la procedencia"
-    %td
-      = builder.collection_select :rate_id, Rate.all, :id,:name, :prompt   => "Seleccione la tarifa"
-
-  %tr
-    %td
-      = builder.label 'F. Inicio tto'
-      = builder.text_field :startdatetto
-    %td
-      = builder.label 'F. Fin tto'
-      = builder.text_field :enddatetto
-    %td= builder.input :nsessions, :label => "Sesiones: "
-  %tr
-    %td= builder.input :expedient, :label => 'Nº Exp'
-    %td= builder.input :authorization, :label =>'Nº Aut'
-    %td= builder.input :authorizationcomments, :label=>'Observaciones'
-
+%fieldset.izquierda     
+  %legend Datos del seguro
+  %table.izquierda
+    %tr
+      %td=builder.collection_select :provenance_id, Provenance.all, :id,:name, :prompt => "Seleccione la procedencia"
+      %td=builder.collection_select :rate_id, Rate.all, :id,:name, :prompt   => "Seleccione la tarifa"
+    %tr
+      %td=builder.input :startdatetto, :as=>:string, :label => "F.Inicio tto" 
+      %td=builder.input :enddatetto, :as=>:string, :label => "F.Fin tto" 
+      %td=builder.input :nsessions, :label => "Sesiones: "
+    %tr
+      %td=builder.input :authorization, :label =>'Nº Aut'
+      %td=builder.input :expedient, :label => 'Nº Exp'
+      %td=builder.input :authorizationcomments, :label=>'Observaciones'
+   

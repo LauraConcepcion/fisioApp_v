@@ -1,4 +1,5 @@
-%div.search-paciente
+%fieldset
+  %legend Buscador de pacientes
   = label_tag 'Nombre'
   = text_field_tag 'search_client_id', '',:type=>"hidden"
   = autocomplete_field_tag 'paciente_name', '', tabs_autocomplete_paciente_name_path,:id_element => '#search_client_id'
@@ -8,7 +9,6 @@
   = autocomplete_field_tag 'paciente_secondsurname', '', tabs_autocomplete_paciente_secondsurname_path,:id_element => '#search_client_id'
   = label_tag 'Identificación'
   = autocomplete_field_tag 'paciente_idcode', '', tabs_autocomplete_paciente_idcode_path, :id_element => '#search_client_id'
-
   %button{:onClick => "edit_paciente()"}
     Buscar 
   :javascript
@@ -17,3 +17,4 @@
       var url = 'http://localhost:3000/pacientes/'+paciente_id+'/edit';
       javscript:window.location.href = url;
     }
+    
