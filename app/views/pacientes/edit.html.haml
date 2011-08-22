@@ -1,4 +1,4 @@
-%b Ficha del paciente:
+%br
 = render 'search_paciente'
 = simple_form_for @paciente do |f|
   %fieldset.derecha
@@ -46,8 +46,8 @@
     //MUESTRA PRIMERO EL HISTORIAL MÁS RECIENTE
     = simple_fields_for @clinicalhistory do |builder|
       = render :partial => 'clinicalhistories/form',:locals => { :builder => builder }
-  
-    = link_to_function "Crear", "create_new_clinicalhistory(#{@paciente.id})"             
+    
+    = link_to_function "Crear nuevo historial", "create_new_clinicalhistory(#{@paciente.id})"             
     = f.submit 'Guardar'
 
 

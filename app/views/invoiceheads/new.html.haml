@@ -1,82 +1,90 @@
-%h1 New invoicehead
-
-= render 'pacientes/search_paciente_events'
-
-= form_for @invoicehead, invoiceheads_path do |f|
-  .formulario
-    %table
-      %tr
-        %td%td Número de factura
-        %td{:colspan=>3}
-        %td= f.label :created_at, "Fecha Creación" 
-        %td= f.text_field :created_at, :disabled => 'true', :value=> DateTime.now.to_date unless !@invoicehead.created_at.blank?
-      %tr
-        %td= f.label :name, "Nombre Cliente"       
-        %td= f.text_field :name
-        %td= f.label :name, "Observaciones" 
-        %td.grande{:colspan=>3,:rowspan=>2 }= f.text_area :comments, :label => 'Observaciones'
-      %tr
-        %td= f.label :firstsurname, "Apellido1" 
-        %td= f.text_field :firstsurname
-        %td{:colspan=>4}
-
-      %tr
-        %td= f.label :firstsurname, "Apellido2" 
-        %td= f.text_field :secondsurname, :label => 'Apellido2'
-        %td{:colspan=>4}
-
-  .formulario
-    %table.invoice-lines
-      %tr
-        %td nºLínea
-        %td Concepto
-        %td nºSesiones
-        %td Precio
-        %td Total
-
-        - new_line_template = capture do
-          = f.fields_for :invoicelines, Invoiceline.new, :child_index => "MARK_INDEX" do |builder|
-            = render :partial => "form_line", :locals => { :builder => builder }
-
-        :javascript
-          window._last_line_created = 100000;
-          function create_new_line() {
-            var template_new_line = "#{escape_javascript new_line_template}";
-            window._last_line_created++;
-            template_new_line = template_new_line.replace(/MARK_INDEX/g, window._last_line_created);
-            $("table.invoice-lines").append(template_new_line);
-          }
-          function remove_fields(fila) {
-            $(fila).parent().parent().remove();
-          }
-          
-          function search_paciente_events(){
-            var paciente_id = $("#search_client_id").val();
-            var template_new_line = "#{escape_javascript new_line_template}";
-            var total = 0;
-            $.getJSON('/events/search_paciente_events/' + paciente_id, function(events) {
-              /* añadir los parámetros con los que creo la línea pa después usarlos abajo*/
-              for (var i = 0; i < events.length; i++) {
-               create_new_line(/* parámetros */);
-               var date1 = new Date(events[i][2]);
+%br
+%fieldset
+  %legend Buscar las citas de un paciente
+  = render 'pacientes/search_paciente_events'
+%fieldset
+  %legend Factura nueva
+  = form_for @invoicehead, invoiceheads_path do |f|
+    .formulario
+      %table
+        %tr
+          %td Número de factura
+          %td{:colspan=>3}
+          %td= f.label :created_at, "Fecha Creación" 
+          %td= f.text_field :created_at, :disabled => 'true', :value=> DateTime.now.to_date unless !@invoicehead.created_at.blank?
+        %tr
+          %td= f.label :name, "Nombre Cliente"       
+          %td= f.text_field :name
+          %td= f.label :name, "Observaciones" 
+          %td.grande{:colspan=>3,:rowspan=>2 }= f.text_area :comments, :label => 'Observaciones'
+        %tr
+          %td= f.label :firstsurname, "Apellido1" 
+          %td= f.text_field :firstsurname
+          %td{:colspan=>4}
+  
+        %tr
+          %td= f.label :firstsurname, "Apellido2" 
+          %td= f.text_field :secondsurname, :label => 'Apellido2'
+          %td{:colspan=>4}
+  
+    .formulario
+      %table.invoice-lines
+        %tr
+          %td nºLínea
+          %td Concepto
+          %td nºSesiones
+          %td Precio
+          %td Total
+  
+          - new_line_template = capture do
+            = f.fields_for :invoicelines, Invoiceline.new, :child_index => "MARK_INDEX" do |builder|
+              = render :partial => "form_line", :locals => { :builder => builder }
+  
+          :javascript
+            window._last_line_created = 100000;
+            function create_new_line() {
+              var template_new_line = "#{escape_javascript new_line_template}";
+              window._last_line_created++;
+              template_new_line = template_new_line.replace(/MARK_INDEX/g, window._last_line_created);
+              $("table.invoice-lines").append(template_new_line);
+              var date1 = new Date();
                var nmonth = date1.getMonth();
                var ntoday = date1.getDate();
                var nyear = date1.getFullYear();
                var onlyDate = ntoday + "/" + nmonth + "/" + nyear; 
-               $("#invoicehead_invoicelines_attributes_"+window._last_line_created+"_treatmentdate").val(onlyDate);
-               $("#invoicehead_invoicelines_attributes_"+window._last_line_created+"_sessions").val(1);
-               $("#invoicehead_invoicelines_attributes_"+window._last_line_created+"_concept").val(events[i][0]);
-               $("#invoicehead_invoicelines_attributes_"+window._last_line_created+"_price").val(events[i][1]);
-               $("#invoicehead_invoicelines_attributes_"+window._last_line_created+"_total").val(1*events[i][1]);
-               total += total + events[i][1];
-              } 
-              $("#total").val(total);
-              $("#sessions").val(events.length);
-            });
-          }
+              $("#invoicehead_invoicelines_attributes_"+window._last_line_created+"_treatmentdate").val(onlyDate);
 
-  = render 'invoice_total'
-  = link_to_function "Crear Línea", "create_new_line()"             
-  = f.submit "Crear Factura"
-
-= link_to 'Back', invoiceheads_path
+            }
+            function remove_fields(fila) {
+              $(fila).parent().parent().remove();
+            }
+            
+            function search_paciente_events(){
+              var paciente_id = $("#search_client_id").val();
+              var template_new_line = "#{escape_javascript new_line_template}";
+              var total = 0;
+              $.getJSON('/events/search_paciente_events/' + paciente_id, function(events) {
+                /* añadir los parámetros con los que creo la línea pa después usarlos abajo*/
+                for (var i = 0; i < events.length; i++) {
+                 create_new_line(/* parámetros */);
+                 var date1 = new Date(events[i][2]);
+                 var nmonth = date1.getMonth();
+                 var ntoday = date1.getDate();
+                 var nyear = date1.getFullYear();
+                 var onlyDate = ntoday + "/" + nmonth + "/" + nyear; 
+                 $("#invoicehead_invoicelines_attributes_"+window._last_line_created+"_treatmentdate").val(onlyDate);
+                 $("#invoicehead_invoicelines_attributes_"+window._last_line_created+"_sessions").val(1);
+                 $("#invoicehead_invoicelines_attributes_"+window._last_line_created+"_concept").val(events[i][0]);
+                 $("#invoicehead_invoicelines_attributes_"+window._last_line_created+"_price").val(events[i][1]);
+                 $("#invoicehead_invoicelines_attributes_"+window._last_line_created+"_total").val(1*events[i][1]);
+                 total += total + events[i][1];
+                } 
+                $("#total").val(total);
+                $("#sessions").val(events.length);
+              });
+            }
+  
+    = render 'invoice_total'
+    = link_to_function "Crear Línea", "create_new_line()"             
+    = f.submit "Crear Factura"
+ 

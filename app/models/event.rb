@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110727171746
+# Schema version: 20110822134819
 #
 # Table name: events
 #
@@ -17,17 +17,21 @@
 #  paciente_id        :integer
 #  invoiceline_id     :integer
 #  clinicalhistory_id :integer
+#  name               :string(255)
+#  firstsurname       :string(255)
+#  secondsurname      :string(255)
 #
 
 class Event < ActiveRecord::Base
-  attr_accessible  :starts_at, :ends_at, :all_day, :description, :center_id, :specialist_id, :paciente_id,:attended, :invoiceline_id, :clinicalhistory
+  attr_accessible   :starts_at, :ends_at, :all_day, :description, :center_id, :specialist_id, :paciente_id,:attended, :invoiceline_id, :clinicalhistory, 
+                    :name, :firstsurname, :secondsurname
  
   belongs_to  :center
   belongs_to  :specialist
   belongs_to  :paciente
   has_one     :invoiceline
   belongs_to  :clinicalhistory
-  
+  validates :specialist_id, :center_id, :paciente_id,:starts_at, :presence => true
   scope :before, lambda {|end_time| {:conditions => ["ends_at < ?", Event.format_date(end_time)] }}
   scope :after, lambda {|start_time| {:conditions => ["starts_at > ?", Event.format_date(start_time)] }}
   scope :filter_c, lambda {|center_id| where(:center_id => center_id)}

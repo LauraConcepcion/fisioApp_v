@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110818171502
+# Schema version: 20110822134819
 #
 # Table name: clinicalhistories
 #
@@ -27,6 +27,7 @@
 #  provenance_id             :integer
 #  center_id                 :integer
 #  specialist_id             :integer
+#  specialisttype_id         :integer
 #
 
 class Clinicalhistory < ActiveRecord::Base

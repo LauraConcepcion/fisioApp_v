@@ -52,8 +52,6 @@ class EventsController < ApplicationController
   # POST /events.xml
   def create
     @event = Event.new(params[:event])
-    @event.specialist_id = params[:specialist][:specialist_id]
-    @event.center_id = params[:Centro]
     @event.paciente = Paciente.find_by_id(params[:search])
     @event.starts_at = params[:start]
     @event.ends_at = params[:start]
@@ -121,6 +119,7 @@ class EventsController < ApplicationController
   
   def confirm
     @event = Event.find(params[:id])  
+    @event.attended = true
   end
   
 end

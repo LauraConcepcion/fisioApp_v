@@ -176,5 +176,10 @@ fieldset {
 	vertical-align: middle;
 }
 
+button a{
+	text-decoration: none;
+	text-transform: none;
+	color: #000000;
+}
 
 

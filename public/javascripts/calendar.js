@@ -87,7 +87,6 @@ $(document).ready(function() {
             $("#specialist_specialist_id").val(event.specialist_id);
             $("#event_attended").val(event.attended);
             $("#event_id").val(event.id);
-
             var paciente_id = event.paciente_id;
 	        $.getJSON('/events/' + paciente_id + '/info', function(paciente) {
 	        	$("#paciente_name").val(paciente[0][0]);
@@ -117,21 +116,6 @@ $(document).ready(function() {
 });
 
 
-function showEventDetails(event){
-    $('#dia').html($.fullCalendar.formatDate( event.start, 'yyyy-MM-dd' ));
-    jQuery("#actualizaevento").dialog({ 
-				width:300, 
-				height:200, 
-				modal: true, 
-				show: 'slide',
-				close: function(event, ui){
-            		$(this).dialog("destroy");
-            },
-        	});   
-    
-}
-
-
 function updateEvent(the_event) {
     $.update(
       "/events/" + the_event.id,
@@ -145,10 +129,5 @@ function updateEvent(the_event) {
     );
 };
 
-function cleanForm(frm){
-    var inputs = document.frm.getElementsByTagName("input");
-    for(var i=0;i<inputs.length;i++){
-    inputs[i].value = "";
-    }
-}
+
 

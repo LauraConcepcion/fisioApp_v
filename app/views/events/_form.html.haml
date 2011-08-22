@@ -1,49 +1,30 @@
-.formulario
-  = simple_form_for @event do |f|
-    = render "shared/error_messages", :target => @event
-    %table.table_tabs
-      %tr
-        %td
-          = label_tag 'Nombre'
-          = text_field_tag :search, params[:search], :type=>"hidden"
-          = autocomplete_field_tag 'paciente_name', '', tabs_autocomplete_paciente_name_path,:id_element => '#search'
-        %td
-          = label_tag '1 Apellido'
-          = autocomplete_field_tag 'paciente_firstsurname', '', tabs_autocomplete_paciente_firstsurname_path, :id_element => '#search'
-        %td
-          = label_tag '2 Apellido'
-          = autocomplete_field_tag 'paciente_secondsurname', '', tabs_autocomplete_paciente_secondsurname_path,:id_element => '#search'
-        %td
-        %td
-        %td
-          = link_to 'Eliminar', :confirm => 'Are you sure?', :method => :delete
 
-      %tr
-        %td
-        %td
-          = label_tag "Seleccione el especialista"
-          = grouped_collection_select(:specialist, :specialist_id, @specialisttypes, :specialist, :name, :id, :name)
-        %td
-          = label_tag "Seleccione el centro"
-          = select_tag 'Centro', options_from_collection_for_select(@centers, 'id', 'name')
-        %td
-        %td.check
-          = label_tag "¿Ha asistido?"
-          = f.input :attended, :label => false
-          - if @event.attended.blank?
-            - @event.attended = false  
-        %td= link_to 'Confirmar', :controller => 'events', :action => 'confirm'
-
-      %tr
-        %td
-          = label_tag 'Día de la cita'
-          = text_field_tag :dia, '', :id_element =>'dia',:disabled => true
-        %td
-          = f.input :starts_at, :as=>:string, :label => "Hora comienzo",:disabled => true      
-        %td.mediano{:colspan=>"2"}= f.input :description, :label=>"Observaciones"
-        %td
-        %td
-          = submit_tag 'Nueva Cita'
-          = text_field_tag :start,'', :type => "hidden"
-          = f.input :id, :as=>"hidden"
+= simple_form_for @event do |f|
+  = render "shared/error_messages", :target => @event
+  %table
+    %tr
+      %td
+        = label_tag 'Nombre'
+        = text_field_tag :search, params[:search], :type=>"hidden"
+        = autocomplete_field_tag 'paciente_name', '', tabs_autocomplete_paciente_name_path,:id_element => '#search'
+      %td
+        = label_tag '1 Apellido'
+        = autocomplete_field_tag 'paciente_firstsurname', '', tabs_autocomplete_paciente_firstsurname_path, :id_element => '#search'
+      %td
+        = label_tag '2 Apellido'
+        = autocomplete_field_tag 'paciente_secondsurname', '', tabs_autocomplete_paciente_secondsurname_path,:id_element => '#search'
+      %td= f.association :center, :label => false, :collection => Center.all(:order => 'name'), :prompt => "Elija el centro"
+      %td= f.collection_select :specialist_id, Specialist.all, :id,:name, :prompt => "Elija el especialista"
+    %tr
+      %td
+        = label_tag 'Día'
+        = text_field_tag :dia, '', :id_element =>'dia',:disabled => true
+        = f.input :attended, :label => "Confirmado"
+      %td
+        = f.input :starts_at, :as=>:string, :label => "Hora",:disabled => true      
+        = f.input :id
+      %td.mediano{:colspan=>"3"}= f.input :description, :label=>"Observaciones"
+  = link_to 'Eliminar', :confirm => '¿Seguro que desea eliminar la cita?',  :method => :confirm
+  = link_to 'Confirmar', :confirm => '¿Desea confirmar la asistencia del paciente?', :method => :confirm
+  = submit_tag 'Nueva Cita'
 

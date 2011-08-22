@@ -1,6 +1,9 @@
 %b Gestión de citas
-= render :partial => 'search_event'
-= render :partial =>'events/form'
-%br
+%fieldset
+  %legend Buscador de citas
+  = render :partial => 'search_event'
+%fieldset
+  %legend Crear una nueva cita
+  = render :partial =>'events/form'
 
 #calendar
