@@ -4,8 +4,8 @@
     %tr
       %td= builder.input :assessmentdate, :as=>:string,:label => 'F. Ev.'
       %td= builder.association :center, :label => false, :collection => Center.all(:order => 'name'), :prompt => "Elija el centro"
-      %td= builder.collection_select :specialist_id, Specialist.all, :id,:name, :prompt => "Elija el especialista"
       %td= builder.collection_select :specialisttype_id, Specialisttype.all, :id,:name, :prompt => "Elija la especialidad"
+      %td= builder.collection_select :specialist_id, Specialist.all, :id,:name, :prompt => "Elija el especialista"
     %tr
       %td{:colspan=>'4'}
         .mediano=builder.input :medicalhistory, :label => "Antecedentes clín.: "

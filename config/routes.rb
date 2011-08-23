@@ -41,6 +41,7 @@ FisioApp::Application.routes.draw do
   match 'events/search_paciente_events/:id', :controller=>'events', :action => 'search_paciente_events'
 
   match 'clinicalhistories/search_clinicalhistory/:id', :controller=>'clinicalhistories', :action => 'search_clinicalhistory'
+  match 'clinicalhistories/update_specialist/:id', :controller=>'clinicalhistories', :action => 'update_specialist'
   match 'pacientes/new_clinicalhistory/:id', :controller=>'pacientes', :action => 'new_clinicalhistory'
 
   # The priority is based upon order of creation:

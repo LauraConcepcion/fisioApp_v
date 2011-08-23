@@ -19,7 +19,7 @@
       %td
         = label_tag 'Día'
         = text_field_tag :dia, '', :id_element =>'dia',:disabled => true
-        = f.input :attended, :label => "Confirmado"
+        = f.input :attended, :label => "Confirmado",:readonly => 'true'
       %td
         = f.input :starts_at, :as=>:string, :label => "Hora",:disabled => true      
         = f.input :id

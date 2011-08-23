@@ -46,7 +46,8 @@
     //MUESTRA PRIMERO EL HISTORIAL MÁS RECIENTE
     = simple_fields_for @clinicalhistory do |builder|
       = render :partial => 'clinicalhistories/form',:locals => { :builder => builder }
-    
+    %button{:onClick => "create_new_clinicalhistory(#{@paciente.id});return false"}
+      Crear nuevo historial 
     = link_to_function "Crear nuevo historial", "create_new_clinicalhistory(#{@paciente.id})"             
     = f.submit 'Guardar'
 
@@ -55,48 +56,18 @@
 
   :javascript
     function edit_clinicalhistory(clinicalhistory_id){
-      $.getJSON('/clinicalhistories/search_clinicalhistory/' + clinicalhistory_id, function(clinicalhistory){
+      $.getJSON('/clinicalhistories/search_clinicalhistory/' + clinicalhistory_id, function(result){
         /*después de buscar el clinicalhistory seleccionado por el usuario, rellenamos los campos*/
-        $("#clinicalhistory_medicalhistory").val(clinicalhistory[0][0]);
-        $("#clinicalhistory_reasonconsultation").val(clinicalhistory[0][1]);
-        $("#clinicalhistory_evaluation").val(clinicalhistory[0][2]);
-        $("#clinicalhistory_physiotherapistdiagnostic").val(clinicalhistory[0][3]);
-        $("#clinicalhistory_assessmentdate").val(clinicalhistory[0][4]);
-        $("#clinicalhistory_treatment").val(clinicalhistory[0][5]);
-        $("#clinicalhistory_medicaldiagnosic").val(clinicalhistory[0][6]);
-        $("#clinicalhistory_provenance_id").val(clinicalhistory[0][7]);
-        $("#clinicalhistory_comments").val(clinicalhistory[0][8]);
-        $("#clinicalhistory_startdatetto").val(clinicalhistory[0][9]);
-        $("#clinicalhistory_clinicalhistories_rate_id").val(clinicalhistory[0][10]);
-        $("#clinicalhistory_enddatetto").val(clinicalhistory[0][11]);
-        $("#clinicalhistory_expedient").val(clinicalhistory[0][12]);
-        $("#clinicalhistory_authorization").val(clinicalhistory[0][13]);
-        $("#clinicalhistory_authorizationcomments").val(clinicalhistory[0][14]);
-        $("#clinicalhistory_id").val(clinicalhistory_id);      
-        $("#clinicalhistory_code").val(clinicalhistory[0][15]);      
+        for(key in result.clinicalhistory)
+          $("#clinicalhistory_" + key).val(result.clinicalhistory[key]);
 
      });
     }
     function create_new_clinicalhistory(paciente_id){
       $.getJSON('/pacientes/new_clinicalhistory/' + paciente_id, function(clinicalhistory){
         /*después de buscar el clinicalhistory seleccionado por el usuario, rellenamos los campos*/
-        $("#clinicalhistory_medicalhistory").val(clinicalhistory[0][0]);
-        $("#clinicalhistory_reasonconsultation").val(clinicalhistory[0][1]);
-        $("#clinicalhistory_evaluation").val(clinicalhistory[0][2]);
-        $("#clinicalhistory_physiotherapistdiagnostic").val(clinicalhistory[0][3]);
-        $("#clinicalhistory_assessmentdate").val(clinicalhistory[0][4]);
-        $("#clinicalhistory_treatment").val(clinicalhistory[0][5]);
-        $("#clinicalhistory_medicaldiagnosic").val(clinicalhistory[0][6]);
-        $("#clinicalhistory_provenance_id").val(clinicalhistory[0][7]);
-        $("#clinicalhistory_comments").val(clinicalhistory[0][8]);
-        $("#clinicalhistory_startdatetto").val(clinicalhistory[0][9]);
-        $("#clinicalhistory_clinicalhistories_rate_id").val(clinicalhistory[0][10]);
-        $("#clinicalhistory_enddatetto").val(clinicalhistory[0][11]);
-        $("#clinicalhistory_expedient").val(clinicalhistory[0][12]);
-        $("#clinicalhistory_authorization").val(clinicalhistory[0][13]);
-        $("#clinicalhistory_authorizationcomments").val(clinicalhistory[0][14]);
-        $("#clinicalhistory_id").val(clinicalhistory[0][16]);      
-        $("#clinicalhistory_code").val(clinicalhistory[0][15]);      
+        for(key in result.clinicalistory)
+          $("#clinicalhistory_" + key).val(clinicalhistory[key]);    
       });
     }
     

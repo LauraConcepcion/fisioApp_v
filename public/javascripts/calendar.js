@@ -85,7 +85,7 @@ $(document).ready(function() {
             $("#end").val($.fullCalendar.formatDate(date, 'HH:mm' ));
             $("#Centro").val(event.center_id);
             $("#specialist_specialist_id").val(event.specialist_id);
-            $("#event_attended").val(event.attended);
+            $("#event_attended").attr("checked", event.attended)
             $("#event_id").val(event.id);
             var paciente_id = event.paciente_id;
 	        $.getJSON('/events/' + paciente_id + '/info', function(paciente) {

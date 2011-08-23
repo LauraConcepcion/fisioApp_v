@@ -83,12 +83,24 @@ class ClinicalhistoriesController < ApplicationController
       format.json { render :json => rates.map {|rate| [rate.name, rate.id] }.to_json }
     end
   end
-  
-  def search_clinicalhistory
-    clinicalhistory = Clinicalhistory.where(:id=>params[:id]) unless params[:id].blank?
+  def update_specialist
+    specialists = Specialist.where(:specialisttype_id=>params[:id]).order(:name)
     respond_to do |format|
-      format.json { render :json => clinicalhistory.map {|clinicalhistory| [clinicalhistory.medicalhistory, clinicalhistory.reasonconsultation, clinicalhistory.evaluation, clinicalhistory.physiotherapistdiagnostic, clinicalhistory.assessmentdate, clinicalhistory.treatment, clinicalhistory.medicaldiagnosic, clinicalhistory.provenance_id, clinicalhistory.comments, clinicalhistory.startdatetto, clinicalhistory.rate_id, clinicalhistory.enddatetto, clinicalhistory.expedient, clinicalhistory.authorization, clinicalhistory.authorizationcomments, clinicalhistory.code] }.to_json }
+      format.json { render :json => specialists.map {|specialist| [specialist.name, specialist.id] }.to_json }
     end
+  end  
+  def search_clinicalhistory
+    #clinicalhistory = Clinicalhistory.where(:id=>params[:id]) unless params[:id].blank?
+    clinicalhistory = Clinicalhistory.find(params[:id])
+    respond_to do |format|
+      format.json do
+        render :json => clinicalhistory
+      end
+    end
+
+    #respond_to do |format|
+    #  format.json { render :json => clinicalhistory.map {|clinicalhistory| [clinicalhistory.medicalhistory, clinicalhistory.reasonconsultation, clinicalhistory.evaluation, clinicalhistory.physiotherapistdiagnostic, clinicalhistory.assessmentdate, clinicalhistory.treatment, clinicalhistory.medicaldiagnosic, clinicalhistory.provenance_id, clinicalhistory.comments, clinicalhistory.startdatetto, clinicalhistory.rate_id, clinicalhistory.enddatetto, clinicalhistory.expedient, clinicalhistory.authorization, clinicalhistory.authorizationcomments, clinicalhistory.code] }.to_json }
+    #end
   end
   
 end

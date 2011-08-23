@@ -87,11 +87,10 @@ class PacientesController < ApplicationController
   
   def new_clinicalhistory
     clinicalhistory = Clinicalhistory.new
-    clinicalhistories = [clinicalhistory]
-    @paciente = Paciente.find_by_id(params[:id]) unless params[:id].blank?
+    @paciente = Paciente.find(params[:id])
     @paciente.clinicalhistories << clinicalhistory
     respond_to do |format|
-      format.json { render :json => clinicalhistories.map {|clinicalhistory| [clinicalhistory.medicalhistory, clinicalhistory.reasonconsultation, clinicalhistory.evaluation, clinicalhistory.physiotherapistdiagnostic, clinicalhistory.assessmentdate, clinicalhistory.treatment, clinicalhistory.medicaldiagnosic, clinicalhistory.provenance_id, clinicalhistory.comments, clinicalhistory.startdatetto, clinicalhistory.rate_id, clinicalhistory.enddatetto, clinicalhistory.expedient, clinicalhistory.authorization, clinicalhistory.authorizationcomments, clinicalhistory.code, clinicalhistory.id] }.to_json }
+      render :json => clinicalhistory
     end
   end
 end

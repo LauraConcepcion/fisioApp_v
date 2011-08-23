@@ -77,7 +77,7 @@
                  $("#invoicehead_invoicelines_attributes_"+window._last_line_created+"_concept").val(events[i][0]);
                  $("#invoicehead_invoicelines_attributes_"+window._last_line_created+"_price").val(events[i][1]);
                  $("#invoicehead_invoicelines_attributes_"+window._last_line_created+"_total").val(1*events[i][1]);
-                 total += total + events[i][1];
+                 total += events[i][1];
                 } 
                 $("#total").val(total);
                 $("#sessions").val(events.length);
