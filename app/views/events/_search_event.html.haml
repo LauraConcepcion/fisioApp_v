@@ -1,9 +1,7 @@
 
-= label_tag 'Nombre'
+= label_tag 'Nombre, apellildos o dni'
 = text_field_tag :search_client_id, '',:type=>"hidden"
-= autocomplete_field_tag 'paciente_name', '', tabs_autocomplete_paciente_name_path,:id_element => '#search_client_id'
-= label_tag '1 Apellido'
-= autocomplete_field_tag 'paciente_firstsurname', '', tabs_autocomplete_paciente_firstsurname_path, :id_element => '#search_client_id'
+= autocomplete_field_tag 'paciente_fullname', '', tabs_autocomplete_paciente_fullname_path,:id_element => '#search_client_id'
 = label_tag "Especialista"
 = grouped_collection_select(:specialist, :specialist_id, @specialisttypes, :specialist, :name, :id, :name)
 = label_tag "Centro"
