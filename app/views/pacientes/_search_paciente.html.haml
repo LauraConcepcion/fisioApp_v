@@ -18,3 +18,7 @@
       javscript:window.location.href = url;
     }
     
+    $('#paciente_name').bind('railsAutocomplete.select', function(event, data){
+      /* Do something here */
+      alert("hola");
+    });

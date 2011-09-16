@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe "LayoutLinks" do
-  it "should have a Home page at '/'" do
-    get '/' 
-    response.should have_selector("title",:content => "FisioApp, Fisioterapia Fisior Las palmas|Inicio")
+  it "should have the right links on the layout" do
+    visit root_path 
+    click_link "Citas" 
+    response.should have_selector('title', :content => "Nuevo paciente") 
   end
-  
 end

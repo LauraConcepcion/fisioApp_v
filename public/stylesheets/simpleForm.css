@@ -89,7 +89,7 @@ label.collection_radio {
 
 .field_with_errors {
   background-color: #ff3333;
-  margin:4px;
+  margin:1px;
 }
 
 .simple_form .error {

@@ -53,7 +53,7 @@
                var nyear = date1.getFullYear();
                var onlyDate = ntoday + "/" + nmonth + "/" + nyear; 
               $("#invoicehead_invoicelines_attributes_"+window._last_line_created+"_treatmentdate").val(onlyDate);
-
+              $("table.invoice-lines").find("tr:last td input").attr("readonly", false);
             }
             function remove_fields(fila) {
               $(fila).parent().parent().remove();

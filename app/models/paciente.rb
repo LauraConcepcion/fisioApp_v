@@ -25,6 +25,7 @@
 #
 
 class Paciente < ActiveRecord::Base
+  #El parámetro código alamcenará un id del usuario, a parte del dni que no es obligatorio, y se generará automáticamente
     attr_accessible :name, :firstsurname, :secondsurname, :idtype_id, :idcode, :profession, :comments,
                     :birthdate, :mobilephone, :familyphone, :homephone, :email, :addres, :zip, :codigo,
                     :clinicalhistories_attributes
@@ -32,22 +33,17 @@ class Paciente < ActiveRecord::Base
     attr_accessor  :fullname
     validates :name, :firstsurname, :presence => true,
                                     :length => { :maximum => 100 }
- #   validates :email, :allow_nil => true,
-  #                    :format  => { :with => /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }  
     validates :idcode,  :uniqueness => { :case_sensitive => false },
                         :format => { :with =>/\d{8}[a-zA-Z]$/i},
                         :allow_blank => true                                    
     validates :birthdate,
               :format => { :with => /(\d{2,4})(\-)(0[0-9]|1[1-2])(\-)(0[0-9]|1[0-9]|2[0-9]|3[0-1])/},
               :allow_blank => true
-#Definimos el formato de mail
-   # validates :email, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create }
-#Definimos así mismo los atributos que serán obligatorios, nombre, primer apellido, tipo de tarifa
-  #  validates :name, :firstsurname, :feetype, :presence => true
-#Definimos el tamaño de los campos
-   # validates :name, :firstsurname, :secondsurname, :profession, :email, :length => {:maximum => 80}
-    #validates  :mobilephone, :familyphone, :homephone, :codigo, :numericality => true
-    
+    #Definimos el formato de mail
+    validates :email, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i },
+              :allow_blank => true
+    #Definimos el tamaño de los campos
+    validates :profession, :email, :length => {:maximum => 150}
     #Relación de paciente con tipo de tarifa, un paciente tiene una tarifa, una tarifa puede tener muchos pacientes
     has_many :clinicalhistories, :dependent => :destroy 
     has_many :events, :dependent => :destroy
@@ -64,7 +60,7 @@ class Paciente < ActiveRecord::Base
     end 
     #Función para definir qué queremos mostrar en el autcompletar.
     def funky_method
-      "#{self.name} #{self.firstsurname} #{self.secondsurname}, #{self.idcode}"
+      self.fullname="#{self.name} #{self.firstsurname} #{self.secondsurname}, #{self.idcode}"
     end
     
     #Función para definir qué queremos mostrar en el autcompletar.
