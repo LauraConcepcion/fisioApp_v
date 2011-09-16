@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110822134819) do
+ActiveRecord::Schema.define(:version => 20110916102239) do
 
   create_table "centers", :force => true do |t|
     t.string   "name"
@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(:version => 20110822134819) do
     t.string   "zip"
     t.integer  "codigo"
     t.integer  "idtype_id"
+    t.string   "fullname"
   end
 
   create_table "provenances", :force => true do |t|

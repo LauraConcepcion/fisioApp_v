@@ -59,11 +59,12 @@
 }
 .simple_form .mediano input{
 	width: 350px;
+	
 }
+
 .simple_form input{
   width: 100px;
   float: right;
-  clear: right;
 }
 
 .simple_form select{

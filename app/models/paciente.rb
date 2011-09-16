@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110721065357
+# Schema version: 20110916102239
 #
 # Table name: pacientes
 #
@@ -22,15 +22,16 @@
 #  zip           :string(255)
 #  codigo        :integer
 #  idtype_id     :integer
+#  fullname      :string(255)
 #
 
 class Paciente < ActiveRecord::Base
   #El parámetro código alamcenará un id del usuario, a parte del dni que no es obligatorio, y se generará automáticamente
     attr_accessible :name, :firstsurname, :secondsurname, :idtype_id, :idcode, :profession, :comments,
                     :birthdate, :mobilephone, :familyphone, :homephone, :email, :addres, :zip, :codigo,
+                    :fullname,
                     :clinicalhistories_attributes
                     
-    attr_accessor  :fullname
     validates :name, :firstsurname, :presence => true,
                                     :length => { :maximum => 100 }
     validates :idcode,  :uniqueness => { :case_sensitive => false },
@@ -49,7 +50,7 @@ class Paciente < ActiveRecord::Base
     has_many :events, :dependent => :destroy
     accepts_nested_attributes_for :clinicalhistories, :allow_destroy => true  
 
-    before_create :fullname_f, :set_default_parameters
+    before_create  :set_default_parameters
 
     belongs_to  :idtype
     
@@ -60,11 +61,6 @@ class Paciente < ActiveRecord::Base
     end 
     #Función para definir qué queremos mostrar en el autcompletar.
     def funky_method
-      self.fullname="#{self.name} #{self.firstsurname} #{self.secondsurname}, #{self.idcode}"
-    end
-    
-    #Función para definir qué queremos mostrar en el autcompletar.
-    def fullname_f
       "#{self.name} #{self.firstsurname} #{self.secondsurname}, #{self.idcode}"
     end
     
@@ -74,6 +70,7 @@ class Paciente < ActiveRecord::Base
         code = Countreference.find_by_name('P')
         self.codigo = code.value
         code.value = code.value + 1
+        self.fullname = "#{self.name} #{self.firstsurname} #{self.secondsurname}, #{self.idcode}"
         code.save
       end
 

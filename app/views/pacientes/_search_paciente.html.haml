@@ -1,24 +1,17 @@
-%fieldset
-  %legend Buscador de pacientes
-  = label_tag 'Nombre'
-  = text_field_tag 'search_client_id', '',:type=>"hidden"
-  = autocomplete_field_tag 'paciente_name', '', tabs_autocomplete_paciente_name_path,:id_element => '#search_client_id'
-  = label_tag '1 Apellido'
-  = autocomplete_field_tag 'paciente_firstsurname', '', tabs_autocomplete_paciente_firstsurname_path, :id_element => '#search_client_id'
-  = label_tag '2 Apellido'
-  = autocomplete_field_tag 'paciente_secondsurname', '', tabs_autocomplete_paciente_secondsurname_path,:id_element => '#search_client_id'
-  = label_tag 'Identificación'
-  = autocomplete_field_tag 'paciente_idcode', '', tabs_autocomplete_paciente_idcode_path, :id_element => '#search_client_id'
-  %button{:onClick => "edit_paciente()"}
-    Buscar 
-  :javascript
-    function edit_paciente(){
-      var paciente_id = $("#search_client_id").val();
-      var url = '/pacientes/'+paciente_id+'/edit';
-      javscript:window.location.href = url;
-    }
-    
-    $('#paciente_name').bind('railsAutocomplete.select', function(event, data){
-      /* Do something here */
-      alert("hola");
-    });
+%b Buscador de pacientes (nombre, apellidos o dni)
+%table.izquierda
+  %tr
+    %td= text_field_tag 'search_client_id', '',:type=>"hidden",:placeholder => ""
+    %td{:width =>'200px'}
+      = autocomplete_field_tag 'paciente_fullname', '', tabs_autocomplete_paciente_fullname_path,:id_element => '#search_client_id',:size => 50
+    %td
+      %button{:onClick => "edit_paciente()"}
+        Buscar 
+  
+:javascript
+  function edit_paciente(){
+    var paciente_id = $("#search_client_id").val();
+    var url = '/pacientes/'+paciente_id+'/edit';
+    javscript:window.location.href = url;
+  }
+  

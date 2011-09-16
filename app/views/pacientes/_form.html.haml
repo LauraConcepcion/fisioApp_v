@@ -1,1 +1,29 @@
- 
+%fieldset        
+  %legend Datos personales
+  %table.izquierda
+    %tr
+      %td=f.input :name, :label => "Nombre ",:placeholder => 'Nombre'
+      %td=f.input :firstsurname, :label => "1 apellido " ,:placeholder => '1 apellido'
+      %td=f.input :secondsurname, :label => "2 apellido ",:placeholder => '2 apellido'
+    %tr
+      %td=f.input :profession, :label => "Ocupación"
+      %td= f.association :idtype , :label =>false , :include_blank => false
+      %td= f.input :idcode, :label => false, :placeholder => 'DNI/NIF/CIF'
+    %tr
+      %td=f.input :birthdate, :as=>:string, :label => "F.Nac" 
+      %td
+        =f.label 'Edad'       
+        #{@edad} años
+      %td
+    %tr
+      %td=f.input :addres, :label => "Dirección"
+      %td= f.input :zip, :label => "C.p"
+      %td
+    %tr
+      %td=f.input :mobilephone, :label => "Móvil "
+      %td=f.input :familyphone, :label => "Tlfo fam: "
+      %td= f.input :homephone, :label => "Tlfo "
+    %tr
+      %td{:colspan=>'3'}
+        .mediano=f.input :email, :label => "Email:  ",:placeholder => 'Dirección de correo electrónico'
+     
